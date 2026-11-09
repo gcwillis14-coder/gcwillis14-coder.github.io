@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Giggity - George Willis</title>
+<meta name="description" content="Giggity: collecting, reviewing and mapping London gig listings without losing track of where the data came from.">
+<meta name="author" content="George Willis">
+
+<link rel="apple-touch-icon" sizes="180x180" href="../img/favico/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="../img/favico/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="../img/favico/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="../img/favico/manifest.json">
+<link rel="mask-icon" href="../img/favico/safari-pinned-tab.svg" color="#E2661F">
+<meta name="theme-color" content="#050506">
+
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;1,500&amp;family=Inter:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap masthead__row">
+    <a href="../index.html" class="masthead__mark"><strong>George Willis</strong></a>
+    <button class="masthead__toggle" aria-controls="site-nav" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
+    <nav class="masthead__nav" id="site-nav" aria-label="Main navigation">
+      <a href="../index.html">Home</a>
+      <a href="index.html" aria-current="page">Work</a>
+      <a href="../articles/index.html">Articles</a>
+      <a href="../publications/index.html">Publications</a>
+      <a href="../about/index.html">About</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="section"><div class="wrap">
+  <p class="kicker">Personal project · In development · London</p>
+  <h1 class="page-title">Giggity</h1>
+  <p class="intro__text">Finding London gigs before they have happened or sold out.</p>
+  <div class="hero__actions">
+    <a class="btn" href="https://giggity.gcwillis14.workers.dev/" target="_blank" rel="noopener">Open Giggity ↗</a>
+    <a class="link-arrow" href="index.html">All projects →</a>
+  </div>
+</div></section>
+
+<section class="section"><div class="wrap split">
+  <h2>Why I’m building it</h2>
+  <div class="prose">
+    <p>I kept hearing about gigs a day after they had happened or once tickets had already gone. Following individual venues meant checking half a dozen calendars and remembering to come back to them a week later.</p>
+    <p>Giggity pulls London listings into one place with a venue map and a change log so I can see what has been newly announced, moved or put on sale. The original requirement was simple: go to more gigs. The data plumbing grew from there.</p>
+  </div>
+</div></section>
+
+<section class="section"><div class="wrap split">
+  <h2>Collecting from uneven sources</h2>
+  <div class="prose">
+    <p>Relying on a single ticket feed misses smaller rooms, while venue websites publish in whatever format suits their CMS. A Python collector combines the Ticketmaster Discovery API with direct HTML and JSON programme parsers for seven London venues: Union Chapel, Roundhouse, KOKO, Colour Factory, Blue Note, O2 Academy Islington and O2 Academy Brixton. A few other venues sit behind bot challenges; those stay on a deferred watchlist rather than being worked around.</p>
+    <p>Provider search APIs also cap how many records a single query can return. When a London date window gets close to that limit, the collector splits the interval into smaller windows until page totals and unique source IDs balance. Every record fetched in a run is accounted for as accepted or rejected, whether it is an internal <code>DO NOT PURCHASE</code> test listing, a duplicate or a venue outside London. If a collection stops early or fails its balance checks, it fails closed and leaves the existing dataset untouched.</p>
+  </div>
+</div></section>
+
+<section class="section"><div class="wrap split">
+  <h2>Sorting gigs from everything else</h2>
+  <div class="prose">
+    <p>Venue calendars rarely separate live bands from club nights, comedy, film screenings, theatre workshops or talks. Treating every entry on a venue’s What’s On page as a gig fills the list with noise, while aggressive keyword filtering quietly drops real shows.</p>
+    <p>Before venue listings reach the database, a local triage step (<code>giggity/venue_merge.py</code>) classifies each programme item. It reuses prior review decisions when an event’s core details have not changed, auto-accepts dedicated music rooms (such as Blue Note and the two O2 Academy venues) or listings that match an existing Ticketmaster URL, and filters explicit non-gig phrases using whole-word boundaries. That boundary rule came from early mistakes: naive substring checks for <code>art</code> and <code>musical</code> tried to throw out <em>Arctic Monkeys</em>, <em>Art Garfunkel</em> and <em>Musical Youth</em>.</p>
+    <p>Where a bill genuinely mixes formats, such as a comedy night with live jazz, a multi-day festival pass, or a listing whose details have shifted since it was last reviewed, the pipeline stops and writes it to <code>venue-review-needed.json</code> for a quick manual decision before anything is staged.</p>
+  </div>
+</div></section>
+
+<section class="section"><div class="wrap split">
+  <h2>Tracking changes without inventing cancellations</h2>
+  <div class="prose">
+    <p>One of the earliest design choices was how to treat a listing that disappears from a feed. APIs drop rows temporarily, paginate oddly or swap event IDs when a promoter updates a tour. Inferring a cancellation simply because a listing was absent from today’s run produces false alarms. When a future event is not seen in a collection, Giggity keeps its previous observation timestamp rather than marking it cancelled.</p>
+    <p>Local state lives in standard-library <code>SQLite</code> (<code>var/events.sqlite3</code>) with versioned schema migrations. When the same show appears on both Ticketmaster and a venue calendar, the store links them under one canonical event while keeping source provenance separate so primary fields are not silently overwritten.</p>
+    <p>To power the <code>/changes</code> page without turning every refresh into an update, each event is hashed using only the fields a gig-goer cares about: title, date, doors time, status, venue, price range and ticket URLs. Whitespace and list ordering are normalised and collection timestamps are ignored, so the change log only records genuine additions or changed details.</p>
+  </div>
+</div></section>
+
+<section class="section"><div class="wrap split">
+  <h2>One contract between Python and the browser</h2>
+  <div class="prose">
+    <p>The local pipeline and the web app meet at a single versioned file, <code>events.json</code>. Rather than hoping the frontend agrees with whatever Python exported, both sides validate the same snapshot contract (<code>giggity/models.py</code> in Pydantic and <code>apps/web/src/lib/snapshot.ts</code> in TypeScript) against shared test fixtures.</p>
+    <p>The contract checks chronological ordering, <code>Europe/London</code> GMT and BST offsets, reconciled quality and provenance counts, and strict <code>https:</code> URL parsing that rejects malformed links before a snapshot can be published.</p>
+  </div>
+</div></section>
+
+<section class="section"><div class="wrap split">
+  <h2>From local review to map</h2>
+  <div class="prose">
+    <p>Collection, triage and publishing run locally through a <code>justfile</code> (<code>just collect</code>, <code>just review</code>, <code>just publish</code>). API keys stay in Proton Pass or the system keyring rather than <code>.env</code> files, and raw API archives are redacted before they touch disk.</p>
+    <p>The frontend is a static <code>SvelteKit</code> app. Search, date filters, source filters and the change log run entirely in the browser against the published snapshot without a live database server. <code>MapLibre GL</code> and <code>OpenFreeMap</code> vector tiles are loaded via dynamic import only when you open the venue map, keeping the initial page light and leaving the listings usable if map tiles fail to load.</p>
+    <p>Publishing uploads a verified snapshot to <code>Cloudflare R2</code> and updates a release pointer in <code>Cloudflare D1</code>. A small Worker sits in front of the site and <code>/events.json</code> with a D1-backed visitor gate and signed cookie, enough to deter casual scraping without adding third-party CAPTCHA scripts.</p>
+    <p>Listings remain dated observations rather than live ticket inventory or complete London coverage. It is always worth checking the venue or ticket seller before making plans.</p>
+  </div>
+</div></section>
+
+<section class="section"><div class="wrap split">
+  <h2>Tools and structure</h2>
+  <div class="prose">
+    <dl class="fields">
+      <dt>Collection &amp; storage</dt>
+      <dd>Python 3.12 · uv · httpx · Pydantic v2 · SQLite (<code>var/events.sqlite3</code>)</dd>
+      <dt>Web application</dt>
+      <dd>SvelteKit (static adapter) · TypeScript · MapLibre GL · OpenFreeMap · Node test runner</dd>
+      <dt>Hosting &amp; release store</dt>
+      <dd>Cloudflare Workers · D1 (release pointer &amp; visitor gate) · R2 (immutable snapshot releases)</dd>
+      <dt>Local workflow &amp; secrets</dt>
+      <dd><code>just</code> task runner · Proton Pass CLI &amp; Fedora Secret Service · bounded read-only MCP inspector for ad-hoc API checks</dd>
+      <dt>Key modules</dt>
+      <dd><code>giggity/collect.py</code> (window splitting &amp; Ticketmaster ingest) · <code>giggity/venue_merge.py</code> (programme triage &amp; merge) · <code>giggity/storage.py</code> (SQLite migrations &amp; change hashes) · <code>apps/web/src/lib/snapshot.ts</code> (browser contract validator)</dd>
+    </dl>
+  </div>
+</div></section>
+
+<section class="section"><div class="wrap split">
+  <h2>Still being worked on</h2>
+  <div class="prose">
+    <p>I’m gradually adding more independent London venues and tidying awkward duplicate cases where promoters bill support acts differently across sites. Collection stays manual for now while I see which venue parsers stay reliable over a few months of programme changes.</p>
+    <p><a class="btn" href="https://giggity.gcwillis14.workers.dev/" target="_blank" rel="noopener">Open Giggity ↗</a></p>
+  </div>
+</div></section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__row">
+    <span class="footer__mark">George Willis</span>
+    <div class="footer__links">
+      <a href="mailto:gcw519email@proton.me">Email</a>
+      <a href="https://uk.linkedin.com/in/gwilisli26" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/gcwillis14-coder" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://github.com/gcwillis14-coder/portfolio-home" target="_blank" rel="noopener">Source</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/main.js" defer></script>
+</body>
+</html>

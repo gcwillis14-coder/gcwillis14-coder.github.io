@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="George Willis - spatial statistics, geodata, and applied machine learning. Research and software on urban change, transport accessibility, and regional trade.">
+<meta name="author" content="George Willis">
+<title>George Willis - Computational Cartography &amp; Spatial Statistics</title>
+
+<link rel="apple-touch-icon" sizes="180x180" href="img/favico/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="img/favico/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="img/favico/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="img/favico/manifest.json">
+<link rel="mask-icon" href="img/favico/safari-pinned-tab.svg" color="#E2661F">
+<meta name="theme-color" content="#050506">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="img/header.jpg" as="image" fetchpriority="high">
+<link rel="preload" href="assets/style.css" as="style">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;family=Noto+Serif:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/main.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#projects">Skip to content</a>
+
+<!-- Top Navigation Bar -->
+<header class="masthead">
+  <div class="wrap masthead__row">
+    <a href="index.html" class="masthead__mark">
+      <strong>George Willis</strong>
+      <span class="masthead__slash">/</span>
+      <span class="masthead__subtitle">Data scientist</span>
+    </a>
+    <button class="masthead__toggle" aria-controls="site-nav" aria-label="Toggle menu" aria-expanded="false">
+      <span></span>
+    </button>
+    <nav class="masthead__nav" id="site-nav" aria-label="Main navigation">
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="portfolio/index.html">Work</a>
+      <a href="articles/index.html">Articles</a>
+      <a href="publications/index.html">Publications</a>
+      <a href="about/index.html">About</a>
+    </nav>
+    <div class="masthead__actions">
+      <a href="about/index.html" class="masthead__cv">Curriculum Vitae</a>
+    </div>
+  </div>
+</header>
+
+<!-- Hero: Nocturnal Radiance Satellite Canvas & Cartographic Annotations -->
+<section class="hero-cartographic">
+  <div class="hero-cartographic__canvas">
+    <!-- HD Nocturnal Radiance Satellite Imagery -->
+    <div class="hero-cartographic__imagery">
+      <img src="img/header.jpg" alt="High-resolution nocturnal satellite radiometry nighttime lights map of China and East Asia" class="hero-cartographic__img" width="4200" height="4200">
+      <!-- Multi-stop Atmospheric Masks for razor-sharp editorial legibility -->
+      <div class="hero-cartographic__mask-west"></div>
+      <div class="hero-cartographic__mask-vertical"></div>
+      <div class="hero-cartographic__mask-tint"></div>
+    </div>
+
+    <!-- Editorial Thesis Overlay & Scientific Cluster Callouts -->
+    <div class="wrap hero-cartographic__content">
+      <div class="hero-cartographic__grid">
+        <!-- Northwestern Overlay: Typographic Thesis & Scientific Coordinates -->
+        <div class="hero-cartographic__thesis">
+          <div class="hero-cartographic__telemetry font-mono-tabular">
+            <span class="highlight">Data scientist · London</span>
+          </div>
+          <h1 class="hero-cartographic__title">Open data and a map or two. Often wanted to solve or prove a point.</h1>
+          <div class="hero-cartographic__prose">
+            <p>I'm George, a data scientist at Cisco in London. I work with messy network datasets, testing patterns and working out what the evidence supports.</p>
+            <p>Outside work, I build projects around music, transport and cities. They usually begin with a question or something I'd find useful. The scope is not always well contained.</p>
+            <div class="hero-cartographic__link-wrap">
+              <a href="about/index.html">More about me and the work →</a>
+            </div>
+          </div>
+          <!-- Instrument Telemetry Strip -->
+          <div class="hero-cartographic__instrument-strip">
+            <a href="portfolio/R/Animated_NTL.html" class="font-mono-tabular">China's nightlights, 2000-2019 →</a>
+            <span>·</span>
+            <span class="font-mono-tabular">Satellite nightlights showing urban settlement</span>
+          </div>
+        </div>
+
+        <!-- Eastern Cartographic Annotations: Unobtrusive Scientific Pinpoints -->
+        <div class="hero-cartographic__annotations">
+          <!-- Annotation 1: Jing-Jin-Ji Megalopolis (Northern Hub) -->
+          <div class="carto-pin carto-pin--jingjinji">
+            <div class="carto-pin__heading">
+              <span class="carto-pin__mark"></span>
+              <span class="carto-pin__title">Jing-Jin-Ji Megalopolis</span>
+            </div>
+            <span class="carto-pin__coords">39.90° N, 116.40° E · 112M hab</span>
+          </div>
+          <!-- Annotation 2: Sichuan Basin (Inland Megalopolis) -->
+          <div class="carto-pin carto-pin--sichuan">
+            <div class="carto-pin__heading">
+              <span class="carto-pin__mark"></span>
+              <span class="carto-pin__title">Sichuan Basin</span>
+            </div>
+            <span class="carto-pin__coords">30.57° N, 104.06° E · Chengdu-Chongqing</span>
+          </div>
+          <!-- Annotation 3: Yangtze River Delta (Eastern Core) -->
+          <div class="carto-pin carto-pin--yangtze">
+            <div class="carto-pin__heading">
+              <span class="carto-pin__mark"></span>
+              <span class="carto-pin__title">Yangtze River Delta</span>
+            </div>
+            <span class="carto-pin__coords">31.23° N, 121.47° E · 403.42 nW</span>
+          </div>
+          <!-- Annotation 4: Pearl River Delta (Southern Complex) -->
+          <div class="carto-pin carto-pin--pearl">
+            <div class="carto-pin__heading">
+              <span class="carto-pin__mark"></span>
+              <span class="carto-pin__title">Pearl River Delta</span>
+            </div>
+            <span class="carto-pin__coords">23.13° N, 113.26° E · GBA Conurbation</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Radiance Metrology Ribbon across Horizon -->
+    <div class="hero-cartographic__metrology">
+      <div class="wrap hero-cartographic__metrology-inner">
+        <div class="metrology-scale">
+          <span>RADIANCE CALIBRATION (nW·cm⁻²·sr⁻¹)</span>
+          <div class="metrology-scale__bar-wrap">
+            <span class="metrology-scale__val font-mono-tabular">7.38</span>
+            <div class="metrology-scale__bar"></div>
+            <span class="metrology-scale__val font-mono-tabular">403.42</span>
+          </div>
+        </div>
+        <div class="metrology-params font-mono-tabular">
+          <span>PROJECTION: EPSG:4326</span>
+          <span class="metrology-param--desktop">·</span>
+          <span class="metrology-param--desktop">SENSOR: VIIRS/VCM</span>
+          <span>·</span>
+          <span>ZENITH: 14.2°</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stat Ticker -->
+<section class="ticker">
+  <div class="wrap ticker__row">
+    <div class="ticker__item">
+      <span class="ticker__num">13</span>
+      <span class="ticker__label">Projects</span>
+    </div>
+    <div class="ticker__item">
+      <span class="ticker__num">6</span>
+      <span class="ticker__label">Maps &amp; Apps</span>
+    </div>
+    <div class="ticker__item">
+      <span class="ticker__num">7</span>
+      <span class="ticker__label">Data studies</span>
+    </div>
+    <div class="ticker__item">
+      <span class="ticker__num">2</span>
+      <span class="ticker__label">Publications</span>
+    </div>
+  </div>
+</section>
+
+<!-- Selected Work Section -->
+<section class="section" id="projects">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Selected work</h2>
+      <a href="portfolio/index.html" class="section-head__link">All work →</a>
+    </div>
+
+    <!-- Featured Project Card: Giggity -->
+    <div class="featured-project">
+      <span class="featured-badge">Personal project · London</span>
+      <h3>Giggity - London gigs</h3>
+      <p>I kept hearing about gigs after they had happened or sold out. Giggity collects listings from the Ticketmaster API and seven London venue programmes into a local SQLite store, pauses ambiguous bills for review, tracks real changes without treating missing feed rows as cancellations, and publishes a verified snapshot to a static SvelteKit and MapLibre app on Cloudflare.</p>
+      <div class="featured-meta">
+        <span>Python</span>
+        <span>SQLite</span>
+        <span>Pydantic</span>
+        <span>SvelteKit</span>
+        <span>TypeScript</span>
+        <span>MapLibre</span>
+        <span>Cloudflare</span>
+      </div>
+      <div class="featured-actions">
+        <a href="portfolio/giggity.html" class="btn btn--primary">How it works →</a>
+        <a href="https://giggity.gcwillis14.workers.dev/" target="_blank" rel="noopener" class="btn btn--ghost">Open Giggity ↗</a>
+      </div>
+    </div>
+
+    <!-- Full Project Index Rows -->
+    <div class="index-list">
+
+      <!-- TransitFlow -->
+      <div class="index-row">
+        <span class="index-row__tag">Transport · Networks</span>
+        <span class="index-row__body">
+          <a href="https://transitflow-2s4.pages.dev" target="_blank" rel="noopener">
+            <h3>TransitFlow - metro network simulation</h3>
+          </a>
+          <p>Exploring the Beijing metro through a station graph, simulated services and interchange indicators.</p>
+          <div class="index-row__actions">
+            <a href="articles/beijing-subway-network-analytics.html" class="btn" style="padding: 4px 12px; font-size: 11px;">Build notes →</a>
+            <a href="https://transitflow-2s4.pages.dev" target="_blank" rel="noopener" class="btn btn--ghost" style="padding: 4px 12px; font-size: 11px;">Open demo ↗</a>
+          </div>
+        </span>
+        <span class="index-row__meta">Python · GTFS · NetworkX · Leaflet · pyproj</span>
+        <a href="articles/beijing-subway-network-analytics.html" class="index-row__preview index-row__preview--mark" aria-label="TransitFlow preview mark">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" style="color:var(--secondary)">
+            <path d="M8 46 C24 46 28 18 56 18" opacity="0.4"></path>
+            <path d="M8 18 C20 18 36 46 56 46" opacity="0.4"></path>
+            <circle cx="28" cy="32" r="5" fill="none" stroke="currentColor" stroke-width="1.6"></circle>
+            <circle cx="28" cy="32" r="2" fill="currentColor"></circle>
+            <circle cx="16" cy="36" r="2.5" fill="var(--secondary)"></circle>
+            <circle cx="48" cy="24" r="2.5" fill="var(--secondary)"></circle>
+            <circle cx="44" cy="46" r="2" fill="currentColor" opacity="0.6"></circle>
+            <circle cx="14" cy="18" r="2" fill="currentColor" opacity="0.6"></circle>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Giggity -->
+      <div class="index-row">
+        <span class="index-row__tag">In development · London</span>
+        <span class="index-row__body">
+          <a href="portfolio/giggity.html">
+            <h3>Giggity - London gigs</h3>
+          </a>
+          <p>Collecting London gig listings from Ticketmaster and venue calendars, with local programme review, change tracking and a MapLibre venue map.</p>
+          <div class="index-row__actions">
+            <a href="portfolio/giggity.html" class="btn" style="padding: 4px 12px; font-size: 11px;">About the project →</a>
+            <a href="https://giggity.gcwillis14.workers.dev/" target="_blank" rel="noopener" class="btn btn--ghost" style="padding: 4px 12px; font-size: 11px;">Open Giggity ↗</a>
+          </div>
+        </span>
+        <span class="index-row__meta">Python · SQLite · SvelteKit · MapLibre · Cloudflare</span>
+        <a href="portfolio/giggity.html" class="index-row__preview index-row__preview--mark" aria-label="Giggity preview mark">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" style="color:var(--secondary)">
+            <circle cx="32" cy="32" r="24" stroke-dasharray="2 4" opacity="0.4"></circle>
+            <circle cx="32" cy="32" r="14" opacity="0.6"></circle>
+            <circle cx="32" cy="32" r="4" fill="currentColor"></circle>
+            <line x1="32" y1="32" x2="48" y2="16" stroke="var(--secondary)"></line>
+            <circle cx="48" cy="16" r="3" fill="var(--secondary)"></circle>
+          </svg>
+        </a>
+      </div>
+
+      <!-- House prices & London rail access -->
+      <a class="index-row" href="portfolio/R/Step1.html">
+        <span class="index-row__tag">Spatial Econometrics</span>
+        <span class="index-row__body">
+          <h3>House prices &amp; London rail access</h3>
+          <p>Looking at how the relationship between house prices and rail access changes across London.</p>
+        </span>
+        <span class="index-row__meta">R · Spatial GLM · GIS · Leaflet</span>
+        <span class="index-row__preview index-row__preview--mark" aria-hidden="true">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" style="color:var(--secondary)">
+            <circle cx="32" cy="32" r="4" fill="currentColor"></circle>
+            <circle cx="32" cy="32" r="12" opacity="0.55"></circle>
+            <circle cx="32" cy="32" r="20" opacity="0.3"></circle>
+          </svg>
+        </span>
+      </a>
+
+      <!-- Regional hyperlinks & trade flows -->
+      <a class="index-row" href="portfolio/R/Hyperlinks.html">
+        <span class="index-row__tag">Network Analysis</span>
+        <span class="index-row__body">
+          <h3>Regional hyperlinks &amp; trade flows</h3>
+          <p>Investigating whether links between websites reflect economic connections between UK regions. Published in the Annals of the AAG.</p>
+        </span>
+        <span class="index-row__meta">R · Python · NetworkX · Econometrics</span>
+        <span class="index-row__preview">
+          <img src="img/thumbs/Hyperlinks.jpg" alt="Regional hyperlinks preview thumbnail" loading="lazy">
+        </span>
+      </a>
+
+      <!-- Location choice - London travel catchments -->
+      <a class="index-row" href="portfolio/R/London_locations.html">
+        <span class="index-row__tag">Isochrone Modeling</span>
+        <span class="index-row__body">
+          <h3>Location choice - London travel catchments</h3>
+          <p>Mapping the parts of London within reach of different stations, and how much the answer depends on where you start.</p>
+        </span>
+        <span class="index-row__meta">R · Leaflet · Isochrones · GIS</span>
+        <span class="index-row__preview">
+          <img src="img/thumbs/London_locations.jpg" alt="London locations preview thumbnail" loading="lazy">
+        </span>
+      </a>
+
+      <!-- Finding the urban extent - Beijing -->
+      <a class="index-row" href="portfolio/python-notebooks/Urban_extent.html">
+        <span class="index-row__tag">Remote Sensing</span>
+        <span class="index-row__body">
+          <h3>Finding the urban extent - Beijing</h3>
+          <p>Combining satellite nightlights and points of interest to investigate where Beijing gives way to its surroundings.</p>
+        </span>
+        <span class="index-row__meta">Python · ArcPy · Remote Sensing · Spatial KDE</span>
+        <span class="index-row__preview">
+          <img src="img/thumbs/Urban_extent.jpg" alt="Beijing urban extent preview thumbnail" loading="lazy">
+        </span>
+      </a>
+
+      <!-- Animated nightlights - China, 2000-2019 -->
+      <a class="index-row" href="portfolio/R/Animated_NTL.html">
+        <span class="index-row__tag">Time Series</span>
+        <span class="index-row__body">
+          <h3>Animated nightlights - China, 2000-2019</h3>
+          <p>Twenty years of satellite imagery showing how patterns of light changed across Chinese cities.</p>
+        </span>
+        <span class="index-row__meta">Python · GDAL · Raster Analysis · Time Series</span>
+        <span class="index-row__preview">
+          <img src="img/thumbs/Animated_NTL.jpg" alt="China animated nightlights preview thumbnail" loading="lazy">
+        </span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- Writing & Research Highlights -->
+<section class="section" id="writing">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Writing &amp; research</h2>
+      <a href="articles/index.html" class="section-head__link">All articles →</a>
+    </div>
+    <div class="research-grid">
+      <!-- Article 1: Beijing Subway -->
+      <div class="research-card">
+        <div class="research-card__content">
+          <div class="research-card__header">
+            <span>Build notes</span>
+            <span>TransitFlow</span>
+          </div>
+          <h3>Modelling the Beijing metro</h3>
+          <p>The network data, simulated services and interchange indicators behind TransitFlow, including the timetable assumptions and what the station graph leaves out.</p>
+        </div>
+        <div class="research-card__footer">
+          <a href="articles/beijing-subway-network-analytics.html">Read notes →</a>
+          <a href="https://transitflow-2s4.pages.dev/analytics" target="_blank" rel="noopener">Network demo ↗</a>
+        </div>
+      </div>
+
+      <!-- Paper 2: Uber & NYC Taxis -->
+      <div class="research-card">
+        <div class="research-card__content">
+          <div class="research-card__header">
+            <span>Published · 2021</span>
+            <span>Travel Behaviour and Society</span>
+          </div>
+          <h3>Uber and New York's yellow taxis</h3>
+          <p>My undergraduate dissertation used millions of NYC trip records to test how Uber affected yellow taxi demand. It won the department's best dissertation prize and was later published in Travel Behaviour and Society.</p>
+        </div>
+        <div class="research-card__footer">
+          <a href="https://doi.org/10.1016/j.tbs.2020.08.003" target="_blank" rel="noopener">View paper ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Publications Section -->
+<section class="section" id="publications">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Publications</h2>
+      <a href="publications/index.html" class="section-head__link">All publications →</a>
+    </div>
+    <div class="clip-list">
+      <div class="clip">
+        <span class="clip__year">2022</span>
+        <div>
+          <h3>Using the web to predict regional trade flows</h3>
+          <p>Data extraction, modelling, and validation of hyperlink networks as a proxy for inter-regional trade flows. With Emmanouil Tranos and André Carrascal-Incera.</p>
+          <span class="clip__cite">Tranos, Carrascal-Incera &amp; Willis · Annals of the American Association of Geographers, 2022</span>
+          <a href="https://doi.org/10.1080/24694452.2022.2109577" class="clip__link" target="_blank" rel="noopener">DOI: 10.1080/24694452.2022.2109577 ↗</a>
+        </div>
+      </div>
+      <div class="clip">
+        <span class="clip__year">2021</span>
+        <div>
+          <h3>Using "Big Data" to understand the impacts of Uber on taxis in New York City</h3>
+          <p>Time-series modelling of Uber's effect on yellow taxi ridership in New York, using NYC TLC trip records and New York Times API data. With Emmanouil Tranos.</p>
+          <span class="clip__cite">Willis &amp; Tranos · Travel Behaviour and Society, 22: 94-107, 2021</span>
+          <a href="https://doi.org/10.1016/j.tbs.2020.08.003" class="clip__link" target="_blank" rel="noopener">DOI: 10.1016/j.tbs.2020.08.003 ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="wrap footer__row">
+    <span class="footer__mark font-mono-tabular">© George Willis · Spatial Statistics &amp; Geodata</span>
+    <div class="footer__links font-mono-tabular">
+      <a href="mailto:gcw519email@proton.me">Email</a>
+      <a href="https://uk.linkedin.com/in/gwilisli26" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/gcwillis14-coder" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://github.com/gcwillis14-coder/portfolio-home" target="_blank" rel="noopener">Source</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

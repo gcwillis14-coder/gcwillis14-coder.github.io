@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Projects, maps and data studies by George Willis. London gigs, transport networks, housing and spatial research.">
+<meta name="author" content="George Willis">
+<title>Work - George Willis</title>
+
+<link rel="apple-touch-icon" sizes="180x180" href="../img/favico/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="../img/favico/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="../img/favico/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="../img/favico/manifest.json">
+<link rel="mask-icon" href="../img/favico/safari-pinned-tab.svg" color="#E2661F">
+<meta name="theme-color" content="#0B0D0E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;1,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap masthead__row">
+    <a href="../index.html" class="masthead__mark"><strong>George Willis</strong></a>
+    <button class="masthead__toggle" aria-controls="site-nav" aria-label="Toggle menu" aria-expanded="false"><span></span></button>
+    <nav class="masthead__nav" id="site-nav" aria-label="Main navigation">
+      <a href="../index.html">Home</a>
+      <a href="../portfolio/index.html" aria-current="page">Work</a>
+      <a href="../articles/index.html">Articles</a>
+      <a href="../publications/index.html">Publications</a>
+      <a href="../about/index.html">About</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+
+<section class="section--tight" style="padding-top:56px;">
+  <div class="wrap">
+    <p class="kicker">Full index</p>
+    <h1 style="font-family:var(--serif); font-weight:500; font-size:clamp(32px,5vw,52px); margin-top:14px; max-width:18ch;">Projects and investigations</h1>
+    <p style="color:var(--dust); max-width:56ch; margin-top:16px; font-size:15.5px;">Things I’ve built, questions I’ve explored and some earlier research. There are interactive demos, maps and longer analyses.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="filters" data-filters>
+      <button class="is-active" data-filter="all">All work</button>
+      <button data-filter="map">Maps</button>
+      <button data-filter="data">Data studies</button>
+    </div>
+
+    <div class="index-list">
+
+      <div class="index-row" data-cat="map">
+        <span class="index-row__tag">Transport · Networks</span>
+        <span class="index-row__body">
+          <a href="https://transitflow-2s4.pages.dev" target="_blank" rel="noopener" style="display: block;">
+            <h3>TransitFlow - metro network simulation</h3>
+          </a>
+          <p>Exploring the Beijing metro through a network model, simulated services and interchange indicators.</p>
+          <div style="margin-top: 12px; display:flex; gap:10px; flex-wrap:wrap;">
+            <a href="../articles/beijing-subway-network-analytics.html" class="btn" style="padding: 5px 14px; font-size: 11px;">Build notes →</a>
+            <a href="https://transitflow-2s4.pages.dev" target="_blank" rel="noopener" class="btn btn--ghost" style="padding: 5px 14px; font-size: 11px;">Open demo ↗</a>
+          </div>
+        </span>
+        <span class="index-row__meta">Python · GTFS · NetworkX · Leaflet · pyproj</span>
+        <span class="index-row__preview index-row__preview--mark" aria-hidden="true">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" style="color:var(--amber)">
+            <path d="M8 46 C24 46 28 18 56 18" opacity="0.4"/>
+            <path d="M8 18 C20 18 36 46 56 46" opacity="0.4"/>
+            <circle cx="28" cy="32" r="5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+            <circle cx="28" cy="32" r="2" fill="currentColor"/>
+            <circle cx="16" cy="36" r="2.5" fill="var(--amber)"/>
+            <circle cx="48" cy="24" r="2.5" fill="var(--amber)"/>
+            <circle cx="44" cy="46" r="2" fill="currentColor" opacity="0.6"/>
+            <circle cx="14" cy="18" r="2" fill="currentColor" opacity="0.6"/>
+          </svg>
+        </span>
+      </div>
+
+      <div class="index-row" data-cat="map">
+        <span class="index-row__tag">In development · London</span>
+        <span class="index-row__body">
+          <a href="giggity.html" style="display: block;">
+            <h3>Giggity - London gigs</h3>
+          </a>
+          <p>Collecting London gig listings from Ticketmaster and venue calendars, with local programme review, change tracking and a MapLibre venue map.</p>
+          <div style="margin-top: 12px; display:flex; gap:10px;">
+            <a href="giggity.html" class="btn" style="padding: 5px 14px; font-size: 11px;">About the project →</a>
+            <a href="https://giggity.gcwillis14.workers.dev/" target="_blank" rel="noopener" class="btn btn--ghost" style="padding: 5px 14px; font-size: 11px;">Open Giggity ↗</a>
+          </div>
+        </span>
+        <span class="index-row__meta">Python · SQLite · SvelteKit · MapLibre · Cloudflare</span>
+        <span class="index-row__preview index-row__preview--mark" aria-hidden="true">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" style="color:var(--amber)">
+            <polygon points="32 8, 54 50, 10 50" opacity="0.3"/>
+            <circle cx="32" cy="32" r="3" fill="currentColor"/>
+            <circle cx="46" cy="42" r="2.5" fill="var(--amber)"/>
+            <circle cx="18" cy="42" r="2.5" fill="var(--amber)"/>
+          </svg>
+        </span>
+      </div>
+
+      <a class="index-row" data-cat="map" href="R/Step1.html">
+        <span class="index-row__tag">Spatial Econometrics · Transit</span>
+        <span class="index-row__body">
+          <h3>House prices &amp; London rail access</h3>
+          <p>Looking at how the relationship between house prices and rail access changes across London.</p>
+        </span>
+        <span class="index-row__meta">R · Spatial GLM · GIS · Leaflet</span>
+        <span class="index-row__preview index-row__preview--mark" aria-hidden="true">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" style="color:var(--amber)">
+            <circle cx="32" cy="32" r="4" fill="currentColor"/>
+            <circle cx="32" cy="32" r="12" opacity="0.55"/>
+            <circle cx="32" cy="32" r="20" opacity="0.3"/>
+          </svg>
+        </span>
+      </a>
+
+      <a class="index-row" data-cat="data" href="R/Hyperlinks.html">
+        <span class="index-row__tag">Network Analysis · Published</span>
+        <span class="index-row__body">
+          <h3>Regional hyperlinks &amp; trade flows</h3>
+          <p>Investigating whether links between websites reflect economic connections between UK regions. Published in the <em>Annals of the AAG</em>.</p>
+        </span>
+        <span class="index-row__meta">R · Python · NetworkX · Econometrics · NUTS2</span>
+        <span class="index-row__preview"><img src="../img/thumbs/Hyperlinks.jpg" alt="" loading="lazy"></span>
+      </a>
+
+      <a class="index-row" data-cat="map" href="R/London_locations.html">
+        <span class="index-row__tag">Isochrone Modeling · Accessibility</span>
+        <span class="index-row__body">
+          <h3>Location choice - London travel catchments</h3>
+          <p>Mapping the parts of London within reach of different stations, and how much the answer depends on where you start.</p>
+        </span>
+        <span class="index-row__meta">R · Leaflet · Isochrones · GIS</span>
+        <span class="index-row__preview"><img src="../img/thumbs/London_locations.jpg" alt="" loading="lazy"></span>
+      </a>
+
+      <a class="index-row" data-cat="data" href="python-notebooks/Urban_extent.html">
+        <span class="index-row__tag">Remote Sensing · Spatial KDE</span>
+        <span class="index-row__body">
+          <h3>Finding the urban extent - Beijing</h3>
+          <p>Combining satellite nightlights and points of interest to investigate where Beijing gives way to its surroundings.</p>
+        </span>
+        <span class="index-row__meta">Python · ArcPy · Remote Sensing · Spatial KDE</span>
+        <span class="index-row__preview"><img src="../img/thumbs/Urban_extent.jpg" alt="" loading="lazy"></span>
+      </a>
+
+      <a class="index-row" data-cat="data" href="R/Animated_NTL.html">
+        <span class="index-row__tag">Remote Sensing · Time Series</span>
+        <span class="index-row__body">
+          <h3>Animated nightlights - China, 2000-2019</h3>
+          <p>Twenty years of satellite imagery showing how patterns of light changed across Chinese cities.</p>
+        </span>
+        <span class="index-row__meta">Python · GDAL · Raster Analysis · Time Series</span>
+        <span class="index-row__preview"><img src="../img/thumbs/Animated_NTL.jpg" alt="" loading="lazy"></span>
+      </a>
+
+      <a class="index-row" data-cat="data" href="R/Random_Forest.html">
+        <span class="index-row__tag">Spatial ML · Tree Diagnostics</span>
+        <span class="index-row__body">
+          <h3>Random forest - variable importance diagnostics</h3>
+          <p>Looking more closely at which variables a random forest relies on, and what its importance scores mean.</p>
+        </span>
+        <span class="index-row__meta">R · randomForestExplainer · Scikit-Learn</span>
+        <span class="index-row__preview"><img src="../img/thumbs/Random_Forest.jpg" alt="" loading="lazy"></span>
+      </a>
+
+      <a class="index-row" data-cat="map" href="maps/ripta-access/index.html">
+        <span class="index-row__tag">Transit Equity · GIS Analysis</span>
+        <span class="index-row__body">
+          <h3>Access to RIPTA bus services</h3>
+          <p>Mapping how many people live within a short walk of a Rhode Island bus stop, and where the gaps appear.</p>
+        </span>
+        <span class="index-row__meta">QGIS · GTFS · Spatial Buffers · Leaflet</span>
+        <span class="index-row__preview index-row__preview--mark" aria-hidden="true">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" style="color:var(--amber)">
+            <line x1="6" y1="46" x2="58" y2="46"/><line x1="6" y1="46" x2="18" y2="24"/><line x1="18" y1="24" x2="40" y2="18"/><line x1="40" y1="18" x2="56" y2="30"/>
+            <circle cx="6" cy="46" r="2.4" fill="currentColor"/><circle cx="18" cy="24" r="2.4" fill="currentColor"/><circle cx="40" cy="18" r="2.4" fill="currentColor"/><circle cx="56" cy="30" r="2.4" fill="currentColor"/>
+            <circle cx="40" cy="18" r="10" opacity="0.35"/>
+          </svg>
+        </span>
+      </a>
+
+      <a class="index-row" data-cat="map" href="maps/dunkin-isochrone/index.html">
+        <span class="index-row__tag">Isochrone Surfaces · Spatial GIS</span>
+        <span class="index-row__body">
+          <h3>Distance to Dunkin' - Rhode Island isochrones</h3>
+          <p>Driving-time catchments for Dunkin’ locations across Rhode Island. The destination was fixed. The methodology remained applicable.</p>
+        </span>
+        <span class="index-row__meta">GIS · Spatial Isochrones · Raster · Leaflet</span>
+        <span class="index-row__preview index-row__preview--mark" aria-hidden="true">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" style="color:var(--amber)">
+            <circle cx="26" cy="34" r="3" fill="currentColor"/>
+            <circle cx="26" cy="34" r="11" opacity="0.55"/>
+            <circle cx="26" cy="34" r="19" opacity="0.35"/>
+            <circle cx="26" cy="34" r="27" opacity="0.18"/>
+            <circle cx="44" cy="20" r="2" fill="currentColor" opacity="0.8"/>
+            <circle cx="50" cy="42" r="2" fill="currentColor" opacity="0.8"/>
+          </svg>
+        </span>
+      </a>
+
+      <a class="index-row" data-cat="map" href="../maps/ri-history-compare/index.html">
+        <span class="index-row__tag">Comparative Cartography · Web GIS</span>
+        <span class="index-row__body">
+          <h3>Historical Rhode Island - swipe comparison</h3>
+          <p>Comparing Rhode Island aerial imagery from different decades with a sliding map.</p>
+        </span>
+        <span class="index-row__meta">GIS · Cartography · Spatial Alignment · Leaflet</span>
+        <span class="index-row__preview index-row__preview--mark" aria-hidden="true">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" style="color:var(--amber)">
+            <rect x="8" y="12" width="48" height="40" opacity="0.3"/>
+            <path d="M32 12 V52" />
+            <circle cx="32" cy="32" r="6" fill="var(--ink)" stroke="currentColor"/>
+            <path d="M29 32 l-3 0 M35 32 l3 0" />
+          </svg>
+        </span>
+      </a>
+
+      <a class="index-row" data-cat="data" href="misc/AB_test.html">
+        <span class="index-row__tag">Applied Statistics · Inference</span>
+        <span class="index-row__body">
+          <h3>A/B testing, worked example</h3>
+          <p>A worked example covering effect sizes, uncertainty and the point at which a difference becomes convincing.</p>
+        </span>
+        <span class="index-row__meta">R · Statistical Inference · Hypothesis Testing</span>
+        <span class="index-row__preview"><img src="../img/thumbs/AB_test.jpg" alt="" loading="lazy"></span>
+      </a>
+
+      <a class="index-row" data-cat="data" href="misc/Data_processing.html">
+        <span class="index-row__tag">ETL Pipeline · Data Engineering</span>
+        <span class="index-row__body">
+          <h3>Hyperlink data processing pipeline</h3>
+          <p>The work behind the hyperlink research: cleaning domains, resolving locations and connecting web records to geographic boundaries.</p>
+        </span>
+        <span class="index-row__meta">Python · ETL · Postcode Geocoding · Data Pipelines</span>
+        <span class="index-row__preview"><img src="../img/thumbs/Data_process.jpg" alt="" loading="lazy"></span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+</main>
+<footer class="footer">
+  <div class="wrap footer__row">
+    <span class="footer__mark">George Willis</span>
+    <div class="footer__links">
+      <a href="mailto:gcw519email@proton.me">Email</a>
+      <a href="https://uk.linkedin.com/in/gwilisli26" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/gcwillis14-coder" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://github.com/gcwillis14-coder/portfolio-home" target="_blank" rel="noopener">Source</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/main.js"></script>
+</body>
+</html>
+

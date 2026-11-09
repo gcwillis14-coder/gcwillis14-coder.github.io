@@ -1,0 +1,80 @@
+name: Validate
+
+permissions: {}
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: "22"
+          package-manager-cache: false
+
+      - name: Install HTMLHint
+        run: npm install --global --ignore-scripts --no-audit --no-fund htmlhint@1.9.2
+
+      - name: Run HTML validity check
+        run: htmlhint "**/*.html" --config .htmlhintrc --ignore "portfolio/R/**,portfolio/misc/**,portfolio/python-notebooks/**,node_modules/**"
+
+      - name: Verify local links and HTTPS subresources
+        run: |
+          python3 - <<'PY'
+          import os, sys
+          from html.parser import HTMLParser
+          from urllib.parse import urlparse
+
+          broken, insecure = [], []
+
+          class Checker(HTMLParser):
+              def __init__(self, filepath):
+                  super().__init__()
+                  self.filepath = filepath
+
+              def handle_starttag(self, tag, attrs):
+                  d = dict(attrs)
+                  for attr in ("href", "src"):
+                      val = d.get(attr)
+                      if not val or val.startswith(("mailto:", "tel:", "javascript:", "data:", "#")):
+                          continue
+                      parsed = urlparse(val)
+                      if parsed.scheme in ("http", "https"):
+                          if tag in ("script", "link", "img", "iframe") and parsed.scheme == "http":
+                              insecure.append((self.filepath, tag, val))
+                      elif not parsed.scheme and parsed.path:
+                          target = os.path.normpath(os.path.join(os.path.dirname(self.filepath), parsed.path))
+                          if os.path.isdir(target):
+                              target = os.path.join(target, "index.html")
+                          if not os.path.exists(target):
+                              broken.append((self.filepath, tag, val, target))
+
+          for root, dirs, files in os.walk("."):
+              dirs[:] = [d for d in dirs if not d.startswith(".") and d != "node_modules"]
+              for f in sorted(files):
+                  if f.endswith(".html"):
+                      p = os.path.join(root, f)
+                      with open(p, encoding="utf-8", errors="replace") as fp:
+                          Checker(p).feed(fp.read())
+
+          if broken or insecure:
+              for item in broken:
+                  print(f"Broken local reference: {item}", file=sys.stderr)
+              for item in insecure:
+                  print(f"Insecure HTTP subresource: {item}", file=sys.stderr)
+              sys.exit(1)
+          print("All local links and HTTPS subresources verified.")
+          PY
