@@ -56,65 +56,66 @@
 
 <section class="section">
   <div class="wrap">
-    <div class="filters" data-filters>
-      <button class="is-active" data-filter="all">All work</button>
-      <button data-filter="map">Maps &amp; Apps</button>
-      <button data-filter="data">Data studies</button>
+    <div class="filter-sort-bar">
+      <div class="filters" data-filters>
+        <span class="filter-sort-label">Filter:</span>
+        <button type="button" class="is-active" data-filter="all">All</button>
+        <button type="button" data-filter="transport">Transport</button>
+        <button type="button" data-filter="spatial">Spatial Data</button>
+        <button type="button" data-filter="research">Research</button>
+      </div>
+      <div class="sorts" data-sorts>
+        <span class="filter-sort-label">Sort:</span>
+        <button type="button" class="is-active" data-sort="recommended">Recommended</button>
+        <button type="button" data-sort="recency">Recency</button>
+        <button type="button" data-sort="title">Title</button>
+      </div>
     </div>
 
     <div class="index-list">
 
-      <div class="index-row" data-cat="map">
+      <!-- 1. Giggity -->
+      <a class="index-row" data-cat="transport spatial" data-year="2024" data-order="1" href="giggity.html">
         <span class="index-row__tag">Web App · Live Music &amp; Maps</span>
         <span class="index-row__body">
-          <a href="giggity.html" style="display: block;">
-            <h3>Giggity - London gigs</h3>
-          </a>
+          <h3>Giggity - London gigs</h3>
           <p>Collecting London gig listings from Ticketmaster and venue calendars, with local review, change tracking, and a MapLibre venue map.</p>
-          <div style="margin-top: 12px; display:flex; gap:10px;">
-            <a href="giggity.html" class="btn" style="padding: 5px 14px; font-size: 11px;">About the project →</a>
-            <a href="https://giggity.gcwillis14.workers.dev/" target="_blank" rel="noopener" class="btn btn--ghost" style="padding: 5px 14px; font-size: 11px;">Open Giggity ↗</a>
-          </div>
         </span>
         <span class="index-row__meta">Python · SQLite · SvelteKit · MapLibre · Cloudflare</span>
         <span class="index-row__preview index-row__preview--mark" aria-hidden="true">
-          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" style="color:var(--amber)">
-            <polygon points="32 8, 54 50, 10 50" opacity="0.3"/>
-            <circle cx="32" cy="32" r="3" fill="currentColor"/>
-            <circle cx="46" cy="42" r="2.5" fill="var(--amber)"/>
-            <circle cx="18" cy="42" r="2.5" fill="var(--amber)"/>
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" style="color:var(--secondary)">
+            <polygon points="32 8, 54 50, 10 50" opacity="0.3"></polygon>
+            <circle cx="32" cy="32" r="3" fill="currentColor"></circle>
+            <circle cx="46" cy="42" r="2.5" fill="var(--secondary)"></circle>
+            <circle cx="18" cy="42" r="2.5" fill="var(--secondary)"></circle>
           </svg>
         </span>
-      </div>
+      </a>
 
-      <div class="index-row" data-cat="map">
+      <!-- 2. TransitFlow -->
+      <a class="index-row" data-cat="transport" data-year="2023" data-order="2" href="../articles/beijing-subway-network-analytics.html">
         <span class="index-row__tag">GIS · Network Simulation</span>
         <span class="index-row__body">
-          <a href="https://transitflow-2s4.pages.dev" target="_blank" rel="noopener" style="display: block;">
-            <h3>TransitFlow - metro network simulation</h3>
-          </a>
+          <h3>TransitFlow - metro network simulation</h3>
           <p>Exploring the Beijing metro through a network model, simulated services and interchange indicators.</p>
-          <div style="margin-top: 12px; display:flex; gap:10px; flex-wrap:wrap;">
-            <a href="../articles/beijing-subway-network-analytics.html" class="btn" style="padding: 5px 14px; font-size: 11px;">Build notes →</a>
-            <a href="https://transitflow-2s4.pages.dev" target="_blank" rel="noopener" class="btn btn--ghost" style="padding: 5px 14px; font-size: 11px;">Open demo ↗</a>
-          </div>
         </span>
         <span class="index-row__meta">Python · NetworkX · Leaflet · pyproj</span>
         <span class="index-row__preview index-row__preview--mark" aria-hidden="true">
-          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" style="color:var(--amber)">
-            <path d="M8 46 C24 46 28 18 56 18" opacity="0.4"/>
-            <path d="M8 18 C20 18 36 46 56 46" opacity="0.4"/>
-            <circle cx="28" cy="32" r="5" fill="none" stroke="currentColor" stroke-width="1.6"/>
-            <circle cx="28" cy="32" r="2" fill="currentColor"/>
-            <circle cx="16" cy="36" r="2.5" fill="var(--amber)"/>
-            <circle cx="48" cy="24" r="2.5" fill="var(--amber)"/>
-            <circle cx="44" cy="46" r="2" fill="currentColor" opacity="0.6"/>
-            <circle cx="14" cy="18" r="2" fill="currentColor" opacity="0.6"/>
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" style="color:var(--secondary)">
+            <path d="M8 46 C24 46 28 18 56 18" opacity="0.4"></path>
+            <path d="M8 18 C20 18 36 46 56 46" opacity="0.4"></path>
+            <circle cx="28" cy="32" r="5" fill="none" stroke="currentColor" stroke-width="1.6"></circle>
+            <circle cx="28" cy="32" r="2" fill="currentColor"></circle>
+            <circle cx="16" cy="36" r="2.5" fill="var(--secondary)"></circle>
+            <circle cx="48" cy="24" r="2.5" fill="var(--secondary)"></circle>
+            <circle cx="44" cy="46" r="2" fill="currentColor" opacity="0.6"></circle>
+            <circle cx="14" cy="18" r="2" fill="currentColor" opacity="0.6"></circle>
           </svg>
         </span>
-      </div>
+      </a>
 
-      <a class="index-row" data-cat="map" href="R/Step1.html">
+      <!-- 3. House prices & London rail access -->
+      <a class="index-row" data-cat="transport spatial" data-year="2022" data-order="3" href="R/Step1.html">
         <span class="index-row__tag">GIS · Spatial Regression</span>
         <span class="index-row__body">
           <h3>House prices &amp; London rail access</h3>
@@ -122,82 +123,89 @@
         </span>
         <span class="index-row__meta">R · Spatial Modeling · Leaflet</span>
         <span class="index-row__preview index-row__preview--mark" aria-hidden="true">
-          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" style="color:var(--amber)">
-            <circle cx="32" cy="32" r="4" fill="currentColor"/>
-            <circle cx="32" cy="32" r="12" opacity="0.55"/>
-            <circle cx="32" cy="32" r="20" opacity="0.3"/>
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" style="color:var(--secondary)">
+            <circle cx="32" cy="32" r="4" fill="currentColor"></circle>
+            <circle cx="32" cy="32" r="12" opacity="0.55"></circle>
+            <circle cx="32" cy="32" r="20" opacity="0.3"></circle>
           </svg>
         </span>
       </a>
 
-      <a class="index-row" data-cat="data" href="R/Hyperlinks.html">
+      <!-- 4. Regional hyperlinks & trade flows -->
+      <a class="index-row" data-cat="research" data-year="2022" data-order="4" href="R/Hyperlinks.html">
         <span class="index-row__tag">Machine Learning · Network Regression</span>
         <span class="index-row__body">
           <h3>Regional hyperlinks &amp; trade flows</h3>
           <p>Investigating whether links between websites reflect economic connections between UK regions. Published in the <em>Annals of the AAG</em>.</p>
         </span>
         <span class="index-row__meta">R · Python · Network Analysis · Applied Statistics</span>
-        <span class="index-row__preview"><img src="../img/thumbs/Hyperlinks.jpg" alt="" loading="lazy"></span>
+        <span class="index-row__preview"><img src="../img/thumbs/Hyperlinks.jpg" alt="Regional hyperlinks preview thumbnail" loading="lazy"></span>
       </a>
 
-      <a class="index-row" data-cat="map" href="R/London_locations.html">
+      <!-- 5. Location choice - London travel catchments -->
+      <a class="index-row" data-cat="transport spatial" data-year="2021" data-order="5" href="R/London_locations.html">
         <span class="index-row__tag">GIS · Travel Catchments</span>
         <span class="index-row__body">
           <h3>Location choice - London travel catchments</h3>
           <p>Mapping the parts of London within reach of different stations, and how much the answer depends on where you start.</p>
         </span>
         <span class="index-row__meta">R · Isochrone Modeling · Leaflet</span>
-        <span class="index-row__preview"><img src="../img/thumbs/London_locations.jpg" alt="" loading="lazy"></span>
+        <span class="index-row__preview"><img src="../img/thumbs/London_locations.jpg" alt="London travel catchments preview thumbnail" loading="lazy"></span>
       </a>
 
-      <a class="index-row" data-cat="map" href="python-notebooks/Urban_extent.html">
+      <!-- 6. Finding the urban extent - Beijing -->
+      <a class="index-row" data-cat="spatial" data-year="2021" data-order="6" href="python-notebooks/Urban_extent.html">
         <span class="index-row__tag">GIS · Spatial Kernel Density</span>
         <span class="index-row__body">
           <h3>Finding the urban extent - Beijing</h3>
           <p>Combining satellite nightlights and points of interest to investigate where Beijing gives way to its surroundings.</p>
         </span>
         <span class="index-row__meta">Python · Spatial Analysis · Remote Sensing</span>
-        <span class="index-row__preview"><img src="../img/thumbs/Urban_extent.jpg" alt="" loading="lazy"></span>
+        <span class="index-row__preview"><img src="../img/thumbs/Urban_extent.jpg" alt="Beijing urban extent preview thumbnail" loading="lazy"></span>
       </a>
 
-      <a class="index-row" data-cat="map" href="R/Animated_NTL.html">
+      <!-- 7. Animated nightlights - China, 2000-2019 -->
+      <a class="index-row" data-cat="spatial" data-year="2020" data-order="7" href="R/Animated_NTL.html">
         <span class="index-row__tag">GIS · Satellite Radiometry</span>
         <span class="index-row__body">
           <h3>Animated nightlights - China, 2000-2019</h3>
           <p>Twenty years of satellite imagery showing how patterns of light changed across Chinese cities.</p>
         </span>
         <span class="index-row__meta">Python · R · Raster Analysis · Time Series</span>
-        <span class="index-row__preview"><img src="../img/thumbs/Animated_NTL.jpg" alt="" loading="lazy"></span>
+        <span class="index-row__preview"><img src="../img/thumbs/Animated_NTL.jpg" alt="China animated nightlights preview thumbnail" loading="lazy"></span>
       </a>
 
-      <a class="index-row" data-cat="data" href="R/Random_Forest.html">
+      <!-- 8. Random forest - variable importance diagnostics -->
+      <a class="index-row" data-cat="research" data-year="2020" data-order="8" href="R/Random_Forest.html">
         <span class="index-row__tag">Machine Learning · Tree Diagnostics</span>
         <span class="index-row__body">
           <h3>Random forest - variable importance diagnostics</h3>
           <p>Looking more closely at which variables a random forest relies on, and what its importance scores mean.</p>
         </span>
         <span class="index-row__meta">R · Random Forest · Feature Importance</span>
-        <span class="index-row__preview"><img src="../img/thumbs/Random_Forest.jpg" alt="" loading="lazy"></span>
+        <span class="index-row__preview"><img src="../img/thumbs/Random_Forest.jpg" alt="Random forest diagnostics preview thumbnail" loading="lazy"></span>
       </a>
 
-      <a class="index-row" data-cat="data" href="misc/AB_test.html">
+      <!-- 9. A/B testing, worked example -->
+      <a class="index-row" data-cat="research" data-year="2019" data-order="9" href="misc/AB_test.html">
         <span class="index-row__tag">Machine Learning · A/B Testing &amp; Inference</span>
         <span class="index-row__body">
           <h3>A/B testing, worked example</h3>
           <p>A worked example covering effect sizes, uncertainty and the point at which a difference becomes convincing.</p>
         </span>
         <span class="index-row__meta">R · Statistical Testing · Confidence Intervals</span>
-        <span class="index-row__preview"><img src="../img/thumbs/AB_test.jpg" alt="" loading="lazy"></span>
+        <span class="index-row__preview"><img src="../img/thumbs/AB_test.jpg" alt="A/B testing worked example preview thumbnail" loading="lazy"></span>
       </a>
 
-      <a class="index-row" data-cat="data" href="misc/Data_processing.html">
+      <!-- 10. Hyperlink data processing pipeline -->
+      <a class="index-row" data-cat="spatial research" data-year="2019" data-order="10" href="misc/Data_processing.html">
         <span class="index-row__tag">Data Engineering · Spatial ETL</span>
         <span class="index-row__body">
           <h3>Hyperlink data processing pipeline</h3>
           <p>The work behind the hyperlink research: cleaning domains, resolving locations and connecting web records to geographic boundaries.</p>
         </span>
         <span class="index-row__meta">Python · Geocoding · Data Pipelines</span>
-        <span class="index-row__preview"><img src="../img/thumbs/Data_process.jpg" alt="" loading="lazy"></span>
+        <span class="index-row__preview"><img src="../img/thumbs/Data_process.jpg" alt="Hyperlink data processing preview thumbnail" loading="lazy"></span>
       </a>
 
     </div>
@@ -207,9 +215,9 @@
 </main>
 <footer class="footer">
   <div class="wrap footer__row">
-    <span class="footer__mark">George Willis</span>
-    <div class="footer__links">
-      <a href="mailto:gcw519email@proton.me">Email</a>
+    <span class="footer__mark font-mono-tabular">© George Willis · Computational Cartography &amp; Spatial Statistics</span>
+    <div class="footer__links font-mono-tabular">
+      <a href="mailto:gcw519email@proton.me">Email (Proton)</a>
       <a href="https://uk.linkedin.com/in/gwilisli26" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://github.com/gcwillis14-coder" target="_blank" rel="noopener">GitHub</a>
       <a href="https://github.com/gcwillis14-coder/gcwillis14-coder.github.io" target="_blank" rel="noopener">Source</a>
@@ -217,7 +225,5 @@
   </div>
 </footer>
 
-<script src="../assets/main.js"></script>
 </body>
 </html>
-

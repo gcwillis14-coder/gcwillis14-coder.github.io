@@ -5,46 +5,56 @@
    ========================================================================== */
 
 :root {
-  /* -- Colors: Radiometric & Obsidian Foundation ------------------------- */
-  --space-black:              #050506;
-  --surface:                  #131314;
-  --surface-dim:              #131314;
-  --surface-bright:           #3a393a;
-  --surface-charcoal:         #121215;
-  --surface-container-lowest: #0e0e0f;
-  --surface-container-low:    #1c1b1c;
-  --surface-container:        #201f20;
-  --surface-container-high:   #2a2a2b;
-  --surface-container-highest:#353436;
+  /* -- PRD Visual Identity: Cartographic Precision (Dark Obsidian) ------- */
+  --color-surface:            #0b0d0e;
+  --color-surface-dim:        #121110;
+  --color-text-primary:       #f3f2ee;
+  --color-text-secondary:     #9e9c96;
+  --color-text-tertiary:      #63615b;
+  --color-accent-amber:       #e85d04;
+  --color-accent-gold:        #ffba08;
+  --color-border-hairline:    rgba(255, 255, 255, 0.08);
 
-  --on-surface:               #e5e2e3;
+  /* -- Radiometric Foundation Tokens ------------------------------------- */
+  --space-black:              var(--color-surface);
+  --surface:                  var(--color-surface);
+  --surface-dim:              var(--color-surface-dim);
+  --surface-bright:           #3a393a;
+  --surface-charcoal:         var(--color-surface-dim);
+  --surface-container-lowest: #0e0e0f;
+  --surface-container-low:    #161514;
+  --surface-container:        #1d1c1b;
+  --surface-container-high:   #272624;
+  --surface-container-highest:#33312f;
+
+  --on-surface:               var(--color-text-primary);
   --on-surface-variant:       #e1bfb2;
-  --text-primary:             #f4f4f6;
-  --text-secondary:           #a0a1ab;
-  --text-tertiary:            #636573;
-  --border-hairline:          #1f2026;
+  --text-primary:             var(--color-text-primary);
+  --text-secondary:           var(--color-text-secondary);
+  --text-tertiary:            var(--color-text-tertiary);
+  --border-hairline:          var(--color-border-hairline);
 
   --primary:                  #ffb596;
-  --primary-container:        #f26411;
-  --magma-orange:             #e85d04;
-  --secondary:                #ffba08;
+  --primary-container:        var(--color-accent-amber);
+  --magma-orange:             var(--color-accent-amber);
+  --secondary:                var(--color-accent-gold);
   --secondary-container:      #fcb802;
   --spectral-yellow:          #ffe3a8;
 
   /* Legacy token aliases for cross-page compatibility */
-  --ink:                      #050506;
-  --panel:                    #121215;
-  --panel-2:                  #1c1b1c;
-  --bone:                     #f4f4f6;
-  --dust:                     #a0a1ab;
-  --dust-dim:                 #636573;
-  --hair:                     #1f2026;
-  --hair-strong:              #353436;
-  --ember:                    #f26411;
+  --ink:                      var(--color-surface);
+  --panel:                    var(--color-surface-dim);
+  --panel-2:                  #1a1918;
+  --bone:                     var(--color-text-primary);
+  --dust:                     var(--color-text-secondary);
+  --dust-dim:                 var(--color-text-tertiary);
+  --hair:                     var(--color-border-hairline);
+  --hair-strong:              rgba(255, 255, 255, 0.16);
+  --ember:                    var(--color-accent-amber);
   --ember-dim:                #581e00;
-  --amber:                    #ffba08;
-  --paper:                    #121215;
-  --paper-ink:                #f4f4f6;
+  --amber:                    var(--color-accent-gold);
+  --paper:                    var(--color-surface-dim);
+  --paper-ink:                var(--color-text-primary);
 
   /* -- Typography -------------------------------------------------------- */
   --font-display:             "Hanken Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -1378,35 +1388,301 @@ a.index-row {
   border-bottom: var(--hairline-w) solid var(--border-hairline);
 }
 
-.filters {
+/* -------------------------------------------------------------------- */
+/* Pure Typographic Filter & Sort Bar (Zero Pill, Amber Underline)      */
+/* -------------------------------------------------------------------- */
+.filter-sort-bar {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 8px;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding: var(--space-sm) 0;
+  margin-bottom: var(--space-lg);
+  border-bottom: var(--hairline-w) solid var(--border-hairline);
 }
 
-.filters button {
+.filters,
+.sorts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 20px;
+}
+
+.filter-sort-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-right: -8px;
+}
+
+.filters button,
+.sorts button {
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  padding: 8px 14px;
-  border: var(--hairline-w) solid var(--border-hairline);
-  color: var(--text-secondary);
-  background: var(--surface-charcoal);
+  padding: 6px 0;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text-tertiary);
+  background: transparent;
   border-radius: 0;
-  transition: all 0.15s ease;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease;
+  white-space: nowrap;
 }
 
-.filters button:hover {
+.filters button:hover,
+.sorts button:hover {
   color: var(--text-primary);
-  border-color: var(--text-secondary);
 }
 
-.filters button.is-active {
-  color: var(--space-black);
-  background: var(--primary-container);
-  border-color: var(--primary-container);
+.filters button.is-active,
+.sorts button.is-active {
+  color: var(--text-primary);
+  border-bottom-color: var(--magma-orange);
+  font-weight: 500;
+}
+
+/* -------------------------------------------------------------------- */
+/* FLIP Layout Morphing & Shared Element Expansion Drawer               */
+/* -------------------------------------------------------------------- */
+.telemetry-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 5, 6, 0.82);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md);
+  opacity: 0;
+  transition: opacity 220ms ease;
+}
+
+.telemetry-backdrop.is-open {
+  display: flex;
+  opacity: 1;
+}
+
+.telemetry-drawer {
+  background: var(--surface-charcoal);
+  border: var(--hairline-w) solid var(--border-hairline);
+  border-radius: 0;
+  width: 100%;
+  max-width: 820px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.85);
+  display: flex;
+  flex-direction: column;
+  transform-origin: top left;
+  will-change: transform, opacity;
+}
+
+.telemetry-drawer__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: var(--hairline-w) solid var(--border-hairline);
+  background: var(--surface-container-low);
+}
+
+.telemetry-drawer__kicker {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--secondary);
+}
+
+.telemetry-drawer__close {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 24px;
+  line-height: 1;
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.telemetry-drawer__close:hover {
+  color: var(--magma-orange);
+}
+
+.telemetry-drawer__body {
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.telemetry-drawer__title {
+  font-family: var(--font-headline);
+  font-size: 26px;
+  line-height: 34px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.telemetry-drawer__abstract {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 25px;
+  color: var(--text-secondary);
+}
+
+.telemetry-drawer__specs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  border-top: var(--hairline-w) solid var(--border-hairline);
+  padding-top: 20px;
+}
+
+.telemetry-spec-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.telemetry-spec-item dt {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.telemetry-spec-item dd {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-primary);
+  word-break: break-all;
+}
+
+.telemetry-drawer__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding-top: 12px;
+  border-top: var(--hairline-w) solid var(--border-hairline);
+}
+
+/* -------------------------------------------------------------------- */
+/* BibTeX Archival Presentation & 1-Click Copy                          */
+/* -------------------------------------------------------------------- */
+.bibtex-section {
+  margin-top: 14px;
+}
+
+.bibtex-toggle-btn {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--magma-orange);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.15s ease;
+}
+
+.bibtex-toggle-btn:hover {
+  text-decoration: underline;
+}
+
+.bibtex-box {
+  display: none;
+  margin-top: 12px;
+  background: var(--surface-charcoal);
+  border: var(--hairline-w) solid var(--border-hairline);
+  border-radius: 0;
+  padding: 16px;
+  position: relative;
+}
+
+.bibtex-box.is-open {
+  display: block;
+}
+
+.bibtex-box pre {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--spectral-yellow);
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.bibtex-copy-btn {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  background: var(--surface-container-high);
+  border: var(--hairline-w) solid var(--border-hairline);
+  padding: 4px 10px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.15s ease;
+  border-radius: 0;
+}
+
+.bibtex-copy-btn:hover {
+  background: var(--magma-orange);
+  color: var(--text-primary);
+  border-color: var(--magma-orange);
+}
+
+.bibtex-copy-btn.is-copied {
+  background: #2a6f3b;
+  color: #fff;
+  border-color: #2a6f3b;
+}
+
+/* -------------------------------------------------------------------- */
+/* Native Multi-Page View Transitions Architecture                     */
+/* -------------------------------------------------------------------- */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root) {
+  animation: 160ms cubic-bezier(0.4, 0, 1, 1) both vt-fade-out;
+}
+
+::view-transition-new(root) {
+  animation: 260ms cubic-bezier(0, 0, 0.2, 1) both vt-fade-in;
+}
+
+@keyframes vt-fade-out {
+  from { opacity: 1; transform: scale(1); }
+  to   { opacity: 0; transform: scale(0.995); }
+}
+
+@keyframes vt-fade-in {
+  from { opacity: 0; transform: scale(1.005); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.masthead {
+  view-transition-name: masthead;
 }
 
 .dispatch {

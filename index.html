@@ -80,9 +80,11 @@
           </div>
           <!-- Instrument Telemetry Strip -->
           <div class="hero-cartographic__instrument-strip">
+            <button type="button" class="font-mono-tabular" data-drawer-trigger="drawer-viirs" style="background:none;border:none;padding:0;color:var(--text-secondary);cursor:pointer;text-decoration:underline;">Sensor Telemetry &amp; Calibration ↗</button>
+            <span>·</span>
             <a href="portfolio/R/Animated_NTL.html" class="font-mono-tabular">China's nightlights, 2000-2019 →</a>
             <span>·</span>
-            <span class="font-mono-tabular">Satellite nightlights showing urban settlement</span>
+            <span class="font-mono-tabular">Suomi-NPP VIIRS DNB · EPSG:4326</span>
           </div>
         </div>
 
@@ -147,28 +149,6 @@
   </div>
 </section>
 
-<!-- Stat Ticker -->
-<section class="ticker">
-  <div class="wrap ticker__row">
-    <div class="ticker__item">
-      <span class="ticker__num">10</span>
-      <span class="ticker__label">Projects</span>
-    </div>
-    <div class="ticker__item">
-      <span class="ticker__num">6</span>
-      <span class="ticker__label">Maps &amp; Apps</span>
-    </div>
-    <div class="ticker__item">
-      <span class="ticker__num">4</span>
-      <span class="ticker__label">Data studies</span>
-    </div>
-    <div class="ticker__item">
-      <span class="ticker__num">2</span>
-      <span class="ticker__label">Publications</span>
-    </div>
-  </div>
-</section>
-
 <!-- Selected Work Section -->
 <section class="section" id="projects">
   <div class="wrap">
@@ -178,7 +158,7 @@
     </div>
 
     <!-- Featured Project Card: Giggity -->
-    <div class="featured-project">
+    <div class="featured-project" id="featured-giggity">
       <span class="featured-badge">Web App · Live Music &amp; Maps</span>
       <h3>Giggity - London gigs</h3>
       <p>I kept hearing about gigs after they had happened or sold out. Giggity pulls listings from Ticketmaster and independent London venue programmes into a local SQLite database, flags tricky bills for review, tracks date and venue changes without treating missing feed items as cancellations, and publishes a static snapshot to Cloudflare.</p>
@@ -193,6 +173,7 @@
       </div>
       <div class="featured-actions">
         <a href="portfolio/giggity.html" class="btn btn--primary">How it works →</a>
+        <button type="button" class="btn btn--ghost" data-drawer-trigger="drawer-giggity">Technical Telemetry &amp; Architecture ↗</button>
         <a href="https://giggity.gcwillis14.workers.dev/" target="_blank" rel="noopener" class="btn btn--ghost">Open Giggity ↗</a>
       </div>
     </div>
@@ -201,20 +182,14 @@
     <div class="index-list">
 
       <!-- Giggity -->
-      <div class="index-row">
+      <a class="index-row" href="portfolio/giggity.html" data-slug="giggity">
         <span class="index-row__tag">Web App · Live Music &amp; Maps</span>
         <span class="index-row__body">
-          <a href="portfolio/giggity.html">
-            <h3>Giggity - London gigs</h3>
-          </a>
+          <h3>Giggity - London gigs</h3>
           <p>Collecting London gig listings from Ticketmaster and venue calendars, with local programme review, change tracking and a MapLibre venue map.</p>
-          <div class="index-row__actions">
-            <a href="portfolio/giggity.html" class="btn" style="padding: 4px 12px; font-size: 11px;">About the project →</a>
-            <a href="https://giggity.gcwillis14.workers.dev/" target="_blank" rel="noopener" class="btn btn--ghost" style="padding: 4px 12px; font-size: 11px;">Open Giggity ↗</a>
-          </div>
         </span>
         <span class="index-row__meta">Python · SQLite · SvelteKit · MapLibre · Cloudflare</span>
-        <a href="portfolio/giggity.html" class="index-row__preview index-row__preview--mark" aria-label="Giggity preview mark">
+        <span class="index-row__preview index-row__preview--mark" aria-label="Giggity preview mark">
           <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" style="color:var(--secondary)">
             <circle cx="32" cy="32" r="24" stroke-dasharray="2 4" opacity="0.4"></circle>
             <circle cx="32" cy="32" r="14" opacity="0.6"></circle>
@@ -222,24 +197,18 @@
             <line x1="32" y1="32" x2="48" y2="16" stroke="var(--secondary)"></line>
             <circle cx="48" cy="16" r="3" fill="var(--secondary)"></circle>
           </svg>
-        </a>
-      </div>
+        </span>
+      </a>
 
       <!-- TransitFlow -->
-      <div class="index-row">
+      <a class="index-row" href="articles/beijing-subway-network-analytics.html" data-slug="transitflow">
         <span class="index-row__tag">GIS · Network Simulation</span>
         <span class="index-row__body">
-          <a href="https://transitflow-2s4.pages.dev" target="_blank" rel="noopener">
-            <h3>TransitFlow - metro network simulation</h3>
-          </a>
+          <h3>TransitFlow - metro network simulation</h3>
           <p>Exploring the Beijing metro through a station graph, simulated services and interchange indicators.</p>
-          <div class="index-row__actions">
-            <a href="articles/beijing-subway-network-analytics.html" class="btn" style="padding: 4px 12px; font-size: 11px;">Build notes →</a>
-            <a href="https://transitflow-2s4.pages.dev" target="_blank" rel="noopener" class="btn btn--ghost" style="padding: 4px 12px; font-size: 11px;">Open demo ↗</a>
-          </div>
         </span>
         <span class="index-row__meta">Python · NetworkX · Leaflet · pyproj</span>
-        <a href="articles/beijing-subway-network-analytics.html" class="index-row__preview index-row__preview--mark" aria-label="TransitFlow preview mark">
+        <span class="index-row__preview index-row__preview--mark" aria-label="TransitFlow preview mark">
           <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" style="color:var(--secondary)">
             <path d="M8 46 C24 46 28 18 56 18" opacity="0.4"></path>
             <path d="M8 18 C20 18 36 46 56 46" opacity="0.4"></path>
@@ -250,8 +219,8 @@
             <circle cx="44" cy="46" r="2" fill="currentColor" opacity="0.6"></circle>
             <circle cx="14" cy="18" r="2" fill="currentColor" opacity="0.6"></circle>
           </svg>
-        </a>
-      </div>
+        </span>
+      </a>
 
       <!-- House prices & London rail access -->
       <a class="index-row" href="portfolio/R/Step1.html">
@@ -376,24 +345,60 @@
       <a href="publications/index.html" class="section-head__link">All publications →</a>
     </div>
     <div class="clip-list">
+
       <div class="clip">
         <span class="clip__year">2022</span>
         <div>
           <h3>Using the web to predict regional trade flows</h3>
           <p>Data extraction, modelling, and validation of hyperlink networks as a proxy for inter-regional trade flows. With Emmanouil Tranos and André Carrascal-Incera.</p>
-          <span class="clip__cite">Tranos, Carrascal-Incera &amp; Willis · Annals of the American Association of Geographers, 2022</span>
-          <a href="https://doi.org/10.1080/24694452.2022.2109577" class="clip__link" target="_blank" rel="noopener">DOI: 10.1080/24694452.2022.2109577 ↗</a>
+          <span class="clip__cite">Tranos, E., Carrascal-Incera, A. &amp; Willis, G. · Annals of the American Association of Geographers, 2022</span>
+          <div style="display:flex; gap:16px; align-items:center; flex-wrap:wrap; margin-top:8px;">
+            <a href="https://doi.org/10.1080/24694452.2022.2109577" class="clip__link" target="_blank" rel="noopener">DOI: 10.1080/24694452.2022.2109577 ↗</a>
+            <button type="button" class="bibtex-toggle-btn" data-bibtex-toggle="bib-home-2022">BibTeX citation →</button>
+          </div>
+          <div class="bibtex-box" id="bib-home-2022">
+            <pre>@article{tranos2022using,
+  title={Using the web to predict regional trade flows: data extraction, modelling, and validation},
+  author={Tranos, Emmanouil and Carrascal-Incera, Andr{\'e} and Willis, George},
+  journal={Annals of the American Association of Geographers},
+  volume={113},
+  number={1},
+  pages={168--189},
+  year={2022},
+  publisher={Taylor \& Francis},
+  doi={10.1080/24694452.2022.2109577}
+}</pre>
+            <button type="button" class="bibtex-copy-btn" data-copy-bibtex>Copy BibTeX</button>
+          </div>
         </div>
       </div>
+
       <div class="clip">
         <span class="clip__year">2021</span>
         <div>
           <h3>Using "Big Data" to understand the impacts of Uber on taxis in New York City</h3>
           <p>Time-series modelling of Uber's effect on yellow taxi ridership in New York, using NYC TLC trip records and New York Times API data. With Emmanouil Tranos.</p>
-          <span class="clip__cite">Willis &amp; Tranos · Travel Behaviour and Society, 22: 94-107, 2021</span>
-          <a href="https://doi.org/10.1016/j.tbs.2020.08.003" class="clip__link" target="_blank" rel="noopener">DOI: 10.1016/j.tbs.2020.08.003 ↗</a>
+          <span class="clip__cite">Willis, G. &amp; Tranos, E. · Travel Behaviour and Society, 22: 94-107, 2021</span>
+          <div style="display:flex; gap:16px; align-items:center; flex-wrap:wrap; margin-top:8px;">
+            <a href="https://doi.org/10.1016/j.tbs.2020.08.003" class="clip__link" target="_blank" rel="noopener">DOI: 10.1016/j.tbs.2020.08.003 ↗</a>
+            <button type="button" class="bibtex-toggle-btn" data-bibtex-toggle="bib-home-2021">BibTeX citation →</button>
+          </div>
+          <div class="bibtex-box" id="bib-home-2021">
+            <pre>@article{willis2021using,
+  title={Using "Big Data" to understand the impacts of Uber on taxis in New York City},
+  author={Willis, George and Tranos, Emmanouil},
+  journal={Travel Behaviour and Society},
+  volume={22},
+  pages={94--107},
+  year={2021},
+  publisher={Elsevier},
+  doi={10.1016/j.tbs.2020.08.003}
+}</pre>
+            <button type="button" class="bibtex-copy-btn" data-copy-bibtex>Copy BibTeX</button>
+          </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -401,15 +406,122 @@
 <!-- Footer -->
 <footer class="footer">
   <div class="wrap footer__row">
-    <span class="footer__mark font-mono-tabular">© George Willis · Spatial Statistics &amp; Geodata</span>
+    <span class="footer__mark font-mono-tabular">© George Willis · Computational Cartography &amp; Spatial Statistics</span>
     <div class="footer__links font-mono-tabular">
-      <a href="mailto:gcw519email@proton.me">Email</a>
+      <a href="mailto:gcw519email@proton.me">Email (Proton)</a>
       <a href="https://uk.linkedin.com/in/gwilisli26" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://github.com/gcwillis14-coder" target="_blank" rel="noopener">GitHub</a>
       <a href="https://github.com/gcwillis14-coder/gcwillis14-coder.github.io" target="_blank" rel="noopener">Source</a>
     </div>
   </div>
 </footer>
+
+<!-- FLIP Telemetry Drawer: Giggity -->
+<div class="telemetry-backdrop" id="drawer-giggity" role="dialog" aria-modal="true" aria-labelledby="drawer-giggity-title">
+  <div class="telemetry-drawer">
+    <div class="telemetry-drawer__header">
+      <span class="telemetry-drawer__kicker">Telemetry &amp; Architecture · Live Music &amp; Spatial Pipelines</span>
+      <button type="button" class="telemetry-drawer__close" aria-label="Close telemetry view">×</button>
+    </div>
+    <div class="telemetry-drawer__body">
+      <h3 class="telemetry-drawer__title" id="drawer-giggity-title">Giggity — Data Pipeline &amp; Ingestion Architecture</h3>
+      <p class="telemetry-drawer__abstract">Giggity solves the grassroots discovery gap by consolidating commercial feeds and independent London venue programmes into a local SQLite repository with balance accounting and change tracking.</p>
+      <dl class="telemetry-drawer__specs">
+        <div class="telemetry-spec-item">
+          <dt>Ingest Protocol</dt>
+          <dd>Discovery v2 + JSON-LD + HTML Scraping</dd>
+        </div>
+        <div class="telemetry-spec-item">
+          <dt>Balance Accounting</dt>
+          <dd>Strict: fetched = accepted + rejected</dd>
+        </div>
+        <div class="telemetry-spec-item">
+          <dt>Fingerprinting</dt>
+          <dd>SHA-256 (Title, Date, Time, Venue, Price)</dd>
+        </div>
+        <div class="telemetry-spec-item">
+          <dt>Storage &amp; Edge</dt>
+          <dd>SQLite (var/events.sqlite3) · Cloudflare KV</dd>
+        </div>
+      </dl>
+      <div class="telemetry-drawer__actions">
+        <a href="portfolio/giggity.html" class="btn btn--primary">View Case Study →</a>
+        <a href="https://giggity.gcwillis14.workers.dev/" target="_blank" rel="noopener" class="btn btn--ghost">Open Live App ↗</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FLIP Telemetry Drawer: TransitFlow -->
+<div class="telemetry-backdrop" id="drawer-transitflow" role="dialog" aria-modal="true" aria-labelledby="drawer-transitflow-title">
+  <div class="telemetry-drawer">
+    <div class="telemetry-drawer__header">
+      <span class="telemetry-drawer__kicker">Telemetry &amp; Architecture · Network Simulation</span>
+      <button type="button" class="telemetry-drawer__close" aria-label="Close telemetry view">×</button>
+    </div>
+    <div class="telemetry-drawer__body">
+      <h3 class="telemetry-drawer__title" id="drawer-transitflow-title">TransitFlow — Metro Topology &amp; Flow Engine</h3>
+      <p class="telemetry-drawer__abstract">Directed multigraph network model of the Beijing Subway system. Computes betweenness centrality and transfer vulnerability heuristics across 27 lines and 470+ operational stations.</p>
+      <dl class="telemetry-drawer__specs">
+        <div class="telemetry-spec-item">
+          <dt>Graph Topology</dt>
+          <dd>NetworkX Directed Multigraph · 470+ nodes</dd>
+        </div>
+        <div class="telemetry-spec-item">
+          <dt>Coordinate System</dt>
+          <dd>EPSG:4547 reprojected to WGS84</dd>
+        </div>
+        <div class="telemetry-spec-item">
+          <dt>Centrality Metric</dt>
+          <dd>Brandes Shortest-Path Betweenness Centrality</dd>
+        </div>
+        <div class="telemetry-spec-item">
+          <dt>Deployment</dt>
+          <dd>Cloudflare Pages Edge Bundle</dd>
+        </div>
+      </dl>
+      <div class="telemetry-drawer__actions">
+        <a href="articles/beijing-subway-network-analytics.html" class="btn btn--primary">View Build Notes →</a>
+        <a href="https://transitflow-2s4.pages.dev/analytics" target="_blank" rel="noopener" class="btn btn--ghost">Open Network Analytics ↗</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FLIP Telemetry Drawer: VIIRS Day/Night Band -->
+<div class="telemetry-backdrop" id="drawer-viirs" role="dialog" aria-modal="true" aria-labelledby="drawer-viirs-title">
+  <div class="telemetry-drawer">
+    <div class="telemetry-drawer__header">
+      <span class="telemetry-drawer__kicker">Scientific Telemetry · Satellite Radiometry</span>
+      <button type="button" class="telemetry-drawer__close" aria-label="Close telemetry view">×</button>
+    </div>
+    <div class="telemetry-drawer__body">
+      <h3 class="telemetry-drawer__title" id="drawer-viirs-title">Suomi-NPP VIIRS Day/Night Band Calibration</h3>
+      <p class="telemetry-drawer__abstract">Archival radiance composite of China and East Asian megalopolises. Corrected for lunar irradiance, stray light, atmospheric scattering, and ephemeris orbital variation.</p>
+      <dl class="telemetry-drawer__specs">
+        <div class="telemetry-spec-item">
+          <dt>Radiance Range</dt>
+          <dd>7.38 to 403.42 nW·cm⁻²·sr⁻¹</dd>
+        </div>
+        <div class="telemetry-spec-item">
+          <dt>Spatial Resolution</dt>
+          <dd>15 arc-seconds (~500m at equator)</dd>
+        </div>
+        <div class="telemetry-spec-item">
+          <dt>Projection</dt>
+          <dd>EPSG:4326 (WGS 84 geographic)</dd>
+        </div>
+        <div class="telemetry-spec-item">
+          <dt>Zenith Angle</dt>
+          <dd>14.2° at satellite nadir passage</dd>
+        </div>
+      </dl>
+      <div class="telemetry-drawer__actions">
+        <a href="portfolio/R/Animated_NTL.html" class="btn btn--primary">View Nightlights Analysis →</a>
+      </div>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
