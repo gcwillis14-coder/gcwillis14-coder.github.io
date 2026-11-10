@@ -45,4 +45,4 @@ The [project repository](https://github.com/gcwillis14-coder/transitflow) is pri
 - `web/js/app.js` contains the simulation interface.
 - `web/js/analytics.js` displays the network analysis.
 
-[Explore the network](https://transitflow-2s4.pages.dev/analytics) · [Open simulation](https://transitflow-2s4.pages.dev/) · [Back to the projects](https://gcwillis14-coder.github.io/portfolio-home/portfolio/)
+[Explore the network](https://transitflow-2s4.pages.dev/analytics) · [Open simulation](https://transitflow-2s4.pages.dev/) · [Back to the projects](https://gcwillis14-coder.github.io/portfolio/)
