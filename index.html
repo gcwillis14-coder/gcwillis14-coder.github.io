@@ -151,7 +151,7 @@
 <section class="ticker">
   <div class="wrap ticker__row">
     <div class="ticker__item">
-      <span class="ticker__num">13</span>
+      <span class="ticker__num">10</span>
       <span class="ticker__label">Projects</span>
     </div>
     <div class="ticker__item">
@@ -159,7 +159,7 @@
       <span class="ticker__label">Maps &amp; Apps</span>
     </div>
     <div class="ticker__item">
-      <span class="ticker__num">7</span>
+      <span class="ticker__num">4</span>
       <span class="ticker__label">Data studies</span>
     </div>
     <div class="ticker__item">
@@ -179,9 +179,9 @@
 
     <!-- Featured Project Card: Giggity -->
     <div class="featured-project">
-      <span class="featured-badge">Personal project · London</span>
+      <span class="featured-badge">Web App · Live Music &amp; Maps</span>
       <h3>Giggity - London gigs</h3>
-      <p>I kept hearing about gigs after they had happened or sold out. Giggity collects listings from the Ticketmaster API and seven London venue programmes into a local SQLite store, pauses ambiguous bills for review, tracks real changes without treating missing feed rows as cancellations, and publishes a verified snapshot to a static SvelteKit and MapLibre app on Cloudflare.</p>
+      <p>I kept hearing about gigs after they had happened or sold out. Giggity collects listings from the Ticketmaster API and independent London venue programmes into a local SQLite store, pauses ambiguous bills for review, tracks real changes without treating missing feed rows as cancellations, and publishes a verified snapshot to a static SvelteKit and MapLibre app on Cloudflare.</p>
       <div class="featured-meta">
         <span>Python</span>
         <span>SQLite</span>
@@ -200,37 +200,9 @@
     <!-- Full Project Index Rows -->
     <div class="index-list">
 
-      <!-- TransitFlow -->
-      <div class="index-row">
-        <span class="index-row__tag">Transport · Networks</span>
-        <span class="index-row__body">
-          <a href="https://transitflow-2s4.pages.dev" target="_blank" rel="noopener">
-            <h3>TransitFlow - metro network simulation</h3>
-          </a>
-          <p>Exploring the Beijing metro through a station graph, simulated services and interchange indicators.</p>
-          <div class="index-row__actions">
-            <a href="articles/beijing-subway-network-analytics.html" class="btn" style="padding: 4px 12px; font-size: 11px;">Build notes →</a>
-            <a href="https://transitflow-2s4.pages.dev" target="_blank" rel="noopener" class="btn btn--ghost" style="padding: 4px 12px; font-size: 11px;">Open demo ↗</a>
-          </div>
-        </span>
-        <span class="index-row__meta">Python · GTFS · NetworkX · Leaflet · pyproj</span>
-        <a href="articles/beijing-subway-network-analytics.html" class="index-row__preview index-row__preview--mark" aria-label="TransitFlow preview mark">
-          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" style="color:var(--secondary)">
-            <path d="M8 46 C24 46 28 18 56 18" opacity="0.4"></path>
-            <path d="M8 18 C20 18 36 46 56 46" opacity="0.4"></path>
-            <circle cx="28" cy="32" r="5" fill="none" stroke="currentColor" stroke-width="1.6"></circle>
-            <circle cx="28" cy="32" r="2" fill="currentColor"></circle>
-            <circle cx="16" cy="36" r="2.5" fill="var(--secondary)"></circle>
-            <circle cx="48" cy="24" r="2.5" fill="var(--secondary)"></circle>
-            <circle cx="44" cy="46" r="2" fill="currentColor" opacity="0.6"></circle>
-            <circle cx="14" cy="18" r="2" fill="currentColor" opacity="0.6"></circle>
-          </svg>
-        </a>
-      </div>
-
       <!-- Giggity -->
       <div class="index-row">
-        <span class="index-row__tag">In development · London</span>
+        <span class="index-row__tag">Web App · Live Music &amp; Maps</span>
         <span class="index-row__body">
           <a href="portfolio/giggity.html">
             <h3>Giggity - London gigs</h3>
@@ -253,14 +225,42 @@
         </a>
       </div>
 
+      <!-- TransitFlow -->
+      <div class="index-row">
+        <span class="index-row__tag">GIS · Network Simulation</span>
+        <span class="index-row__body">
+          <a href="https://transitflow-2s4.pages.dev" target="_blank" rel="noopener">
+            <h3>TransitFlow - metro network simulation</h3>
+          </a>
+          <p>Exploring the Beijing metro through a station graph, simulated services and interchange indicators.</p>
+          <div class="index-row__actions">
+            <a href="articles/beijing-subway-network-analytics.html" class="btn" style="padding: 4px 12px; font-size: 11px;">Build notes →</a>
+            <a href="https://transitflow-2s4.pages.dev" target="_blank" rel="noopener" class="btn btn--ghost" style="padding: 4px 12px; font-size: 11px;">Open demo ↗</a>
+          </div>
+        </span>
+        <span class="index-row__meta">Python · NetworkX · Leaflet · pyproj</span>
+        <a href="articles/beijing-subway-network-analytics.html" class="index-row__preview index-row__preview--mark" aria-label="TransitFlow preview mark">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" style="color:var(--secondary)">
+            <path d="M8 46 C24 46 28 18 56 18" opacity="0.4"></path>
+            <path d="M8 18 C20 18 36 46 56 46" opacity="0.4"></path>
+            <circle cx="28" cy="32" r="5" fill="none" stroke="currentColor" stroke-width="1.6"></circle>
+            <circle cx="28" cy="32" r="2" fill="currentColor"></circle>
+            <circle cx="16" cy="36" r="2.5" fill="var(--secondary)"></circle>
+            <circle cx="48" cy="24" r="2.5" fill="var(--secondary)"></circle>
+            <circle cx="44" cy="46" r="2" fill="currentColor" opacity="0.6"></circle>
+            <circle cx="14" cy="18" r="2" fill="currentColor" opacity="0.6"></circle>
+          </svg>
+        </a>
+      </div>
+
       <!-- House prices & London rail access -->
       <a class="index-row" href="portfolio/R/Step1.html">
-        <span class="index-row__tag">Spatial Econometrics</span>
+        <span class="index-row__tag">GIS · Spatial Regression</span>
         <span class="index-row__body">
           <h3>House prices &amp; London rail access</h3>
           <p>Looking at how the relationship between house prices and rail access changes across London.</p>
         </span>
-        <span class="index-row__meta">R · Spatial GLM · GIS · Leaflet</span>
+        <span class="index-row__meta">R · Spatial Modeling · Leaflet</span>
         <span class="index-row__preview index-row__preview--mark" aria-hidden="true">
           <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" style="color:var(--secondary)">
             <circle cx="32" cy="32" r="4" fill="currentColor"></circle>
@@ -272,12 +272,12 @@
 
       <!-- Regional hyperlinks & trade flows -->
       <a class="index-row" href="portfolio/R/Hyperlinks.html">
-        <span class="index-row__tag">Network Analysis</span>
+        <span class="index-row__tag">Machine Learning · Network Regression</span>
         <span class="index-row__body">
           <h3>Regional hyperlinks &amp; trade flows</h3>
           <p>Investigating whether links between websites reflect economic connections between UK regions. Published in the Annals of the AAG.</p>
         </span>
-        <span class="index-row__meta">R · Python · NetworkX · Econometrics</span>
+        <span class="index-row__meta">R · Python · Network Analysis · Applied Statistics</span>
         <span class="index-row__preview">
           <img src="img/thumbs/Hyperlinks.jpg" alt="Regional hyperlinks preview thumbnail" loading="lazy">
         </span>
@@ -285,12 +285,12 @@
 
       <!-- Location choice - London travel catchments -->
       <a class="index-row" href="portfolio/R/London_locations.html">
-        <span class="index-row__tag">Isochrone Modeling</span>
+        <span class="index-row__tag">GIS · Travel Catchments</span>
         <span class="index-row__body">
           <h3>Location choice - London travel catchments</h3>
           <p>Mapping the parts of London within reach of different stations, and how much the answer depends on where you start.</p>
         </span>
-        <span class="index-row__meta">R · Leaflet · Isochrones · GIS</span>
+        <span class="index-row__meta">R · Isochrone Modeling · Leaflet</span>
         <span class="index-row__preview">
           <img src="img/thumbs/London_locations.jpg" alt="London locations preview thumbnail" loading="lazy">
         </span>
@@ -298,12 +298,12 @@
 
       <!-- Finding the urban extent - Beijing -->
       <a class="index-row" href="portfolio/python-notebooks/Urban_extent.html">
-        <span class="index-row__tag">Remote Sensing</span>
+        <span class="index-row__tag">GIS · Spatial Kernel Density</span>
         <span class="index-row__body">
           <h3>Finding the urban extent - Beijing</h3>
           <p>Combining satellite nightlights and points of interest to investigate where Beijing gives way to its surroundings.</p>
         </span>
-        <span class="index-row__meta">Python · ArcPy · Remote Sensing · Spatial KDE</span>
+        <span class="index-row__meta">Python · Spatial Analysis · Remote Sensing</span>
         <span class="index-row__preview">
           <img src="img/thumbs/Urban_extent.jpg" alt="Beijing urban extent preview thumbnail" loading="lazy">
         </span>
@@ -311,12 +311,12 @@
 
       <!-- Animated nightlights - China, 2000-2019 -->
       <a class="index-row" href="portfolio/R/Animated_NTL.html">
-        <span class="index-row__tag">Time Series</span>
+        <span class="index-row__tag">GIS · Satellite Radiometry</span>
         <span class="index-row__body">
           <h3>Animated nightlights - China, 2000-2019</h3>
           <p>Twenty years of satellite imagery showing how patterns of light changed across Chinese cities.</p>
         </span>
-        <span class="index-row__meta">Python · GDAL · Raster Analysis · Time Series</span>
+        <span class="index-row__meta">Python · R · Raster Analysis · Time Series</span>
         <span class="index-row__preview">
           <img src="img/thumbs/Animated_NTL.jpg" alt="China animated nightlights preview thumbnail" loading="lazy">
         </span>
