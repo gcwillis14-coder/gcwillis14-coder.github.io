@@ -75,13 +75,13 @@
   <h2>Data source hurdles &amp; why 3 venues, then 10</h2>
   <div class="prose">
     <p>Relying solely on commercial ticket APIs (like Ticketmaster Discovery) only captures large rooms and touring acts, completely missing grassroots venues. Meanwhile, independent venue websites publish listings however their CMS pleases: custom HTML markup, nested WordPress loops, or embedded JSON-LD schemas.</p>
-    <p>Rather than trying to scrape 50 venues on day one and building a fragile house of cards, I deliberately started with a small, disciplined baseline of <strong>3 venues</strong> (Union Chapel, Colour Factory, and Roundhouse). This forced me to establish three essential reliability mechanisms first:</p>
+    <p>Rather than trying to scrape 50 venues on day one and building something fragile, I started with <strong>3 venues</strong> (Union Chapel, Colour Factory, and Roundhouse). That forced me to settle a few basics first:</p>
     <ul>
-      <li><strong>Strict balance accounting:</strong> Every collection run requires that <code>fetched = accepted + rejected</code>. If an upstream API query caps out, the ingest worker splits the date window into smaller sub-intervals until every unique event ID is accounted for.</li>
-      <li><strong>Fail-closed triage:</strong> If a parser encounters unexpected HTML changes, unknown event categories, or unmapped coordinate systems, the pipeline halts and preserves the existing database rather than corrupting staging records.</li>
-      <li><strong>Bot challenge deference:</strong> Several prominent London venues sit behind strict anti-bot or CAPTCHA walls. Rather than writing brittle proxy hacks or bypass scripts, those venues were placed on an explicit deferred watchlist to keep the collector clean and maintainable.</li>
+      <li><strong>Strict balance accounting:</strong> Every collection run requires that <code>fetched = accepted + rejected</code>. If an upstream API query caps out, the ingest worker splits the date window into smaller intervals until every unique event ID is accounted for.</li>
+      <li><strong>Fail-closed triage:</strong> If a parser hits an unexpected HTML layout, unknown event category, or unmapped coordinates, the run stops and keeps the existing database untouched instead of writing bad rows.</li>
+      <li><strong>Bot walls:</strong> Several London venues sit behind strict anti-bot checks or CAPTCHAs. Rather than writing brittle proxy workarounds, those venues were put on a separate list to look at later.</li>
     </ul>
-    <p>Only once those balance checks and exception workflows were proven did I expand collection to <strong>10 venue programmes</strong> (adding KOKO, Blue Note, O2 Academy Islington, O2 Academy Brixton, and others). When an unhandled format or mixed bill appears, it is flagged in <code>venue-review-needed.json</code> for a five-second human review before staging.</p>
+    <p>Once those checks worked reliably, I expanded collection to <strong>10 venue programmes</strong> (adding KOKO, Blue Note, O2 Academy Islington, O2 Academy Brixton, and others). When an unhandled format or mixed bill turns up, it gets flagged in <code>venue-review-needed.json</code> for a quick manual check before staging.</p>
   </div>
 </div></section>
 
@@ -196,7 +196,7 @@
       <dd>The public frontend. All search, filtering, calendar navigation, and change tracking run client-side in the browser against the exported JSON snapshot. Zero runtime server load and sub-second page transitions.</dd>
 
       <dt>MapLibre GL &amp; OpenFreeMap</dt>
-      <dd>Fast, open-source vector map rendering for exploring London venues. MapLibre tiles are loaded dynamically on demand only when the user opens the venue map, keeping the initial bundle featherlight.</dd>
+      <dd>Fast vector map rendering for London venues. MapLibre tiles load only when you open the venue map, keeping the initial page weight tiny.</dd>
 
       <dt>Cloudflare Worker, R2 &amp; D1</dt>
       <dd>The edge serving layer. A Cloudflare Worker routes traffic to the static SvelteKit app, serves immutable event snapshots directly from R2, and queries a D1 database pointer to determine the active release.</dd>
@@ -209,10 +209,10 @@
   <div class="prose">
     <p>A major architectural decision was completely decoupling the public demonstration from the private ingestion machine:</p>
     <ul>
-      <li><strong>Total server isolation:</strong> The public site does not connect to my home workstation, local database, or private API keys. Even if my computer is powered down, the site stays online with 100% uptime on Cloudflare's global edge.</li>
-      <li><strong>Immutable snapshot releases:</strong> Publishing uploads a verified, versioned snapshot to Cloudflare R2 and flips an active release pointer in Cloudflare D1. Rolling back a release is instantaneous.</li>
-      <li><strong>Polite D1 visitor gate:</strong> Rather than forcing users through intrusive third-party CAPTCHAs or Cloudflare challenge pages that degrade UX, a small Worker gate prompts first-time visitors for their intent, records the timestamp in D1, and sets a signed 24-hour cookie. This deters automated bots and commercial scrapers without ruining user experience.</li>
-      <li><strong>Zero hosting bills:</strong> By relying on edge-cached static assets and lightweight Worker execution, operational hosting costs remain essentially zero.</li>
+      <li><strong>Total server isolation:</strong> The public site does not connect to my home workstation, local database, or private API keys. Even if my computer is switched off, the site stays online on Cloudflare's edge.</li>
+      <li><strong>Immutable snapshot releases:</strong> Publishing uploads a versioned snapshot to Cloudflare R2 and flips the release pointer in Cloudflare D1. Rolling back is instantaneous.</li>
+      <li><strong>Polite visitor gate:</strong> Rather than forcing visitors through intrusive third-party CAPTCHAs, a small Worker prompt asks first-time visitors for their intent, records the timestamp in D1, and sets a signed 24-hour cookie. This keeps automated scrapers away without frustrating people.</li>
+      <li><strong>Zero hosting bills:</strong> With static caching and minimal Worker CPU time, running costs stay basically at zero.</li>
     </ul>
   </div>
 </div></section>
