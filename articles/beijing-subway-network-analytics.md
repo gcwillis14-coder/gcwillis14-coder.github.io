@@ -18,23 +18,23 @@ The Python project and the prepared web demo are separate parts of the work. The
 
 ## The moving trains
 
-The timetable is generated, rather than taken from a live operating feed. The current web-data generator uses service windows with different headways, a 25-second dwell assumption and 110-second intervals between successive stops.
+The timetable is generated rather than taken from a live feed. The dataset generator uses simple service windows: different headways by time of day, a 25-second dwell time, and 110 seconds between consecutive stops.
 
-Those choices produce a modelled day that can be explored in the browser. They do not reproduce the actual timetable, train positions or passenger movements. The animation is a way to inspect the model, rather than evidence that its operating assumptions are correct.
+That gives a modelled day you can poke around in the browser. It doesn't match real train movements, live headways, or passenger crowds. The animation is just a visual check on the network model, not proof of realistic operations.
 
 ## Connections and interchange indicators
 
-The network analysis includes degree and betweenness centrality. Degree describes connections; betweenness measures how often a station lies on shortest paths through the graph.
+The network metrics look at degree and betweenness centrality. Degree counts direct connections; betweenness tracks how often a station sits on the shortest path between any two points.
 
-The dashboard’s interchange panel displays precomputed indicators from the bundle. Its vulnerability score is a heuristic based on line count and centrality, not a recalculation of services during a station closure. It should not be read as a forecast of disruption or additional journey time.
+The dashboard's interchange card displays precomputed numbers from the bundle. The vulnerability score is a rough heuristic combining line count and centrality. It's not a live re-routing simulation or a delay forecast if a station shuts.
 
 ## What the model leaves out
 
-A station-level graph simplifies the walking routes within an interchange. The generated timetable does not capture service changes, crowding, short turns or day-to-day disruption.
+A station-level graph ignores walking transfers inside big stations. And the generated timetable doesn't reflect track maintenance, delays, crowded platforms, or short-turned trains.
 
-Some network and operating figures are stored as reference values in the data generator. They need their own provenance before they can support comparisons with the real system. I’ve kept the description here to the mechanisms that can be traced in the current code.
+Some numbers in the generator are placeholder reference values. They'd need real-world verification before using them to evaluate actual transit performance. I've focused the notes here on what the code actually does.
 
-The project is useful to me as a way to work through those choices and build something I can inspect. A working map is also a useful incentive to finish cleaning the data.
+Building this was a practical way to test graph ideas and see how well the data holds together. Having a working map is always a good push to get the data cleaned up.
 
 ## Files behind the demo
 

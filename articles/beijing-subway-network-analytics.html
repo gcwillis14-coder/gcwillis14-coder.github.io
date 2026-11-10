@@ -92,15 +92,15 @@
     <p>The data work starts with station and track geometry. Station names and line membership need to agree before the records can form a usable graph. In the browser demo, stations are nodes and neighbouring stops form connections.</p>
     <p>The Python project and the prepared web demo are separate parts of the work. The public pages read a generated JSON bundle; they do not run the Python pipeline or collect new data when you open them.</p>
     <h2>The moving trains</h2>
-    <p>The timetable is generated, rather than taken from a live operating feed. The current web-data generator uses service windows with different headways, a 25-second dwell assumption and 110-second intervals between successive stops.</p>
-    <p>Those choices produce a modelled day that can be explored in the browser. They do not reproduce the actual timetable, train positions or passenger movements. The animation is a way to inspect the model, rather than evidence that its operating assumptions are correct.</p>
+    <p>The timetable is generated rather than taken from a live feed. The dataset generator uses simple service windows: different headways by time of day, a 25-second dwell time, and 110 seconds between consecutive stops.</p>
+    <p>That gives a modelled day you can poke around in the browser. It doesn't match real train movements, live headways, or passenger crowds. The animation is just a visual check on the network model, not proof of realistic operations.</p>
     <h2>Connections and interchange indicators</h2>
-    <p>The network analysis includes degree and betweenness centrality. Degree describes connections; betweenness measures how often a station lies on shortest paths through the graph.</p>
-    <p>The dashboard’s interchange panel displays precomputed indicators from the bundle. Its vulnerability score is a heuristic based on line count and centrality, not a recalculation of services during a station closure. It should not be read as a forecast of disruption or additional journey time.</p>
+    <p>The network metrics look at degree and betweenness centrality. Degree counts direct connections; betweenness tracks how often a station sits on the shortest path between any two points.</p>
+    <p>The dashboard’s interchange panel displays precomputed numbers from the bundle. The vulnerability score is a rough heuristic combining line count and centrality. It's not a live re-routing simulation or a delay forecast if a station shuts.</p>
     <h2>What the model leaves out</h2>
-    <p>A station-level graph simplifies the walking routes within an interchange. The generated timetable does not capture service changes, crowding, short turns or day-to-day disruption.</p>
-    <p>Some network and operating figures are stored as reference values in the data generator. They need their own provenance before they can support comparisons with the real system. I’ve kept the description here to the mechanisms that can be traced in the current code.</p>
-    <p>The project is useful to me as a way to work through those choices and build something I can inspect. A working map is also a useful incentive to finish cleaning the data.</p>
+    <p>A station-level graph ignores walking transfers inside big stations. And the generated timetable doesn't reflect track maintenance, delays, crowded platforms, or short-turned trains.</p>
+    <p>Some numbers in the generator are placeholder reference values. They'd need real-world verification before using them to evaluate actual transit performance. I've focused the notes here on what the code actually does.</p>
+    <p>Building this was a practical way to test graph ideas and see how well the data holds together. Having a working map is always a good push to get the data cleaned up.</p>
     <h2>Files behind the demo</h2>
     <p>The project repository is private. These paths identify the source and published data for readers with access:</p>
     <ul>
