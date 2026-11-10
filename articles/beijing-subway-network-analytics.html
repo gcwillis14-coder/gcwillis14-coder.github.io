@@ -24,9 +24,9 @@
 <style>
 .article-container { max-width: 860px; margin: 0 auto; padding: 48px var(--gutter) 96px; }
 .article-header { padding-bottom: 36px; border-bottom: 1px solid var(--hair); margin-bottom: 40px; }
-.article-kicker { display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--amber); background:rgba(242,180,65,.1); padding:4px 10px; border:1px solid rgba(242,180,65,.25); border-radius:9999px; margin-bottom:18px; }
+.article-kicker { display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--amber); margin-bottom:18px; }
 .article-title { font-family:var(--serif); font-size:clamp(30px,4.5vw,48px); font-weight:500; line-height:1.15; color:var(--bone); margin-bottom:20px; }
-.article-meta { font-family:var(--mono); font-size:12px; color:var(--dust); line-height:1.6; background:var(--panel); border:1px solid var(--hair); border-left:3px solid var(--ember); padding:16px 20px; border-radius:2px; margin-top:24px; }
+.article-meta { font-family:var(--mono); font-size:12px; color:var(--dust); line-height:1.6; background:var(--panel); border:1px solid var(--hair); border-left:3px solid var(--ember); padding:16px 20px; border-radius:0; margin-top:24px; }
 .article-meta strong { color:var(--bone); }
 .article-actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:24px; }
 .article-prose { font-family:var(--sans); font-size:16.5px; line-height:1.75; color:var(--bone); }
@@ -37,13 +37,13 @@
 .article-prose li { margin-bottom:10px; padding-left:6px; }
 .article-prose ol { list-style:decimal; }
 .article-prose ul { list-style:square; }
-.article-table-wrap { overflow-x:auto; margin:32px 0; border:1px solid var(--hair); background:var(--panel); border-radius:2px; }
+.article-table-wrap { overflow-x:auto; margin:32px 0; border:1px solid var(--hair); background:var(--panel); border-radius:0; }
 .article-table { width:100%; border-collapse:collapse; font-size:13.5px; text-align:left; }
 .article-table th { background:#111416; color:var(--amber); font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:.08em; padding:12px 16px; border-bottom:1px solid var(--hair-strong); }
 .article-table td { padding:12px 16px; border-bottom:1px solid var(--hair); color:var(--bone); }
 .article-table tr:last-child td { border-bottom:none; }
 .article-table td strong { color:var(--bone); }
-.diagram-box { background:#07090a; border:1px solid var(--hair-strong); padding:20px; font-family:var(--mono); font-size:12px; line-height:1.45; color:var(--bone); overflow-x:auto; border-radius:2px; margin:28px 0; }
+.diagram-box { background:#07090a; border:1px solid var(--hair-strong); padding:20px; font-family:var(--mono); font-size:12px; line-height:1.45; color:var(--bone); overflow-x:auto; border-radius:0; margin:28px 0; }
 .references-list { font-size:14px; line-height:1.65; color:var(--dust); }
 .references-list li { margin-bottom:12px; }
 .references-list em { color:var(--bone); font-style:italic; }
@@ -112,5 +112,17 @@
     <p><a href="../portfolio/index.html">Back to the projects →</a></p>
   </article>
 </main>
+
+<footer class="footer">
+  <div class="wrap footer__row">
+    <span class="footer__mark font-mono-tabular">© George Willis · Computational Cartography &amp; Spatial Statistics</span>
+    <div class="footer__links font-mono-tabular">
+      <a href="mailto:gcw519email@proton.me">Email (Proton)</a>
+      <a href="https://uk.linkedin.com/in/gwilisli26" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/gcwillis14-coder" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://github.com/gcwillis14-coder/gcwillis14-coder.github.io" target="_blank" rel="noopener">Source</a>
+    </div>
+  </div>
+</footer>
 </body>
 </html>

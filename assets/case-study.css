@@ -13,11 +13,8 @@
 }
 .cs-hero__status {
   display: inline-block;
-  padding: 4px 12px;
-  background: rgba(226, 102, 31, 0.12);
+  padding: 2px 0;
   color: var(--amber);
-  border: 1px solid var(--ember);
-  border-radius: 9999px;
   font-family: var(--mono);
   font-size: 11px;
   text-transform: uppercase;
@@ -55,7 +52,7 @@
   background: var(--panel);
   padding: 3px 8px;
   border: 1px solid var(--hair);
-  border-radius: 4px;
+  border-radius: 0;
 }
 .cs-hero__actions {
   display: flex;
@@ -82,7 +79,7 @@
   align-items: center;
   gap: 6px;
   transition: all 0.15s ease;
-  border-radius: 2px;
+  border-radius: 0;
 }
 .cs-toc-btn:hover {
   background: var(--panel-2);
@@ -178,7 +175,7 @@
 .cs-preview-card {
   background: var(--panel);
   border: 1px solid var(--hair);
-  border-radius: 4px;
+  border-radius: 0;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -216,7 +213,7 @@
 .cs-mock-ui {
   background: #07090a;
   border: 1px solid var(--hair);
-  border-radius: 3px;
+  border-radius: 0;
   padding: 1.25rem;
   font-family: var(--mono);
   font-size: 12px;
@@ -233,7 +230,7 @@
 .cs-mock-badge {
   display: inline-block;
   padding: 2px 8px;
-  border-radius: 3px;
+  border-radius: 0;
   font-size: 10px;
   font-weight: 600;
   text-transform: uppercase;
@@ -253,7 +250,7 @@
   border: 1px solid var(--hair);
   padding: 0.75rem 1rem;
   margin-top: 0.5rem;
-  border-radius: 3px;
+  border-radius: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -302,7 +299,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border-radius: 2px;
+  border-radius: 0;
 }
 .cs-pipeline__node h4 {
   color: var(--amber);
@@ -351,7 +348,7 @@
   background: var(--ink);
   border: 1px solid var(--hair);
   padding: 1.5rem;
-  border-radius: 2px;
+  border-radius: 0;
 }
 .cs-subsystem h3 {
   font-family: var(--mono);
@@ -391,7 +388,7 @@
   flex-direction: column;
   gap: 1rem;
   position: relative;
-  border-radius: 2px;
+  border-radius: 0;
 }
 .cs-card__badge {
   display: inline-block;
@@ -404,7 +401,7 @@
   background: rgba(242, 180, 65, 0.1);
   padding: 2px 8px;
   border: 1px solid rgba(242, 180, 65, 0.25);
-  border-radius: 2px;
+  border-radius: 0;
 }
 .cs-card h3 {
   font-family: var(--serif);
@@ -452,7 +449,7 @@
   background: var(--panel);
   border: 1px solid var(--hair);
   padding: 1.75rem;
-  border-radius: 2px;
+  border-radius: 0;
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
@@ -479,7 +476,7 @@
   font-family: var(--mono);
   font-size: 12px;
   color: var(--bone);
-  border-radius: 2px;
+  border-radius: 0;
   margin-top: 0.25rem;
   line-height: 1.5;
 }
@@ -516,7 +513,7 @@
   flex-direction: column;
   gap: 0.75rem;
   position: relative;
-  border-radius: 2px;
+  border-radius: 0;
 }
 .cs-roadmap-card--done {
   border-top: 3px solid #6aae9b;
@@ -562,7 +559,7 @@
   padding: clamp(24px, 4vw, 44px);
   margin-bottom: 2.5rem;
   position: relative;
-  border-radius: 3px;
+  border-radius: 0;
 }
 .featured-badge {
   display: inline-flex;
@@ -573,10 +570,6 @@
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: var(--amber);
-  background: rgba(242, 180, 65, 0.12);
-  padding: 4px 10px;
-  border: 1px solid rgba(242, 180, 65, 0.3);
-  border-radius: 9999px;
   margin-bottom: 1.25rem;
 }
 .featured-project h3 {
@@ -607,7 +600,7 @@
   background: var(--ink);
   padding: 3px 8px;
   border: 1px solid var(--hair);
-  border-radius: 3px;
+  border-radius: 0;
 }
 .featured-actions {
   display: flex;
