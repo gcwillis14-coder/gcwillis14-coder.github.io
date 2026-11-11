@@ -444,9 +444,6 @@
       // Skip non-navigational links
       if (
         href.startsWith("#") ||
-        href.startsWith("mailto:") ||
-        href.startsWith("tel:") ||
-        href.startsWith("javascript:") ||
         link.hasAttribute("download") ||
         link.getAttribute("target") === "_blank" ||
         link.hasAttribute("data-no-transition")
@@ -454,9 +451,15 @@
         return;
       }
 
-      var targetUrl = new URL(link.href, window.location.href);
+      var targetUrl;
+      try {
+        targetUrl = new URL(link.href, window.location.href);
+      } catch (err) {
+        return;
+      }
 
-      // Same origin only
+      // Only handle HTTP(S) navigations on the same origin
+      if (targetUrl.protocol !== "http:" && targetUrl.protocol !== "https:") return;
       if (targetUrl.origin !== window.location.origin) return;
 
       // Skip if exactly current URL
