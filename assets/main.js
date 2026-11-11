@@ -70,8 +70,11 @@
     activeTrigger = triggerEl;
 
     // 1. First: bounding box of originating element
-    var firstRect = triggerEl
-      ? triggerEl.getBoundingClientRect()
+    var originEl = triggerEl
+      ? triggerEl.closest(".index-row, .featured-project, .research-card") || triggerEl
+      : null;
+    var firstRect = originEl
+      ? originEl.getBoundingClientRect()
       : { left: window.innerWidth / 2, top: window.innerHeight / 2, width: 20, height: 20 };
 
     // 2. Mount/display modal
@@ -112,7 +115,9 @@
     var drawer = backdrop.querySelector(".telemetry-drawer");
 
     if (drawer && activeTrigger) {
-      var firstRect = activeTrigger.getBoundingClientRect();
+      var closeOrigin =
+        activeTrigger.closest(".index-row, .featured-project, .research-card") || activeTrigger;
+      var firstRect = closeOrigin.getBoundingClientRect();
       var lastRect = drawer.getBoundingClientRect();
       var deltaX = firstRect.left - lastRect.left;
       var deltaY = firstRect.top - lastRect.top;
@@ -227,7 +232,11 @@
         if (currentSort === "recency") {
           var yearA = parseInt(a.getAttribute("data-year") || "0", 10);
           var yearB = parseInt(b.getAttribute("data-year") || "0", 10);
-          return yearB - yearA;
+          if (yearB !== yearA) return yearB - yearA;
+          return (
+            parseInt(a.getAttribute("data-order") || "999", 10) -
+            parseInt(b.getAttribute("data-order") || "999", 10)
+          );
         } else if (currentSort === "title") {
           var titleA = (a.querySelector("h3") ? a.querySelector("h3").textContent : "").trim().toLowerCase();
           var titleB = (b.querySelector("h3") ? b.querySelector("h3").textContent : "").trim().toLowerCase();
@@ -256,7 +265,23 @@
         var first = firstPositions.get(row);
         var last = lastPositions.get(row);
 
-        if (first && last) {
+        if (!first && last) {
+          // Entering row: fade/slide in
+          row.style.transition = "none";
+          row.style.opacity = "0";
+          row.style.transform = "translate3d(0, 12px, 0)";
+          requestAnimationFrame(function () {
+            row.offsetHeight; // reflow
+            row.style.transition = "transform 380ms cubic-bezier(0.16, 1, 0.3, 1), opacity 280ms ease";
+            row.style.opacity = "1";
+            row.style.transform = "translate3d(0, 0, 0)";
+            setTimeout(function () {
+              row.style.transition = "";
+              row.style.transform = "";
+              row.style.opacity = "";
+            }, 400);
+          });
+        } else if (first && last) {
           var deltaY = first.top - last.top;
           if (Math.abs(deltaY) > 0.5) {
             row.style.transition = "none";
@@ -455,9 +480,38 @@
           var parser = new DOMParser();
           var doc = parser.parseFromString(htmlText, "text/html");
 
+          // Shared-element token: clicked project row title -> destination page title
+          var oldTitle = link.matches("[data-slug]") ? link.querySelector("h3") : null;
+          if (oldTitle) oldTitle.style.viewTransitionName = "project-title";
+
           document.startViewTransition(function () {
             // Update document title
             document.title = doc.title;
+
+            // Close any open drawer scroll lock
+            document.body.style.overflow = "";
+            activeTrigger = null;
+
+            // Sync page-specific head styles/stylesheets
+            document.head.querySelectorAll("style").forEach(function (s) { s.setAttribute("data-vt", ""); });
+            document.head.querySelectorAll("style[data-vt]").forEach(function (s) { s.remove(); });
+            doc.head.querySelectorAll("style").forEach(function (s) {
+              var c = document.importNode(s, true);
+              c.setAttribute("data-vt", "");
+              document.head.appendChild(c);
+            });
+            doc.head.querySelectorAll('link[rel="stylesheet"]').forEach(function (l) {
+              var abs = new URL(l.getAttribute("href"), targetUrl.href).href;
+              var exists = Array.from(document.head.querySelectorAll('link[rel="stylesheet"]')).some(function (x) {
+                return x.href === abs;
+              });
+              if (!exists) {
+                var n = document.createElement("link");
+                n.rel = "stylesheet";
+                n.href = abs;
+                document.head.appendChild(n);
+              }
+            });
 
             // Replace main content cleanly (direct body children between header and footer)
             function getContentNodes(bodyEl) {
@@ -496,6 +550,10 @@
             history.pushState({ path: targetUrl.href }, "", targetUrl.href);
             updateActiveNav(targetUrl.pathname);
             window.scrollTo(0, 0);
+
+            // Pair the shared title token on the destination page
+            var newTitle = document.querySelector("main h1");
+            if (newTitle && oldTitle) newTitle.style.viewTransitionName = "project-title";
 
             // Re-initialize dynamic page components
             initAll();

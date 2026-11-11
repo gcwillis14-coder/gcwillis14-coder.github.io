@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Modelling the Beijing metro - George Willis</title>
+<title>TransitFlow: modelling the Beijing metro - George Willis</title>
 <meta name="description" content="The network data, simulated services and interchange indicators behind TransitFlow.">
 <meta name="author" content="George Willis">
 
@@ -67,7 +67,7 @@
       <a href="../about/index.html">About</a>
     </nav>
     <div class="masthead__actions">
-      <a href="../about/index.html" class="masthead__cv">Curriculum Vitae</a>
+      <a href="../about/index.html" class="masthead__cv">About &amp; experience</a>
     </div>
   </div>
 </header>
@@ -75,32 +75,52 @@
 <main id="main" class="article-container">
   <header class="article-header">
     <span class="article-kicker">TransitFlow · Build notes</span>
-    <h1 class="article-title">Modelling the Beijing metro</h1>
-    <p>The network data, simulated services and interchange indicators behind TransitFlow.</p>
+    <h1 class="article-title">TransitFlow: modelling the Beijing metro</h1>
+    <p>A fun experiment in building a metro-network model, starting with Beijing and seeing whether the same approach could work elsewhere.</p>
     <div class="article-actions">
-      <a href="https://transitflow-2s4.pages.dev/analytics" target="_blank" rel="noopener" class="btn">Explore the network ↗</a>
+      <a href="https://transitflow-2s4.pages.dev/analytics" target="_blank" rel="noopener" class="btn">Explore TransitFlow ↗</a>
       <a href="https://transitflow-2s4.pages.dev/" target="_blank" rel="noopener" class="btn btn--ghost">Open simulation ↗</a>
       <a href="https://github.com/gcwillis14-coder/transitflow" target="_blank" rel="noopener" class="btn btn--ghost">Project source (private) ↗</a>
       <a href="beijing-subway-network-analytics.md" download class="btn btn--ghost">Download these notes ↓</a>
     </div>
   </header>
   <article class="article-prose">
-    <h2>A metro network to explore</h2>
-    <p>TransitFlow is a personal project built around an interest in transport networks and maps. The Beijing example brings together station and track data, simulated services and a few ways to examine how the network connects.</p>
-    <p>The useful questions are fairly simple: which stations connect several lines, where do routes depend on a small number of interchanges, and how should those relationships appear on a map?</p>
+    <h2>Why I built it</h2>
+    <p>I wanted to see whether I could take open transport data, build a model of a metro system and make it something I could explore.</p>
+    <p>It also gave me a reason to return to the network ideas I used during my PhD research. The subject is different, but the questions feel familiar: how places connect, where transfers matter and what a network’s structure can tell us.</p>
+    <p>Beijing was the starting point. The broader aim is to make the approach reusable, so adding another city becomes a question of adapting the data rather than starting the whole project again.</p>
+
     <h2>Building the network</h2>
-    <p>The data work starts with station and track geometry. Station names and line membership need to agree before the records can form a usable graph. In the browser demo, stations are nodes and neighbouring stops form connections.</p>
-    <p>The Python project and the prepared web demo are separate parts of the work. The public pages read a generated JSON bundle; they do not run the Python pipeline or collect new data when you open them.</p>
+    <p>The project brings together OpenStreetMap data, transport information and a simulated timetable. Stations and their connections form the network, while the service model adds a way to explore journeys and interchanges.</p>
+    <p>Part of the work was getting the geography and network structure to agree. A station on a map is one thing; representing how it connects to other stations and lines is another.</p>
+
+    <h2>Why simulate services?</h2>
+    <p>A map shows where the lines go, but not necessarily how a journey works. Adding simulated services lets me explore the network beyond its shape.</p>
+    <p>It also makes the assumptions part of the model. The timetable is simulated rather than a live feed, so it is a way to experiment with the network rather than check the next departure.</p>
+
+    <h2>Making it reusable</h2>
+    <p>The part I’m most interested in is whether the same approach can carry over to another city. I want the shared modelling work to stay separate from city-specific data and settings. That makes it easier to compare networks and gives me a practical reason to think about how the code is organised.</p>
+
+    <h2>What I enjoyed</h2>
+    <p>This was a chance to combine network analysis with something visual and interactive. It connects back to my research interests, while giving me room to experiment with a different kind of application.</p>
+    <p>There is also something enjoyable about turning a familiar metro map into a model you can question, change and explore.</p>
+
+    <h2>Current direction</h2>
+    <p>Beijing is the starting point. The next step is to see what needs to change when the same approach is applied to another city, and which assumptions turn out to be less general than they first appeared.</p>
+
     <h2>The moving trains</h2>
     <p>The timetable is generated rather than taken from a live feed. The dataset generator uses simple service windows: different headways by time of day, a 25-second dwell time, and 110 seconds between consecutive stops.</p>
     <p>That gives a modelled day you can poke around in the browser. It doesn't match real train movements, live headways, or passenger crowds. The animation is just a visual check on the network model, not proof of realistic operations.</p>
+
     <h2>Connections and interchange indicators</h2>
     <p>The network metrics look at degree and betweenness centrality. Degree counts direct connections; betweenness tracks how often a station sits on the shortest path between any two points.</p>
     <p>The dashboard’s interchange panel displays precomputed numbers from the bundle. The vulnerability score is a rough heuristic combining line count and centrality. It's not a live re-routing simulation or a delay forecast if a station shuts.</p>
+
     <h2>What the model leaves out</h2>
     <p>A station-level graph ignores walking transfers inside big stations. And the generated timetable doesn't reflect track maintenance, delays, crowded platforms, or short-turned trains.</p>
     <p>Some numbers in the generator are placeholder reference values. They'd need real-world verification before using them to evaluate actual transit performance. I've focused the notes here on what the code actually does.</p>
     <p>Building this was a practical way to test graph ideas and see how well the data holds together. Having a working map is always a good push to get the data cleaned up.</p>
+
     <h2>Files behind the demo</h2>
     <p>The project repository is private. These paths identify the source and published data for readers with access:</p>
     <ul>
@@ -109,13 +129,13 @@
       <li><code>web/js/app.js</code> contains the simulation interface.</li>
       <li><code>web/js/analytics.js</code> displays the network analysis.</li>
     </ul>
-    <p><a href="../portfolio/index.html">Back to the projects →</a></p>
+    <p><a href="index.html">Back to articles →</a></p>
   </article>
 </main>
 
 <footer class="footer">
   <div class="wrap footer__row">
-    <span class="footer__mark font-mono-tabular">© George Willis · Computational Cartography &amp; Spatial Statistics</span>
+    <span class="footer__mark font-mono-tabular">© George Willis · Data science, spatial analysis and personal projects</span>
     <div class="footer__links font-mono-tabular">
       <a href="mailto:gcw519email@proton.me">Email (Proton)</a>
       <a href="https://uk.linkedin.com/in/gwilisli26" target="_blank" rel="noopener">LinkedIn</a>

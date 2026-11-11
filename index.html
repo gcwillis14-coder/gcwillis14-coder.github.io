@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="George Willis - spatial statistics, geodata, and applied machine learning. Research and software on urban change, transport accessibility, and regional trade.">
+<meta name="description" content="London-based data scientist at Cisco. Personal projects, published research and older analyses exploring music, transport, cities and networks.">
 <meta name="author" content="George Willis">
-<title>George Willis - Computational Cartography &amp; Spatial Statistics</title>
+<title>George Willis | Data science, maps and projects</title>
 
 <link rel="apple-touch-icon" sizes="180x180" href="img/favico/apple-touch-icon.png">
 <link rel="icon" type="image/png" href="img/favico/favicon-32x32.png" sizes="32x32">
@@ -45,7 +45,7 @@
       <a href="about/index.html">About</a>
     </nav>
     <div class="masthead__actions">
-      <a href="about/index.html" class="masthead__cv">Curriculum Vitae</a>
+      <a href="about/index.html" class="masthead__cv">About &amp; experience</a>
     </div>
   </div>
 </header>
@@ -70,19 +70,19 @@
           <div class="hero-cartographic__telemetry font-mono-tabular">
             <span class="highlight">Data scientist · London</span>
           </div>
-          <h1 class="hero-cartographic__title">Open data and a map or two. Often wanted to solve or prove a point.</h1>
+          <h1 class="hero-cartographic__title">Open data and a map or two.</h1>
           <div class="hero-cartographic__prose">
-            <p>I'm George, a data scientist at Cisco in London. I work with messy network datasets, testing patterns and working out what the evidence supports.</p>
-            <p>Outside work, I build projects around music, transport and cities. They usually begin with a question or something I'd find useful. The scope is not always well contained.</p>
+            <p>I’m George, a data scientist at Cisco in London. I work with messy network data, investigate unusual patterns and work out what the measurements can actually tell us.</p>
+            <p>Outside work, I build things around music, transport and cities. They usually start with a question or a small annoyance, then become an excuse to learn something new. The scope is not always well contained.</p>
             <div class="hero-cartographic__link-wrap">
               <a href="about/index.html">More about me and the work →</a>
             </div>
           </div>
           <!-- Instrument Telemetry Strip -->
           <div class="hero-cartographic__instrument-strip">
-            <button type="button" class="font-mono-tabular" data-drawer-trigger="drawer-viirs" style="background:none;border:none;padding:0;color:var(--text-secondary);cursor:pointer;text-decoration:underline;">Sensor Telemetry &amp; Calibration ↗</button>
+            <button type="button" class="font-mono-tabular" data-drawer-trigger="drawer-viirs" style="background:none;border:none;padding:0;color:var(--text-secondary);cursor:pointer;text-decoration:underline;">About the image ↗</button>
             <span>·</span>
-            <a href="portfolio/R/Animated_NTL.html" class="font-mono-tabular">China's nightlights, 2000-2019 →</a>
+            <a href="portfolio/R/Animated_NTL.html" class="font-mono-tabular">China’s night lights, 2000–2019 →</a>
             <span>·</span>
             <span class="font-mono-tabular">Suomi-NPP VIIRS DNB · EPSG:4326</span>
           </div>
@@ -160,8 +160,9 @@
     <!-- Featured Project Card: Giggity -->
     <div class="featured-project" id="featured-giggity">
       <span class="featured-badge">Web App · Live Music &amp; Maps</span>
-      <h3>Giggity - London gigs</h3>
-      <p>I kept hearing about gigs after they had happened or sold out. Giggity pulls listings from Ticketmaster and independent London venue programmes into a local SQLite database, flags tricky bills for review, tracks date and venue changes without treating missing feed items as cancellations, and publishes a static snapshot to Cloudflare.</p>
+      <h3>Giggity — finding London gigs</h3>
+      <p>I kept hearing about gigs after they had happened or sold out. Checking individual venue websites wasn’t working, so I started building somewhere to bring the listings together.</p>
+      <p>Giggity collects events from Ticketmaster and selected London venue programmes, tracks changes and puts them into a searchable list and venue map. What began as a personal annoyance has become a way to learn the engineering around the data: building a web interface, testing the collection process and getting the whole thing online.</p>
       <div class="featured-meta">
         <span>Python</span>
         <span>SQLite</span>
@@ -172,9 +173,9 @@
         <span>Cloudflare</span>
       </div>
       <div class="featured-actions">
-        <a href="portfolio/giggity.html" class="btn btn--primary">How it works →</a>
-        <button type="button" class="btn btn--ghost" data-drawer-trigger="drawer-giggity">Technical Telemetry &amp; Architecture ↗</button>
-        <a href="https://giggity.gcwillis14.workers.dev/" target="_blank" rel="noopener" class="btn btn--ghost">Open Giggity ↗</a>
+        <a href="portfolio/giggity.html" class="btn btn--primary">How I built it →</a>
+        <button type="button" class="btn btn--ghost" data-drawer-trigger="drawer-giggity">Under the bonnet ↗</button>
+        <a href="https://giggity.gcwillis14.workers.dev/" target="_blank" rel="noopener" class="btn btn--ghost">Explore Giggity ↗</a>
       </div>
     </div>
 
@@ -185,8 +186,8 @@
       <a class="index-row" href="portfolio/giggity.html" data-slug="giggity">
         <span class="index-row__tag">Web App · Live Music &amp; Maps</span>
         <span class="index-row__body">
-          <h3>Giggity - London gigs</h3>
-          <p>Collecting London gig listings from Ticketmaster and venue calendars, with local programme review, change tracking and a MapLibre venue map.</p>
+          <h3>Giggity — London gigs</h3>
+          <p>An attempt to stop missing gigs. Bringing together Ticketmaster listings and London venue programmes, while learning how to turn a data pipeline into a working web app.</p>
         </span>
         <span class="index-row__meta">Python · SQLite · SvelteKit · MapLibre · Cloudflare</span>
         <span class="index-row__preview index-row__preview--mark" aria-label="Giggity preview mark">
@@ -204,8 +205,8 @@
       <a class="index-row" href="articles/beijing-subway-network-analytics.html" data-slug="transitflow">
         <span class="index-row__tag">GIS · Network Simulation</span>
         <span class="index-row__body">
-          <h3>TransitFlow - metro network simulation</h3>
-          <p>Exploring the Beijing metro through a station graph, simulated services and interchange indicators.</p>
+          <h3>TransitFlow — metro network modelling</h3>
+          <p>A fun experiment in building a metro-network model, starting with Beijing and seeing whether the same approach could work across other cities.</p>
         </span>
         <span class="index-row__meta">Python · NetworkX · Leaflet · pyproj</span>
         <span class="index-row__preview index-row__preview--mark" aria-label="TransitFlow preview mark">
@@ -222,12 +223,12 @@
         </span>
       </a>
 
-      <!-- House prices & London rail access -->
+      <!-- House prices and London rail access -->
       <a class="index-row" href="portfolio/R/Step1.html">
         <span class="index-row__tag">GIS · Spatial Regression</span>
         <span class="index-row__body">
-          <h3>House prices &amp; London rail access</h3>
-          <p>Looking at how the relationship between house prices and rail access changes across London.</p>
+          <h3>House prices and London rail access</h3>
+          <p>How much does access to the railway matter for London house prices, and does the relationship look the same everywhere?</p>
         </span>
         <span class="index-row__meta">R · Spatial Modeling · Leaflet</span>
         <span class="index-row__preview index-row__preview--mark" aria-hidden="true">
@@ -239,12 +240,12 @@
         </span>
       </a>
 
-      <!-- Regional hyperlinks & trade flows -->
+      <!-- Regional hyperlinks and trade flows -->
       <a class="index-row" href="portfolio/R/Hyperlinks.html">
         <span class="index-row__tag">Machine Learning · Network Regression</span>
         <span class="index-row__body">
-          <h3>Regional hyperlinks &amp; trade flows</h3>
-          <p>Investigating whether links between websites reflect economic connections between UK regions. Published in the Annals of the AAG.</p>
+          <h3>Regional hyperlinks and trade flows</h3>
+          <p>Can links between websites tell us something about trade between regions? Research combining web data, network analysis and predictive modelling. Published in the Annals of the American Association of Geographers.</p>
         </span>
         <span class="index-row__meta">R · Python · Network Analysis · Applied Statistics</span>
         <span class="index-row__preview">
@@ -252,12 +253,12 @@
         </span>
       </a>
 
-      <!-- Location choice - London travel catchments -->
+      <!-- Location choice — London travel catchments -->
       <a class="index-row" href="portfolio/R/London_locations.html">
         <span class="index-row__tag">GIS · Travel Catchments</span>
         <span class="index-row__body">
-          <h3>Location choice - London travel catchments</h3>
-          <p>Mapping the parts of London within reach of different stations, and how much the answer depends on where you start.</p>
+          <h3>Location choice — London travel catchments</h3>
+          <p>Exploring which parts of London are within reach of different stations, and how the answer changes depending on where you start.</p>
         </span>
         <span class="index-row__meta">R · Isochrone Modeling · Leaflet</span>
         <span class="index-row__preview">
@@ -265,12 +266,12 @@
         </span>
       </a>
 
-      <!-- Finding the urban extent - Beijing -->
+      <!-- Finding Beijing’s urban extent -->
       <a class="index-row" href="portfolio/python-notebooks/Urban_extent.html">
         <span class="index-row__tag">GIS · Spatial Kernel Density</span>
         <span class="index-row__body">
-          <h3>Finding the urban extent - Beijing</h3>
-          <p>Combining satellite nightlights and points of interest to investigate where Beijing gives way to its surroundings.</p>
+          <h3>Finding Beijing’s urban extent</h3>
+          <p>Combining satellite night lights and points of interest to investigate where Beijing’s built-up area ends and its surroundings begin.</p>
         </span>
         <span class="index-row__meta">Python · Spatial Analysis · Remote Sensing</span>
         <span class="index-row__preview">
@@ -278,12 +279,12 @@
         </span>
       </a>
 
-      <!-- Animated nightlights - China, 2000-2019 -->
+      <!-- China’s night lights, 2000–2019 -->
       <a class="index-row" href="portfolio/R/Animated_NTL.html">
         <span class="index-row__tag">GIS · Satellite Radiometry</span>
         <span class="index-row__body">
-          <h3>Animated nightlights - China, 2000-2019</h3>
-          <p>Twenty years of satellite imagery showing how patterns of light changed across Chinese cities.</p>
+          <h3>China’s night lights, 2000–2019</h3>
+          <p>Twenty years of harmonised satellite night-light data, brought together in an animation to explore how patterns of light changed across China.</p>
         </span>
         <span class="index-row__meta">Python · R · Raster Analysis · Time Series</span>
         <span class="index-row__preview">
@@ -311,11 +312,12 @@
             <span>TransitFlow</span>
           </div>
           <h3>Modelling the Beijing metro</h3>
-          <p>The network data, simulated services and interchange indicators behind TransitFlow, including the timetable assumptions and what the station graph leaves out.</p>
+          <p>Could I build a metro-network model and then reuse it somewhere else? The data, simulated services and network ideas behind TransitFlow, drawing on my earlier research in spatial networks.</p>
         </div>
         <div class="research-card__footer">
-          <a href="articles/beijing-subway-network-analytics.html">Read notes →</a>
-          <a href="https://transitflow-2s4.pages.dev/analytics" target="_blank" rel="noopener">Network demo ↗</a>
+          <a href="articles/beijing-subway-network-analytics.html">Read the build notes →</a>
+          <button type="button" class="bibtex-toggle-btn" data-drawer-trigger="drawer-transitflow">Under the bonnet ↗</button>
+          <a href="https://transitflow-2s4.pages.dev/analytics" target="_blank" rel="noopener">Explore the model ↗</a>
         </div>
       </div>
 
@@ -326,11 +328,11 @@
             <span>Published · 2021</span>
             <span>Travel Behaviour and Society</span>
           </div>
-          <h3>Uber and New York's yellow taxis</h3>
-          <p>My undergraduate dissertation used millions of NYC trip records to test how Uber affected yellow taxi demand. It won the department's best dissertation prize and was later published in Travel Behaviour and Society.</p>
+          <h3>Uber and New York’s yellow taxis</h3>
+          <p>My undergraduate dissertation examined the relationship between Uber’s growth and yellow taxi demand in New York. It later became a paper in Travel Behaviour and Society.</p>
         </div>
         <div class="research-card__footer">
-          <a href="https://doi.org/10.1016/j.tbs.2020.08.003" target="_blank" rel="noopener">View paper ↗</a>
+          <a href="https://doi.org/10.1016/j.tbs.2020.08.003" target="_blank" rel="noopener">Read the paper ↗</a>
         </div>
       </div>
     </div>
@@ -350,7 +352,7 @@
         <span class="clip__year">2022</span>
         <div>
           <h3>Using the web to predict regional trade flows</h3>
-          <p>Data extraction, modelling, and validation of hyperlink networks as a proxy for inter-regional trade flows. With Emmanouil Tranos and André Carrascal-Incera.</p>
+          <p>Research into whether hyperlinks between websites can help predict trade between regions. We combined web-network data with economic data and tested how well the models worked beyond the period used to train them. With Emmanouil Tranos and André Carrascal-Incera.</p>
           <span class="clip__cite">Tranos, E., Carrascal-Incera, A. &amp; Willis, G. · Annals of the American Association of Geographers, 2022</span>
           <div style="display:flex; gap:16px; align-items:center; flex-wrap:wrap; margin-top:8px;">
             <a href="https://doi.org/10.1080/24694452.2022.2109577" class="clip__link" target="_blank" rel="noopener">DOI: 10.1080/24694452.2022.2109577 ↗</a>
@@ -377,7 +379,7 @@
         <span class="clip__year">2021</span>
         <div>
           <h3>Using "Big Data" to understand the impacts of Uber on taxis in New York City</h3>
-          <p>Time-series modelling of Uber's effect on yellow taxi ridership in New York, using NYC TLC trip records and New York Times API data. With Emmanouil Tranos.</p>
+          <p>Research examining Uber’s growth alongside changes in yellow taxi ridership, combining New York taxi records, contextual data and time-series analysis. With Emmanouil Tranos.</p>
           <span class="clip__cite">Willis, G. &amp; Tranos, E. · Travel Behaviour and Society, 22: 94-107, 2021</span>
           <div style="display:flex; gap:16px; align-items:center; flex-wrap:wrap; margin-top:8px;">
             <a href="https://doi.org/10.1016/j.tbs.2020.08.003" class="clip__link" target="_blank" rel="noopener">DOI: 10.1016/j.tbs.2020.08.003 ↗</a>
@@ -406,7 +408,7 @@
 <!-- Footer -->
 <footer class="footer">
   <div class="wrap footer__row">
-    <span class="footer__mark font-mono-tabular">© George Willis · Computational Cartography &amp; Spatial Statistics</span>
+    <span class="footer__mark font-mono-tabular">© George Willis · Data science, spatial analysis and personal projects</span>
     <div class="footer__links font-mono-tabular">
       <a href="mailto:gcw519email@proton.me">Email (Proton)</a>
       <a href="https://uk.linkedin.com/in/gwilisli26" target="_blank" rel="noopener">LinkedIn</a>
@@ -420,33 +422,43 @@
 <div class="telemetry-backdrop" id="drawer-giggity" role="dialog" aria-modal="true" aria-labelledby="drawer-giggity-title">
   <div class="telemetry-drawer">
     <div class="telemetry-drawer__header">
-      <span class="telemetry-drawer__kicker">Telemetry &amp; Architecture · Live Music &amp; Spatial Pipelines</span>
+      <span class="telemetry-drawer__kicker">Under the bonnet · Giggity</span>
       <button type="button" class="telemetry-drawer__close" aria-label="Close telemetry view">×</button>
     </div>
     <div class="telemetry-drawer__body">
-      <h3 class="telemetry-drawer__title" id="drawer-giggity-title">Giggity — Data Pipeline &amp; Ingestion Architecture</h3>
-      <p class="telemetry-drawer__abstract">Giggity solves the grassroots discovery gap by consolidating commercial feeds and independent London venue programmes into a local SQLite repository with balance accounting and change tracking.</p>
+      <h3 class="telemetry-drawer__title" id="drawer-giggity-title">Giggity — under the bonnet</h3>
+      <p class="telemetry-drawer__abstract">The first problem was finding the gigs. The next was working out how to bring together listings that don’t all describe the same event in the same way.</p>
+      <p class="telemetry-drawer__abstract">A Python pipeline collects and checks the data. SQLite holds the current events and changes, and a SvelteKit interface makes them searchable and easy to browse. Reviewed data is published separately, so updating the listings doesn’t mean rebuilding the whole application.</p>
+      <p class="telemetry-drawer__abstract">The analytical work was familiar territory. Building the interface, connecting the pieces and deploying it gave me plenty of new things to learn.</p>
       <dl class="telemetry-drawer__specs">
         <div class="telemetry-spec-item">
-          <dt>Ingest Protocol</dt>
-          <dd>Discovery v2 + JSON-LD + HTML Scraping</dd>
+          <dt>Collection</dt>
+          <dd>Python</dd>
         </div>
         <div class="telemetry-spec-item">
-          <dt>Balance Accounting</dt>
-          <dd>Strict: fetched = accepted + rejected</dd>
+          <dt>Validation</dt>
+          <dd>Pydantic</dd>
         </div>
         <div class="telemetry-spec-item">
-          <dt>Fingerprinting</dt>
-          <dd>SHA-256 (Title, Date, Time, Venue, Price)</dd>
+          <dt>Local storage</dt>
+          <dd>SQLite</dd>
         </div>
         <div class="telemetry-spec-item">
-          <dt>Storage &amp; Edge</dt>
-          <dd>SQLite (var/events.sqlite3) · Cloudflare KV</dd>
+          <dt>Interface</dt>
+          <dd>SvelteKit and TypeScript</dd>
+        </div>
+        <div class="telemetry-spec-item">
+          <dt>Venue map</dt>
+          <dd>MapLibre</dd>
+        </div>
+        <div class="telemetry-spec-item">
+          <dt>Hosting</dt>
+          <dd>Cloudflare</dd>
         </div>
       </dl>
       <div class="telemetry-drawer__actions">
-        <a href="portfolio/giggity.html" class="btn btn--primary">View Case Study →</a>
-        <a href="https://giggity.gcwillis14.workers.dev/" target="_blank" rel="noopener" class="btn btn--ghost">Open Live App ↗</a>
+        <a href="portfolio/giggity.html" class="btn btn--primary">How I built it →</a>
+        <a href="https://giggity.gcwillis14.workers.dev/" target="_blank" rel="noopener" class="btn btn--ghost">Explore Giggity ↗</a>
       </div>
     </div>
   </div>
@@ -456,12 +468,13 @@
 <div class="telemetry-backdrop" id="drawer-transitflow" role="dialog" aria-modal="true" aria-labelledby="drawer-transitflow-title">
   <div class="telemetry-drawer">
     <div class="telemetry-drawer__header">
-      <span class="telemetry-drawer__kicker">Telemetry &amp; Architecture · Network Simulation</span>
+      <span class="telemetry-drawer__kicker">Under the bonnet · TransitFlow</span>
       <button type="button" class="telemetry-drawer__close" aria-label="Close telemetry view">×</button>
     </div>
     <div class="telemetry-drawer__body">
-      <h3 class="telemetry-drawer__title" id="drawer-transitflow-title">TransitFlow — Metro Topology &amp; Flow Engine</h3>
-      <p class="telemetry-drawer__abstract">Directed multigraph network model of the Beijing Subway system. Computes betweenness centrality and transfer vulnerability heuristics across 27 lines and 470+ operational stations.</p>
+      <h3 class="telemetry-drawer__title" id="drawer-transitflow-title">TransitFlow — under the bonnet</h3>
+      <p class="telemetry-drawer__abstract">TransitFlow started as a fun way to return to network modelling. I wanted to see whether I could turn metro data into a model I could explore, then repeat the process for another city.</p>
+      <p class="telemetry-drawer__abstract">Beijing is the starting point. The project brings together station connections, geographic data and simulated services to explore the network and its interchanges. It draws on the spatial-network thinking from my PhD research, with the added challenge of building something interactive.</p>
       <dl class="telemetry-drawer__specs">
         <div class="telemetry-spec-item">
           <dt>Graph Topology</dt>
@@ -481,8 +494,8 @@
         </div>
       </dl>
       <div class="telemetry-drawer__actions">
-        <a href="articles/beijing-subway-network-analytics.html" class="btn btn--primary">View Build Notes →</a>
-        <a href="https://transitflow-2s4.pages.dev/analytics" target="_blank" rel="noopener" class="btn btn--ghost">Open Network Analytics ↗</a>
+        <a href="articles/beijing-subway-network-analytics.html" class="btn btn--primary">Read the build notes →</a>
+        <a href="https://transitflow-2s4.pages.dev/analytics" target="_blank" rel="noopener" class="btn btn--ghost">Explore TransitFlow ↗</a>
       </div>
     </div>
   </div>
@@ -492,12 +505,13 @@
 <div class="telemetry-backdrop" id="drawer-viirs" role="dialog" aria-modal="true" aria-labelledby="drawer-viirs-title">
   <div class="telemetry-drawer">
     <div class="telemetry-drawer__header">
-      <span class="telemetry-drawer__kicker">Scientific Telemetry · Satellite Radiometry</span>
+      <span class="telemetry-drawer__kicker">China’s night lights</span>
       <button type="button" class="telemetry-drawer__close" aria-label="Close telemetry view">×</button>
     </div>
     <div class="telemetry-drawer__body">
-      <h3 class="telemetry-drawer__title" id="drawer-viirs-title">Suomi-NPP VIIRS Day/Night Band Calibration</h3>
-      <p class="telemetry-drawer__abstract">Archival radiance composite of China and East Asian megalopolises. Corrected for lunar irradiance, stray light, atmospheric scattering, and ephemeris orbital variation.</p>
+      <h3 class="telemetry-drawer__title" id="drawer-viirs-title">China’s night lights</h3>
+      <p class="telemetry-drawer__abstract">This image connects to my earlier work on urban change in China. I used harmonised night-light data to explore changing patterns across cities between 2000 and 2019.</p>
+      <p class="telemetry-drawer__abstract">The animation makes it easier to see changes that are less obvious when looking at individual years.</p>
       <dl class="telemetry-drawer__specs">
         <div class="telemetry-spec-item">
           <dt>Radiance Range</dt>
@@ -517,7 +531,7 @@
         </div>
       </dl>
       <div class="telemetry-drawer__actions">
-        <a href="portfolio/R/Animated_NTL.html" class="btn btn--primary">View Nightlights Analysis →</a>
+        <a href="portfolio/R/Animated_NTL.html" class="btn btn--primary">Explore the night-light analysis →</a>
       </div>
     </div>
   </div>

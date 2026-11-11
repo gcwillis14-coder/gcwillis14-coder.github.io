@@ -40,7 +40,7 @@
       <a href="../about/index.html">About</a>
     </nav>
     <div class="masthead__actions">
-      <a href="../about/index.html" class="masthead__cv">Curriculum Vitae</a>
+      <a href="../about/index.html" class="masthead__cv">About &amp; experience</a>
     </div>
   </div>
 </header>
@@ -49,8 +49,8 @@
 <section class="section--tight" style="padding-top:56px;">
   <div class="wrap">
     <p class="kicker">Full index</p>
-    <h1 style="font-family:var(--serif); font-weight:500; font-size:clamp(32px,5vw,52px); margin-top:14px; max-width:18ch;">Projects and investigations</h1>
-    <p style="color:var(--dust); max-width:56ch; margin-top:16px; font-size:15.5px;">Things I’ve built, questions I’ve explored and some earlier research. There are interactive demos, maps and longer analyses.</p>
+    <h1 style="font-family:var(--serif); font-weight:500; font-size:clamp(32px,5vw,52px); margin-top:14px; max-width:18ch;">Projects and analysis</h1>
+    <p style="color:var(--dust); max-width:56ch; margin-top:16px; font-size:15.5px;">A mixture of things I wanted to build, questions I wanted to investigate and work that grew out of my research. Recent projects have taken me further into application development; older ones are mostly spatial analysis, statistics and maps.</p>
   </div>
 </section>
 
@@ -75,11 +75,11 @@
     <div class="index-list">
 
       <!-- 1. Giggity -->
-      <a class="index-row" data-cat="transport spatial" data-year="2024" data-order="1" href="giggity.html">
+      <a class="index-row" data-slug="giggity" data-cat="transport spatial" data-year="2024" data-order="1" href="giggity.html">
         <span class="index-row__tag">Web App · Live Music &amp; Maps</span>
         <span class="index-row__body">
-          <h3>Giggity - London gigs</h3>
-          <p>Collecting London gig listings from Ticketmaster and venue calendars, with local review, change tracking, and a MapLibre venue map.</p>
+          <h3>Giggity — London gigs</h3>
+          <p>An attempt to stop missing gigs. Bringing together Ticketmaster listings and London venue programmes, while learning how to turn a data pipeline into a working web app.</p>
         </span>
         <span class="index-row__meta">Python · SQLite · SvelteKit · MapLibre · Cloudflare</span>
         <span class="index-row__preview index-row__preview--mark" aria-hidden="true">
@@ -93,11 +93,11 @@
       </a>
 
       <!-- 2. TransitFlow -->
-      <a class="index-row" data-cat="transport" data-year="2023" data-order="2" href="../articles/beijing-subway-network-analytics.html">
+      <a class="index-row" data-slug="transitflow" data-cat="transport" data-year="2023" data-order="2" href="../articles/beijing-subway-network-analytics.html">
         <span class="index-row__tag">GIS · Network Simulation</span>
         <span class="index-row__body">
-          <h3>TransitFlow - metro network simulation</h3>
-          <p>Exploring the Beijing metro through a network model, simulated services and interchange indicators.</p>
+          <h3>TransitFlow — metro network modelling</h3>
+          <p>A fun experiment in building a metro-network model, starting with Beijing and seeing whether the same approach could work across other cities.</p>
         </span>
         <span class="index-row__meta">Python · NetworkX · Leaflet · pyproj</span>
         <span class="index-row__preview index-row__preview--mark" aria-hidden="true">
@@ -114,12 +114,12 @@
         </span>
       </a>
 
-      <!-- 3. House prices & London rail access -->
+      <!-- 3. House prices and London rail access -->
       <a class="index-row" data-cat="transport spatial" data-year="2022" data-order="3" href="R/Step1.html">
         <span class="index-row__tag">GIS · Spatial Regression</span>
         <span class="index-row__body">
-          <h3>House prices &amp; London rail access</h3>
-          <p>Looking at how the relationship between house prices and rail access changes across London.</p>
+          <h3>House prices and London rail access</h3>
+          <p>How much does access to the railway matter for London house prices, and does the relationship look the same everywhere?</p>
         </span>
         <span class="index-row__meta">R · Spatial Modeling · Leaflet</span>
         <span class="index-row__preview index-row__preview--mark" aria-hidden="true">
@@ -131,45 +131,45 @@
         </span>
       </a>
 
-      <!-- 4. Regional hyperlinks & trade flows -->
+      <!-- 4. Regional hyperlinks and trade flows -->
       <a class="index-row" data-cat="research" data-year="2022" data-order="4" href="R/Hyperlinks.html">
         <span class="index-row__tag">Machine Learning · Network Regression</span>
         <span class="index-row__body">
-          <h3>Regional hyperlinks &amp; trade flows</h3>
-          <p>Investigating whether links between websites reflect economic connections between UK regions. Published in the <em>Annals of the AAG</em>.</p>
+          <h3>Regional hyperlinks and trade flows</h3>
+          <p>Can links between websites tell us something about trade between regions? Research combining web data, network analysis and predictive modelling. Published in the Annals of the American Association of Geographers.</p>
         </span>
         <span class="index-row__meta">R · Python · Network Analysis · Applied Statistics</span>
         <span class="index-row__preview"><img src="../img/thumbs/Hyperlinks.jpg" alt="Regional hyperlinks preview thumbnail" loading="lazy"></span>
       </a>
 
-      <!-- 5. Location choice - London travel catchments -->
+      <!-- 5. Location choice — London travel catchments -->
       <a class="index-row" data-cat="transport spatial" data-year="2021" data-order="5" href="R/London_locations.html">
         <span class="index-row__tag">GIS · Travel Catchments</span>
         <span class="index-row__body">
-          <h3>Location choice - London travel catchments</h3>
-          <p>Mapping the parts of London within reach of different stations, and how much the answer depends on where you start.</p>
+          <h3>Location choice — London travel catchments</h3>
+          <p>Exploring which parts of London are within reach of different stations, and how the answer changes depending on where you start.</p>
         </span>
         <span class="index-row__meta">R · Isochrone Modeling · Leaflet</span>
         <span class="index-row__preview"><img src="../img/thumbs/London_locations.jpg" alt="London travel catchments preview thumbnail" loading="lazy"></span>
       </a>
 
-      <!-- 6. Finding the urban extent - Beijing -->
+      <!-- 6. Finding Beijing’s urban extent -->
       <a class="index-row" data-cat="spatial" data-year="2021" data-order="6" href="python-notebooks/Urban_extent.html">
         <span class="index-row__tag">GIS · Spatial Kernel Density</span>
         <span class="index-row__body">
-          <h3>Finding the urban extent - Beijing</h3>
-          <p>Combining satellite nightlights and points of interest to investigate where Beijing gives way to its surroundings.</p>
+          <h3>Finding Beijing’s urban extent</h3>
+          <p>Combining satellite night lights and points of interest to investigate where Beijing’s built-up area ends and its surroundings begin.</p>
         </span>
         <span class="index-row__meta">Python · Spatial Analysis · Remote Sensing</span>
         <span class="index-row__preview"><img src="../img/thumbs/Urban_extent.jpg" alt="Beijing urban extent preview thumbnail" loading="lazy"></span>
       </a>
 
-      <!-- 7. Animated nightlights - China, 2000-2019 -->
+      <!-- 7. China’s night lights, 2000–2019 -->
       <a class="index-row" data-cat="spatial" data-year="2020" data-order="7" href="R/Animated_NTL.html">
         <span class="index-row__tag">GIS · Satellite Radiometry</span>
         <span class="index-row__body">
-          <h3>Animated nightlights - China, 2000-2019</h3>
-          <p>Twenty years of satellite imagery showing how patterns of light changed across Chinese cities.</p>
+          <h3>China’s night lights, 2000–2019</h3>
+          <p>Twenty years of harmonised satellite night-light data, brought together in an animation to explore how patterns of light changed across China.</p>
         </span>
         <span class="index-row__meta">Python · R · Raster Analysis · Time Series</span>
         <span class="index-row__preview"><img src="../img/thumbs/Animated_NTL.jpg" alt="China animated nightlights preview thumbnail" loading="lazy"></span>
@@ -215,7 +215,7 @@
 </main>
 <footer class="footer">
   <div class="wrap footer__row">
-    <span class="footer__mark font-mono-tabular">© George Willis · Computational Cartography &amp; Spatial Statistics</span>
+    <span class="footer__mark font-mono-tabular">© George Willis · Data science, spatial analysis and personal projects</span>
     <div class="footer__links font-mono-tabular">
       <a href="mailto:gcw519email@proton.me">Email (Proton)</a>
       <a href="https://uk.linkedin.com/in/gwilisli26" target="_blank" rel="noopener">LinkedIn</a>

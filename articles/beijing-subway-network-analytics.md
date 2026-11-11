@@ -1,20 +1,42 @@
-# Modelling the Beijing metro
+# TransitFlow: modelling the Beijing metro
 
 George Willis
 
-The network data, simulated services and interchange indicators behind TransitFlow.
+A fun experiment in building a metro-network model, starting with Beijing and seeing whether the same approach could work elsewhere.
 
-## A metro network to explore
+## Why I built it
 
-TransitFlow is a personal project built around an interest in transport networks and maps. The Beijing example brings together station and track data, simulated services and a few ways to examine how the network connects.
+I wanted to see whether I could take open transport data, build a model of a metro system and make it something I could explore.
 
-The useful questions are fairly simple: which stations connect several lines, where do routes depend on a small number of interchanges, and how should those relationships appear on a map?
+It also gave me a reason to return to the network ideas I used during my PhD research. The subject is different, but the questions feel familiar: how places connect, where transfers matter and what a network’s structure can tell us.
+
+Beijing was the starting point. The broader aim is to make the approach reusable, so adding another city becomes a question of adapting the data rather than starting the whole project again.
 
 ## Building the network
 
-The data work starts with station and track geometry. Station names and line membership need to agree before the records can form a usable graph. In the browser demo, stations are nodes and neighbouring stops form connections.
+The project brings together OpenStreetMap data, transport information and a simulated timetable. Stations and their connections form the network, while the service model adds a way to explore journeys and interchanges.
 
-The Python project and the prepared web demo are separate parts of the work. The public pages read a generated JSON bundle; they do not run the Python pipeline or collect new data when you open them.
+Part of the work was getting the geography and network structure to agree. A station on a map is one thing; representing how it connects to other stations and lines is another.
+
+## Why simulate services?
+
+A map shows where the lines go, but not necessarily how a journey works. Adding simulated services lets me explore the network beyond its shape.
+
+It also makes the assumptions part of the model. The timetable is simulated rather than a live feed, so it is a way to experiment with the network rather than check the next departure.
+
+## Making it reusable
+
+The part I’m most interested in is whether the same approach can carry over to another city. I want the shared modelling work to stay separate from city-specific data and settings. That makes it easier to compare networks and gives me a practical reason to think about how the code is organised.
+
+## What I enjoyed
+
+This was a chance to combine network analysis with something visual and interactive. It connects back to my research interests, while giving me room to experiment with a different kind of application.
+
+There is also something enjoyable about turning a familiar metro map into a model you can question, change and explore.
+
+## Current direction
+
+Beijing is the starting point. The next step is to see what needs to change when the same approach is applied to another city, and which assumptions turn out to be less general than they first appeared.
 
 ## The moving trains
 
@@ -45,4 +67,4 @@ The [project repository](https://github.com/gcwillis14-coder/transitflow) is pri
 - `web/js/app.js` contains the simulation interface.
 - `web/js/analytics.js` displays the network analysis.
 
-[Explore the network](https://transitflow-2s4.pages.dev/analytics) · [Open simulation](https://transitflow-2s4.pages.dev/) · [Back to the projects](https://gcwillis14-coder.github.io/portfolio/)
+[Explore TransitFlow](https://transitflow-2s4.pages.dev/analytics) · [Back to articles](index.html)

@@ -40,57 +40,59 @@
       <a href="../about/index.html">About</a>
     </nav>
     <div class="masthead__actions">
-      <a href="../about/index.html" class="masthead__cv">Curriculum Vitae</a>
+      <a href="../about/index.html" class="masthead__cv">About &amp; experience</a>
     </div>
   </div>
 </header>
 
 <main id="main">
 <section class="section"><div class="wrap">
-  <p class="kicker">Personal project · In development · London</p>
+  <p class="kicker">Personal project · In development</p>
   <h1 class="page-title">Giggity</h1>
-  <p class="intro__text">Finding London gigs before they have happened or sold out.</p>
+  <p class="intro__text">A London gig finder that started because I kept finding out about things too late.</p>
   <div class="hero__actions">
     <a class="btn" href="https://giggity.gcwillis14.workers.dev/" target="_blank" rel="noopener">Open Giggity ↗</a>
-    <a class="link-arrow" href="index.html">All projects →</a>
+    <a class="link-arrow" href="index.html">Back to projects →</a>
   </div>
 </div></section>
 
 <section class="section"><div class="wrap split">
-  <h2>Why I built it &amp; what I wanted</h2>
+  <h2>Why I started</h2>
   <div class="prose">
-    <p>I kept running into the same frustrating cycle: hearing that a band I love had played in London the previous evening, or clicking a ticket link only to find the room sold out three weeks ago. Following individual venues meant checking ten different websites every Sunday afternoon, bookmarking fragmented pages, and trying to remember what had changed since the week before.</p>
-    <p>I wanted something simple and practical:</p>
+    <p>I kept hearing about gigs after they had happened, or finding a band I wanted to see only to discover the tickets had sold out. The information was there, but scattered across ticket sites, venue programmes and social media.</p>
+    <p>Checking everything individually became an annoyance. I wanted one place to see what was coming up at the venues I cared about, explore somewhere new and keep track of changes without relying on my memory.</p>
+    <p>That seemed like a manageable data project. It has since become a much broader exercise in learning how to build an application around the data.</p>
+  </div>
+</div></section>
+
+<section class="section"><div class="wrap split">
+  <h2>From collecting listings to building an app</h2>
+  <div class="prose">
+    <p>The first step was collecting listings from Ticketmaster. That gave me a useful starting point, but not everything I wanted to see, so I added selected venue programmes.</p>
+    <p>The interesting part wasn’t just getting the data into one table. Different sources describe events differently. Listings can overlap, names vary and a page can mix gigs with other types of events. Some decisions are straightforward to automate; others need a closer look.</p>
+    <p>Giggity now combines collection, local review and change tracking with a searchable web interface and an optional venue map.</p>
+  </div>
+</div></section>
+
+<section class="section"><div class="wrap split">
+  <h2>What it does</h2>
+  <div class="prose">
     <ul>
-      <li><strong>One unified calendar</strong> combining major commercial feeds with independent, grassroots room listings.</li>
-      <li><strong>An interactive venue map</strong> so I could explore what was playing nearby without clicking back and forth across different promoters.</li>
-      <li><strong>A clean change log</strong> tracking newly announced gigs, rescheduled dates, or doors time adjustments without turning every page refresh into false updates.</li>
-      <li><strong>Offline-first reliability</strong> with zero heavy server dependencies, so the listings stay fast and accessible from anywhere.</li>
+      <li>Brings together Ticketmaster listings and selected London venue programmes.</li>
+      <li>Lets me search and filter events, browse venues and explore the map.</li>
+      <li>Tracks useful changes, such as a different date or venue.</li>
+      <li>Keeps links back to the original listing or ticket page.</li>
+      <li>Leaves uncertain cases for review rather than forcing an answer.</li>
     </ul>
-    <p>The goal was straightforward: go to more gigs without spending hours wrangling tickets. The data plumbing grew from solving the messy realities of event feeds.</p>
   </div>
 </div></section>
 
 <section class="section"><div class="wrap split">
-  <h2>Data source hurdles &amp; why 3 venues, then 10</h2>
+  <h2>Getting the data right</h2>
   <div class="prose">
-    <p>Relying solely on commercial ticket APIs (like Ticketmaster Discovery) only captures large rooms and touring acts, completely missing grassroots venues. Meanwhile, independent venue websites publish listings however their CMS pleases: custom HTML markup, nested WordPress loops, or embedded JSON-LD schemas.</p>
-    <p>Rather than trying to scrape 50 venues on day one and building something fragile, I started with <strong>3 venues</strong> (Union Chapel, Colour Factory, and Roundhouse). That forced me to settle a few basics first:</p>
-    <ul>
-      <li><strong>Strict balance accounting:</strong> Every collection run requires that <code>fetched = accepted + rejected</code>. If an upstream API query caps out, the ingest worker splits the date window into smaller intervals until every unique event ID is accounted for.</li>
-      <li><strong>Fail-closed triage:</strong> If a parser hits an unexpected HTML layout, unknown event category, or unmapped coordinates, the run stops and keeps the existing database untouched instead of writing bad rows.</li>
-      <li><strong>Bot walls:</strong> Several London venues sit behind strict anti-bot checks or CAPTCHAs. Rather than writing brittle proxy workarounds, those venues were put on a separate list to look at later.</li>
-    </ul>
-    <p>Once those checks worked reliably, I expanded collection to <strong>10 venue programmes</strong> (adding KOKO, Blue Note, O2 Academy Islington, O2 Academy Brixton, and others). When an unhandled format or mixed bill turns up, it gets flagged in <code>venue-review-needed.json</code> for a quick manual check before staging.</p>
-  </div>
-</div></section>
-
-<section class="section"><div class="wrap split">
-  <h2>Tracking changes without inventing cancellations</h2>
-  <div class="prose">
-    <p>A classic bug in event scrapers is treating a disappeared listing as a cancellation. Upstream APIs drop records temporarily during maintenance, paginate unevenly, or swap event IDs during promoter updates. Inferring that a concert has been cancelled just because it wasn't returned on today's run creates noisy, false alarms.</p>
-    <p>When an upcoming event is absent from today's collection, Giggity keeps its prior observation timestamp and status untouched. Absence is never treated as cancellation.</p>
-    <p>Local state lives in standard-library <code>SQLite</code> (<code>var/events.sqlite3</code>) with versioned schema migrations. To power the <code>/changes</code> feed without false updates, each gig is fingerprinted using a cryptographic hash over only the core factual attributes fans care about: artist title, performance date, doors time, venue identity, price range, and ticket seller URLs. Non-semantic details (such as image CDN tokens, query ordering, and collection timestamps) are normalized out, so only genuine date changes, venue moves, or on-sale announcements trigger a change log entry.</p>
+    <p>A listing disappearing from a feed doesn’t necessarily mean the gig has been cancelled. Equally, two similar titles don’t always describe the same performance.</p>
+    <p>Those details became a large part of the project. I wanted to preserve the source information, make matching decisions understandable and avoid creating a stream of updates that weren’t actually useful.</p>
+    <p>The collection process checks what it has fetched, records what was accepted or excluded and flags cases that need attention. The aim is to spend less time checking listings manually without losing sight of where the information came from.</p>
   </div>
 </div></section>
 
@@ -103,22 +105,10 @@
     <svg viewBox="0 0 920 320" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%; min-width:720px; height:auto; display:block;">
       <!-- Pipeline Box 1: Sources -->
       <rect x="10" y="20" width="160" height="280" rx="4" fill="var(--surface-container)" stroke="var(--border-hairline)"/>
-      <text x="90" y="52" fill="var(--primary)" font-family="var(--font-headline)" font-size="13" font-weight="600" text-anchor="middle">1. DATA INGESTION</text>
-      <rect x="25" y="75" width="130" height="42" rx="3" fill="var(--surface-container-high)" stroke="var(--border-hairline)"/>
-      <text x="90" y="96" fill="var(--on-surface)" font-family="var(--font-mono)" font-size="11" text-anchor="middle">Ticketmaster API</text>
-      <text x="90" y="109" fill="var(--text-tertiary)" font-family="var(--font-mono)" font-size="9" text-anchor="middle">Discovery v2 / HTTPX</text>
-
-      <rect x="25" y="130" width="130" height="42" rx="3" fill="var(--surface-container-high)" stroke="var(--border-hairline)"/>
-      <text x="90" y="151" fill="var(--on-surface)" font-family="var(--font-mono)" font-size="11" text-anchor="middle">Venue Programmes</text>
-      <text x="90" y="164" fill="var(--text-tertiary)" font-family="var(--font-mono)" font-size="9" text-anchor="middle">10 Independent Sites</text>
-
-      <rect x="25" y="185" width="130" height="42" rx="3" fill="var(--surface-container-high)" stroke="var(--border-hairline)"/>
-      <text x="90" y="206" fill="var(--on-surface)" font-family="var(--font-mono)" font-size="11" text-anchor="middle">Ollama AI Vision</text>
-      <text x="90" y="219" fill="var(--text-tertiary)" font-family="var(--font-mono)" font-size="9" text-anchor="middle">Flyer / Poster Intake</text>
-
-      <rect x="25" y="240" width="130" height="42" rx="3" fill="var(--surface-container-high)" stroke="var(--border-hairline)"/>
-      <text x="90" y="261" fill="var(--on-surface)" font-family="var(--font-mono)" font-size="11" text-anchor="middle">DICE JSON-LD</text>
-      <text x="90" y="274" fill="var(--text-tertiary)" font-family="var(--font-mono)" font-size="9" text-anchor="middle">MusicEvent schema</text>
+      <text x="90" y="52" fill="var(--primary)" font-family="var(--font-headline)" font-size="13" font-weight="600" text-anchor="middle">1. COLLECT LISTINGS</text>
+      <rect x="25" y="110" width="130" height="80" rx="3" fill="var(--surface-container-high)" stroke="var(--border-hairline)"/>
+      <text x="90" y="145" fill="var(--on-surface)" font-family="var(--font-headline)" font-size="11" font-weight="500" text-anchor="middle">Ticketmaster and</text>
+      <text x="90" y="165" fill="var(--on-surface)" font-family="var(--font-headline)" font-size="11" font-weight="500" text-anchor="middle">venue programmes</text>
 
       <!-- Arrow 1 to 2 -->
       <path d="M170 160 H205" stroke="var(--primary)" stroke-width="1.5" stroke-dasharray="3 3"/>
@@ -126,19 +116,10 @@
 
       <!-- Pipeline Box 2: Local Staging & Triage -->
       <rect x="210" y="20" width="190" height="280" rx="4" fill="var(--surface-container)" stroke="var(--border-hairline)"/>
-      <text x="305" y="52" fill="var(--primary)" font-family="var(--font-headline)" font-size="13" font-weight="600" text-anchor="middle">2. LOCAL STAGING &amp; TRIAGE</text>
-
-      <rect x="225" y="75" width="160" height="52" rx="3" fill="var(--surface-container-high)" stroke="var(--border-hairline)"/>
-      <text x="305" y="98" fill="var(--on-surface)" font-family="var(--font-headline)" font-size="11" font-weight="500" text-anchor="middle">Balance &amp; Normalization</text>
-      <text x="305" y="114" fill="var(--text-tertiary)" font-family="var(--font-mono)" font-size="9.5" text-anchor="middle">Pydantic v2 Models</text>
-
-      <rect x="225" y="140" width="160" height="52" rx="3" fill="var(--surface-container-high)" stroke="var(--border-hairline)"/>
-      <text x="305" y="163" fill="var(--on-surface)" font-family="var(--font-headline)" font-size="11" font-weight="500" text-anchor="middle">SQLite &amp; Change Hashing</text>
-      <text x="305" y="179" fill="var(--text-tertiary)" font-family="var(--font-mono)" font-size="9.5" text-anchor="middle">var/events.sqlite3</text>
-
-      <rect x="225" y="205" width="160" height="52" rx="3" fill="var(--surface-container-high)" stroke="var(--border-hairline)"/>
-      <text x="305" y="228" fill="var(--on-surface)" font-family="var(--font-headline)" font-size="11" font-weight="500" text-anchor="middle">Review Gate (Fail-Closed)</text>
-      <text x="305" y="244" fill="var(--text-tertiary)" font-family="var(--font-mono)" font-size="9.5" text-anchor="middle">venue-review.json</text>
+      <text x="305" y="52" fill="var(--primary)" font-family="var(--font-headline)" font-size="13" font-weight="600" text-anchor="middle">2. CHECK AND REVIEW</text>
+      <rect x="225" y="110" width="160" height="80" rx="3" fill="var(--surface-container-high)" stroke="var(--border-hairline)"/>
+      <text x="305" y="145" fill="var(--on-surface)" font-family="var(--font-headline)" font-size="11" font-weight="500" text-anchor="middle">Python, Pydantic</text>
+      <text x="305" y="165" fill="var(--on-surface)" font-family="var(--font-headline)" font-size="11" font-weight="500" text-anchor="middle">and SQLite</text>
 
       <!-- Arrow 2 to 3 -->
       <path d="M400 160 H435" stroke="var(--primary)" stroke-width="1.5" stroke-dasharray="3 3"/>
@@ -146,14 +127,10 @@
 
       <!-- Pipeline Box 3: Release Snapshot Contract -->
       <rect x="440" y="20" width="180" height="280" rx="4" fill="var(--surface-container)" stroke="var(--border-hairline)"/>
-      <text x="530" y="52" fill="var(--primary)" font-family="var(--font-headline)" font-size="13" font-weight="600" text-anchor="middle">3. SNAPSHOT RELEASE</text>
-
-      <rect x="455" y="95" width="150" height="130" rx="3" fill="var(--surface-container-high)" stroke="var(--border-hairline)"/>
-      <circle cx="530" cy="135" r="18" fill="none" stroke="var(--secondary)" stroke-width="1.5"/>
-      <text x="530" y="140" fill="var(--secondary)" font-family="var(--font-mono)" font-size="12" text-anchor="middle">JSON</text>
-      <text x="530" y="175" fill="var(--on-surface)" font-family="var(--font-headline)" font-size="11" font-weight="600" text-anchor="middle">events.json</text>
-      <text x="530" y="195" fill="var(--text-tertiary)" font-family="var(--font-mono)" font-size="9" text-anchor="middle">Strict Shared Contract</text>
-      <text x="530" y="208" fill="var(--text-tertiary)" font-family="var(--font-mono)" font-size="9" text-anchor="middle">TypeScript + Pydantic</text>
+      <text x="530" y="52" fill="var(--primary)" font-family="var(--font-headline)" font-size="13" font-weight="600" text-anchor="middle">3. PUBLISH EVENT DATA</text>
+      <rect x="455" y="110" width="150" height="80" rx="3" fill="var(--surface-container-high)" stroke="var(--border-hairline)"/>
+      <text x="530" y="145" fill="var(--on-surface)" font-family="var(--font-headline)" font-size="11" font-weight="500" text-anchor="middle">Reviewed JSON</text>
+      <text x="530" y="165" fill="var(--on-surface)" font-family="var(--font-headline)" font-size="11" font-weight="500" text-anchor="middle">snapshot</text>
 
       <!-- Arrow 3 to 4 -->
       <path d="M620 160 H655" stroke="var(--primary)" stroke-width="1.5" stroke-dasharray="3 3"/>
@@ -161,80 +138,50 @@
 
       <!-- Pipeline Box 4: Cloudflare Edge & Browser App -->
       <rect x="660" y="20" width="245" height="280" rx="4" fill="var(--surface-container)" stroke="var(--border-hairline)"/>
-      <text x="782" y="52" fill="var(--primary)" font-family="var(--font-headline)" font-size="13" font-weight="600" text-anchor="middle">4. CLOUDFLARE EDGE &amp; APP</text>
-
-      <rect x="675" y="75" width="215" height="52" rx="3" fill="var(--surface-container-high)" stroke="var(--border-hairline)"/>
-      <text x="782" y="98" fill="var(--on-surface)" font-family="var(--font-headline)" font-size="11" font-weight="500" text-anchor="middle">Cloudflare Worker &amp; D1 Pointer</text>
-      <text x="782" y="114" fill="var(--text-tertiary)" font-family="var(--font-mono)" font-size="9.5" text-anchor="middle">Signed 24h Gate / Anti-Scrape</text>
-
-      <rect x="675" y="140" width="215" height="52" rx="3" fill="var(--surface-container-high)" stroke="var(--border-hairline)"/>
-      <text x="782" y="163" fill="var(--on-surface)" font-family="var(--font-headline)" font-size="11" font-weight="500" text-anchor="middle">Cloudflare R2 Bucket</text>
-      <text x="782" y="179" fill="var(--text-tertiary)" font-family="var(--font-mono)" font-size="9.5" text-anchor="middle">Immutable Release Snapshots</text>
-
-      <rect x="675" y="205" width="215" height="52" rx="3" fill="var(--surface-container-high)" stroke="var(--border-hairline)"/>
-      <text x="782" y="228" fill="var(--on-surface)" font-family="var(--font-headline)" font-size="11" font-weight="500" text-anchor="middle">SvelteKit + MapLibre GL</text>
-      <text x="782" y="244" fill="var(--text-tertiary)" font-family="var(--font-mono)" font-size="9.5" text-anchor="middle">OpenFreeMap Vector Tiles</text>
+      <text x="782" y="52" fill="var(--primary)" font-family="var(--font-headline)" font-size="13" font-weight="600" text-anchor="middle">4. BROWSE THE APP</text>
+      <rect x="675" y="110" width="215" height="80" rx="3" fill="var(--surface-container-high)" stroke="var(--border-hairline)"/>
+      <text x="782" y="145" fill="var(--on-surface)" font-family="var(--font-headline)" font-size="11" font-weight="500" text-anchor="middle">SvelteKit, venue map</text>
+      <text x="782" y="165" fill="var(--on-surface)" font-family="var(--font-headline)" font-size="11" font-weight="500" text-anchor="middle">and Cloudflare</text>
     </svg>
   </div>
 </div></section>
 
 <section class="section"><div class="wrap split">
-  <h2>Why each major tool</h2>
+  <h2>Why I chose this stack</h2>
   <div class="prose">
-    <p>Every tool in the stack was chosen to keep complexity bounded, eliminate server maintenance, and avoid cloud lock-in:</p>
-    <dl class="fields">
-      <dt>Python 3.12 &amp; Pydantic v2</dt>
-      <dd>The collection and ingestion engine. Pydantic guarantees that dates, UK timezone transitions (GMT/BST), doors times, and price ranges are strictly validated before anything touches the database. If an API contract drifts, Python fails fast.</dd>
-
-      <dt>Local SQLite (events.sqlite3)</dt>
-      <dd>Stores canonical event records, venue identities, and cryptographic comparison hashes without running a heavy database server or paying for cloud databases. Versioned schema migrations track state locally.</dd>
-
-      <dt>Local AI Agents (Ollama)</dt>
-      <dd>Supplementary local intelligence using vision and embedding models (such as <code>qwen2.5-vl</code>). Used as a bounded, offline fallback for messy flyer and poster text extraction, or scoring ambiguous deduplication candidates when regex matching is inconclusive. AI never writes directly to canonical data without human review.</dd>
-
-      <dt>SvelteKit (Static Adapter)</dt>
-      <dd>The public frontend. All search, filtering, calendar navigation, and change tracking run client-side in the browser against the exported JSON snapshot. Zero runtime server load and sub-second page transitions.</dd>
-
-      <dt>MapLibre GL &amp; OpenFreeMap</dt>
-      <dd>Fast vector map rendering for London venues. MapLibre tiles load only when you open the venue map, keeping the initial page weight tiny.</dd>
-
-      <dt>Cloudflare Worker, R2 &amp; D1</dt>
-      <dd>The edge serving layer. A Cloudflare Worker routes traffic to the static SvelteKit app, serves immutable event snapshots directly from R2, and queries a D1 database pointer to determine the active release.</dd>
-    </dl>
+    <p>Python was the natural starting point for collecting and working with the data. Pydantic gave me a way to define what an event record should contain and check it before passing it further through the app.</p>
+    <p>SQLite keeps the local data straightforward to inspect and query, without needing a separate database service. It holds the current events and the information used to compare changes.</p>
+    <p>SvelteKit and TypeScript took me further beyond my usual analysis work. They gave me a way to turn the data into something I could browse and use, rather than another output file.</p>
+    <p>MapLibre adds the venue map. I kept that optional because a list is often all I need, while the map is useful when I want to explore an area.</p>
+    <p>Cloudflare hosts the app and the published event data. Keeping collection separate from the website means I can review the data locally, then publish it when it is ready.</p>
   </div>
 </div></section>
 
 <section class="section"><div class="wrap split">
-  <h2>Why Cloudflare Worker &amp; edge hosting</h2>
+  <h2>What I’ve enjoyed learning</h2>
   <div class="prose">
-    <p>A major architectural decision was completely decoupling the public demonstration from the private ingestion machine:</p>
-    <ul>
-      <li><strong>Total server isolation:</strong> The public site does not connect to my home workstation, local database, or private API keys. Even if my computer is switched off, the site stays online on Cloudflare's edge.</li>
-      <li><strong>Immutable snapshot releases:</strong> Publishing uploads a versioned snapshot to Cloudflare R2 and flips the release pointer in Cloudflare D1. Rolling back is instantaneous.</li>
-      <li><strong>Polite visitor gate:</strong> Rather than forcing visitors through intrusive third-party CAPTCHAs, a small Worker prompt asks first-time visitors for their intent, records the timestamp in D1, and sets a signed 24-hour cookie. This keeps automated scrapers away without frustrating people.</li>
-      <li><strong>Zero hosting bills:</strong> With static caching and minimal Worker CPU time, running costs stay basically at zero.</li>
-    </ul>
+    <p>As a data scientist, I was already used to collecting awkward data and questioning what it showed. Building everything around that analysis was less familiar.</p>
+    <p>Giggity has pushed me to learn more about application structure, frontend development, database changes, testing and deployment. Each new part has raised another question: where should this logic live, what happens if a source changes, and how do I make the next update easier?</p>
+    <p>I’ve enjoyed that process. It is satisfying to take something that began as an irritation and gradually turn it into something I can open and use.</p>
   </div>
 </div></section>
 
 <section class="section"><div class="wrap split">
-  <h2>Future plans</h2>
+  <h2>Where it is now</h2>
   <div class="prose">
-    <p>Giggity is actively evolving. Priorities on the immediate roadmap include:</p>
-    <ul>
-      <li><strong>Personal calendar export (.ics):</strong> One-click calendar feeds for followed venues and saved gigs.</li>
-      <li><strong>Targeted change notifications:</strong> Opt-in push or email notifications specifically for newly added dates, moved shows, or price updates on followed artists.</li>
-      <li><strong>Grassroots venue expansion:</strong> Extending direct programme parsers across independent East and South London venues as parsers prove reliable over multi-month runs.</li>
-      <li><strong>Structured flyer intake:</strong> Maturing the local Ollama vision pipeline to allow dropping a venue poster or social graphic into the collector for automated date extraction and review.</li>
-    </ul>
-    <p style="margin-top:24px;"><a class="btn" href="https://giggity.gcwillis14.workers.dev/" target="_blank" rel="noopener">Open Giggity ↗</a></p>
+    <p>The app is online, with Ticketmaster collection, selected venue programmes, local review and change tracking in place. I’m continuing to improve the coverage and make the collection process easier to maintain.</p>
+    <p>Further ideas include following artists or venues, useful notifications and experimenting with local models through Ollama to help extract information from flyers and posters. Those are later steps; the current focus is making the listings useful.</p>
+    <p style="margin-top:24px; display:flex; gap:16px; align-items:center;">
+      <a class="btn" href="https://giggity.gcwillis14.workers.dev/" target="_blank" rel="noopener">Open Giggity ↗</a>
+      <a class="link-arrow" href="index.html">Back to projects →</a>
+    </p>
   </div>
 </div></section>
 </main>
 
 <footer class="footer">
   <div class="wrap footer__row">
-    <span class="footer__mark font-mono-tabular">© George Willis · Computational Cartography &amp; Spatial Statistics</span>
+    <span class="footer__mark font-mono-tabular">© George Willis · Data science, spatial analysis and personal projects</span>
     <div class="footer__links font-mono-tabular">
       <a href="mailto:gcw519email@proton.me">Email (Proton)</a>
       <a href="https://uk.linkedin.com/in/gwilisli26" target="_blank" rel="noopener">LinkedIn</a>
