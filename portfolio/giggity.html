@@ -60,8 +60,9 @@
   <h2>Why I started</h2>
   <div class="prose">
     <p>I kept hearing about gigs after they had happened, or finding a band I wanted to see only to discover the tickets had sold out. The information was there, but scattered across ticket sites, venue programmes and social media.</p>
-    <p>Checking everything individually became an annoyance. I wanted one place to see what was coming up at the venues I cared about, explore somewhere new and keep track of changes without relying on my memory.</p>
-    <p>That seemed like a manageable data project. It has since become a much broader exercise in learning how to build an application around the data.</p>
+    <p>The gap for me was between finding an individual gig and keeping track of what was coming up. The apps and sites I used were useful starting points, but I still ended up checking venue programmes separately and trying to remember what I had already seen. I wanted to browse the venues I cared about, explore somewhere new and notice useful changes without repeating the same searches.</p>
+    <p>I approached it as a data problem first: bring the listings together, preserve their source links and work out which records described the same event. A searchable list and venue map would make that information easier to use; change tracking would help distinguish a real update from another copy of a listing.</p>
+    <p>That seemed like a manageable personal project. It has since become a much broader exercise in learning how to build an application around the data, with the original annoyance providing a useful test of what was worth adding.</p>
   </div>
 </div></section>
 
@@ -154,6 +155,16 @@
     <p>SvelteKit and TypeScript took me further beyond my usual analysis work. They gave me a way to turn the data into something I could browse and use, rather than another output file.</p>
     <p>MapLibre adds the venue map. I kept that optional because a list is often all I need, while the map is useful when I want to explore an area.</p>
     <p>Cloudflare hosts the app and the published event data. Keeping collection separate from the website means I can review the data locally, then publish it when it is ready.</p>
+  </div>
+</div></section>
+
+<section class="section" id="learning-what-to-leave-out"><div class="wrap split">
+  <h2>Learning what to leave out</h2>
+  <div class="prose">
+    <p>Before Giggity, I built an earlier version called GigRadar with a separate FastAPI backend and a PostgreSQL database. SQLAlchemy handled the database models and queries, while Alembic managed schema changes. I used Podman to run the local database in a container.</p>
+    <p>That version took me beyond collecting and analysing data. I had to connect the interface to an API, manage relationships between events and sources, and work through database migrations without losing existing records.</p>
+    <p>I also prototyped duplicate detection with pgvector, using similarity between event embeddings to suggest matches and send less certain cases for review. It was an experiment rather than a validated matching system. Similar wording alone does not establish that two listings describe the same performance.</p>
+    <p>For Giggity, I chose a simpler path: local collection and review, SQLite for current records and changes, and a published JSON snapshot for the website. That removed the need for a separate discovery API and a running PostgreSQL service. The earlier work helped me understand what those tools offered, and which parts this app actually needed.</p>
   </div>
 </div></section>
 
