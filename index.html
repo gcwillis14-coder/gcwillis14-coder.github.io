@@ -80,7 +80,7 @@
           </div>
           <!-- Instrument Telemetry Strip -->
           <div class="hero-cartographic__instrument-strip">
-            <button type="button" class="font-mono-tabular" data-drawer-trigger="drawer-viirs" style="background:none;border:none;padding:0;color:var(--text-secondary);cursor:pointer;text-decoration:underline;">About the image ↗</button>
+            <button type="button" class="font-mono-tabular link-button" data-drawer-trigger="drawer-viirs">About the image ↗</button>
             <span>·</span>
             <a href="portfolio/R/Animated_NTL.html" class="font-mono-tabular">China’s night lights, 2000–2019 →</a>
             <span>·</span>
@@ -160,9 +160,9 @@
     <!-- Featured Project Card: Giggity -->
     <div class="featured-project" id="featured-giggity">
       <span class="featured-badge">Web App · Live Music &amp; Maps</span>
-      <h3>Giggity — finding London gigs</h3>
+      <h3>'Giggity': finding London gigs</h3>
       <p>I kept hearing about gigs after they had happened or sold out. Checking individual venue websites wasn’t working, especially for the smaller venues, so I started building somewhere to bring the listings together.</p>
-      <p>Giggity collects events from APIs and selected London venue programmes, tracks changes and puts them into a searchable list and venue map. What began as a personal annoyance has become a way to learn the engineering around the data: building a web interface, testing the collection process and getting the whole thing online.</p>
+      <p>This project was to focus on my favorite venues initially. It collects events from APIs and selected London venuees or newsletters, tracks changes and puts them into a searchable list and venue map. What began as a personal annoyance has become a way to learn the engineering around the data: building a web interface, testing the collection process and getting the whole thing online.</p>
       <div class="featured-meta">
         <span>Python</span>
         <span>SQLite</span>
@@ -173,7 +173,7 @@
         <span>Cloudflare</span>
       </div>
       <div class="featured-actions">
-        <a href="portfolio/giggity.html" class="btn btn--primary">How I built it →</a>
+        <a href="portfolio/giggity.html" class="btn btn--primary">How it slowly evolved→</a>
         <button type="button" class="btn btn--ghost" data-drawer-trigger="drawer-giggity">Under the bonnet ↗</button>
         <a href="https://giggity.gcwillis14.workers.dev/" target="_blank" rel="noopener" class="btn btn--ghost">Explore Giggity ↗</a>
       </div>
@@ -186,12 +186,12 @@
       <a class="index-row" href="portfolio/giggity.html" data-slug="giggity">
         <span class="index-row__tag">Web App · Live Music &amp; Maps</span>
         <span class="index-row__body">
-          <h3>Giggity — London gigs</h3>
-          <p>An attempt to stop missing gigs. Bringing together Ticketmaster listings and London venue programmes, email newsletters, and notifications, all while learning how to turn a data pipeline into a working web app.</p>
+          <h3>Giggity: London gigs</h3>
+          <p>An attempt to stop missing gigs. Bringing together large ticketing API listings and small, often missed, London venue programmes, email newsletters, and notifications, all while learning how to turn a data pipeline into a working web app.</p>
         </span>
         <span class="index-row__meta">Python · SQLite · SvelteKit · MapLibre · Cloudflare</span>
         <span class="index-row__preview index-row__preview--mark" aria-label="Giggity preview mark">
-          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" style="color:var(--secondary)">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" class="accent-gold">
             <circle cx="32" cy="32" r="24" stroke-dasharray="2 4" opacity="0.4"></circle>
             <circle cx="32" cy="32" r="14" opacity="0.6"></circle>
             <circle cx="32" cy="32" r="4" fill="currentColor"></circle>
@@ -205,12 +205,12 @@
       <a class="index-row" href="articles/beijing-subway-network-analytics.html" data-slug="transitflow">
         <span class="index-row__tag">GIS · Network Simulation</span>
         <span class="index-row__body">
-          <h3>TransitFlow — metro network modelling</h3>
+          <h3>TransitFlow: metro network modelling</h3>
           <p>A fun experiment in building a metro-network model, starting with Beijing and seeing whether the same approach could work across other cities.</p>
         </span>
         <span class="index-row__meta">Python · NetworkX · Leaflet · pyproj</span>
         <span class="index-row__preview index-row__preview--mark" aria-label="TransitFlow preview mark">
-          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" style="color:var(--secondary)">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" class="accent-gold">
             <path d="M8 46 C24 46 28 18 56 18" opacity="0.4"></path>
             <path d="M8 18 C20 18 36 46 56 46" opacity="0.4"></path>
             <circle cx="28" cy="32" r="5" fill="none" stroke="currentColor" stroke-width="1.6"></circle>
@@ -228,11 +228,11 @@
         <span class="index-row__tag">GIS · Spatial Regression</span>
         <span class="index-row__body">
           <h3>House prices and London rail access</h3>
-          <p>How much does access to the railway matter for London house prices, and does the relationship look the same everywhere?</p>
+          <p>Initally built to help my sister locate affordable commuter towns. How much does access to the railway matter for London house prices, and does the relationship look the same everywhere?</p>
         </span>
         <span class="index-row__meta">R · Spatial Modeling · Leaflet</span>
         <span class="index-row__preview index-row__preview--mark" aria-hidden="true">
-          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" style="color:var(--secondary)">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" class="accent-gold">
             <circle cx="32" cy="32" r="4" fill="currentColor"></circle>
             <circle cx="32" cy="32" r="12" opacity="0.55"></circle>
             <circle cx="32" cy="32" r="20" opacity="0.3"></circle>
@@ -245,7 +245,7 @@
         <span class="index-row__tag">Machine Learning · Network Regression</span>
         <span class="index-row__body">
           <h3>Regional hyperlinks and trade flows</h3>
-          <p>Can links between websites tell us something about trade between regions? Research combining web data, network analysis and predictive modelling. Published in the Annals of the American Association of Geographers.</p>
+          <p>Some of the method behind the publication. Can links between websites tell us something about trade between regions? Research combining web data, network analysis and predictive modelling. Published in the Annals of the American Association of Geographers.</p>
         </span>
         <span class="index-row__meta">R · Python · Network Analysis · Applied Statistics</span>
         <span class="index-row__preview">
@@ -257,7 +257,7 @@
       <a class="index-row" href="portfolio/R/London_locations.html">
         <span class="index-row__tag">GIS · Travel Catchments</span>
         <span class="index-row__body">
-          <h3>Location choice — London travel catchments</h3>
+          <h3>Location choice: London travel catchments</h3>
           <p>Exploring which parts of London are within reach of different stations, so i could decide where to live with my mates.</p>
         </span>
         <span class="index-row__meta">R · Isochrone Modeling · Leaflet</span>
@@ -354,7 +354,7 @@
           <h3>Using the web to predict regional trade flows</h3>
           <p>Research into whether hyperlinks between websites can help predict trade between regions. We combined web-network data with economic data and tested how well the models worked beyond the period used to train them. With Emmanouil Tranos and André Carrascal-Incera.</p>
           <span class="clip__cite">Tranos, E., Carrascal-Incera, A. &amp; Willis, G. · Annals of the American Association of Geographers, 2022</span>
-          <div style="display:flex; gap:16px; align-items:center; flex-wrap:wrap; margin-top:8px;">
+          <div class="link-row">
             <a href="https://doi.org/10.1080/24694452.2022.2109577" class="clip__link" target="_blank" rel="noopener">DOI: 10.1080/24694452.2022.2109577 ↗</a>
             <button type="button" class="bibtex-toggle-btn" data-bibtex-toggle="bib-home-2022">BibTeX citation →</button>
           </div>
@@ -381,7 +381,7 @@
           <h3>Using "Big Data" to understand the impacts of Uber on taxis in New York City</h3>
           <p>Research examining Uber’s growth alongside changes in yellow taxi ridership, combining New York taxi records, contextual data and time-series analysis. With Emmanouil Tranos.</p>
           <span class="clip__cite">Willis, G. &amp; Tranos, E. · Travel Behaviour and Society, 22: 94-107, 2021</span>
-          <div style="display:flex; gap:16px; align-items:center; flex-wrap:wrap; margin-top:8px;">
+          <div class="link-row">
             <a href="https://doi.org/10.1016/j.tbs.2020.08.003" class="clip__link" target="_blank" rel="noopener">DOI: 10.1016/j.tbs.2020.08.003 ↗</a>
             <button type="button" class="bibtex-toggle-btn" data-bibtex-toggle="bib-home-2021">BibTeX citation →</button>
           </div>
@@ -457,7 +457,7 @@
         </div>
       </dl>
       <div class="telemetry-drawer__actions">
-        <a href="portfolio/giggity.html" class="btn btn--primary">How I built it →</a>
+        <a href="portfolio/giggity.html" class="btn btn--primary">How it slowly evolved→</a>
         <a href="https://giggity.gcwillis14.workers.dev/" target="_blank" rel="noopener" class="btn btn--ghost">Explore Giggity ↗</a>
       </div>
     </div>
@@ -473,8 +473,8 @@
     </div>
     <div class="telemetry-drawer__body">
       <h3 class="telemetry-drawer__title" id="drawer-transitflow-title">TransitFlow — under the bonnet</h3>
-      <p class="telemetry-drawer__abstract">TransitFlow started as a fun way to return to network modelling. I wanted to see whether I could turn metro data into a model I could explore, then repeat the process for another city.</p>
-      <p class="telemetry-drawer__abstract">Beijing is the starting point. The project brings together station connections, geographic data and simulated services to explore the network and its interchanges. It draws on the spatial-network thinking from my PhD research, with the added challenge of building something interactive.</p>
+      <p class="telemetry-drawer__abstract">TransitFlow started as a fun way to return to network modelling. I wanted to see whether I could turn metro data into a repeatable model I could explore, then rinse and repeat the process for another city.</p>
+      <p class="telemetry-drawer__abstract">Beijing is the starting point. The project brings together station connections, geographic data and timetable generation for services to explore the network and its interchanges. It draws on the spatial-network thinking from my time in PhD research, with the added challenge of building something interactive.</p>
       <dl class="telemetry-drawer__specs">
         <div class="telemetry-spec-item">
           <dt>Graph Topology</dt>

@@ -130,7 +130,7 @@ The aesthetic marries deep void-black foundations with the radiant spectrum of n
 Key attributes:
 - **Academic and Technical Gravity:** Typography relies on the literary weight of Hanken Grotesk for titles paired with the neutral, unadorned precision of Noto Serif for structural documentation.
 - **Asymmetrical Editorial Cadence:** Content is arranged with deliberate spatial tension, open breathing margins, and stark typographic hierarchy instead of repetitive bordered cards.
-- **Restraint and Data Sincerity:** Every interface element represents functional spatial metadata, authentic citations (DOI, BibTeX), or direct project indexes. Decorative visual noise, such as neon drop shadows, pill tags, and abstract gradients, is entirely eliminated.
+- **Restraint and Data Sincerity:** Every interface element represents functional spatial metadata, authentic citations (DOI, BibTeX), or direct project indexes. Decorative visual noise, such as neon drop shadows, pill tags, and abstract gradients, is entirely eliminated unless user has specifically accepted a suggestion.
 
 ## Colors
 

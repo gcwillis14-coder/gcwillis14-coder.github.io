@@ -59,7 +59,7 @@
 <section class="section"><div class="wrap split">
   <h2>Why I started</h2>
   <div class="prose">
-    <p>I kept hearing about gigs after they had happened, or finding a band I wanted to see only to discover the tickets had sold out. The information was there, but scattered across ticket sites, venue programmes and social media.</p>
+    <p>I kept hearing about gigs after they had happened, or finding a band I wanted to see only to discover the tickets had sold out. The information was there, but scattered across random instagram posts, venue programmes and emails.</p>
     <p>The gap for me was between finding an individual gig and keeping track of what was coming up. The apps and sites I used were useful starting points, but I still ended up checking venue programmes separately and trying to remember what I had already seen. I wanted to browse the venues I cared about, explore somewhere new and notice useful changes without repeating the same searches.</p>
     <p>I approached it as a data problem first: bring the listings together, preserve their source links and work out which records described the same event. A searchable list and venue map would make that information easier to use; change tracking would help distinguish a real update from another copy of a listing.</p>
     <p>That seemed like a manageable personal project. It has since become a much broader exercise in learning how to build an application around the data, with the original annoyance providing a useful test of what was worth adding.</p>
@@ -69,7 +69,7 @@
 <section class="section"><div class="wrap split">
   <h2>From collecting listings to building an app</h2>
   <div class="prose">
-    <p>The first step was collecting listings from Ticketmaster. That gave me a useful starting point, but not everything I wanted to see, so I added selected venue programmes.</p>
+    <p>The first step was collecting listings from Ticketmaster. That gave me a useful starting point, but not everything I wanted to see, so I added selected venue programmes. This brought with it the dangers and legality of web scraping.</p>
     <p>The interesting part wasn’t just getting the data into one table. Different sources describe events differently. Listings can overlap, names vary and a page can mix gigs with other types of events. Some decisions are straightforward to automate; others need a closer look.</p>
     <p>Giggity now combines collection, local review and change tracking with a searchable web interface and an optional venue map.</p>
   </div>
@@ -100,10 +100,10 @@
 <!-- System Architecture Diagram -->
 <section class="section"><div class="wrap">
   <h2>How it actually works</h2>
-  <p class="intro__text" style="font-size:16px; margin-bottom:28px;">From local data collection and review to global edge deployment.</p>
+  <p class="intro__text intro__text--sm">From local data collection and review to global edge deployment.</p>
 
-  <div style="background:var(--surface-container-low); border:1px solid var(--border-hairline); border-radius:0; padding: clamp(16px, 3vw, 32px); overflow-x:auto;">
-    <svg viewBox="0 0 920 320" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%; min-width:720px; height:auto; display:block;">
+  <div class="diagram-panel">
+    <svg viewBox="0 0 920 320" fill="none" xmlns="http://www.w3.org/2000/svg" class="diagram-panel__svg">
       <!-- Pipeline Box 1: Sources -->
       <rect x="10" y="20" width="160" height="280" rx="4" fill="var(--surface-container)" stroke="var(--border-hairline)"/>
       <text x="90" y="52" fill="var(--primary)" font-family="var(--font-headline)" font-size="13" font-weight="600" text-anchor="middle">1. COLLECT LISTINGS</text>
@@ -182,7 +182,7 @@
   <div class="prose">
     <p>The app is online, with Ticketmaster collection, selected venue programmes, local review and change tracking in place. I’m continuing to improve the coverage and make the collection process easier to maintain.</p>
     <p>Further ideas include following artists or venues, useful notifications and experimenting with local models through Ollama to help extract information from flyers and posters. Those are later steps; the current focus is making the listings useful.</p>
-    <p style="margin-top:24px; display:flex; gap:16px; align-items:center;">
+    <p class="link-row link-row--cta">
       <a class="btn" href="https://giggity.gcwillis14.workers.dev/" target="_blank" rel="noopener">Open Giggity ↗</a>
       <a class="link-arrow" href="index.html">Back to projects →</a>
     </p>
@@ -197,7 +197,7 @@
       <a href="mailto:gcw519email@proton.me">Email (Proton)</a>
       <a href="https://uk.linkedin.com/in/gwilisli26" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://github.com/gcwillis14-coder" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://github.com/gcwillis14-coder/gcwillis14-coder.github.io" target="_blank" rel="noopener">Source</a>
+      <a href="https://github.com/gcwillis14-coder/gcwillis14-coder.github.io" target="_blank" rel="noopener">View Source on GitHub</a>
     </div>
   </div>
 </footer>
