@@ -10,3 +10,7 @@ Thumbs.db
 .vscode/
 .idea/
 *.code-workspace
+
+# Local agent / MCP config (may contain API keys)
+.agents/
+.mcp.json

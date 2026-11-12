@@ -18,8 +18,25 @@
 <link rel="stylesheet" href="../assets/style.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;family=Noto+Serif:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&amp;family=Hanken+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
 <script src="../assets/main.js" defer></script>
+<script type="speculationrules">
+{
+  "prefetch": [
+    {
+      "where": {
+        "and": [
+          { "href_matches": "/*" },
+          { "not": { "href_matches": "/portfolio/R/*" } },
+          { "not": { "href_matches": "/portfolio/python-notebooks/*" } },
+          { "not": { "href_matches": "/portfolio/misc/*" } }
+        ]
+      },
+      "eagerness": "moderate"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -47,9 +64,10 @@
 
 <main id="main">
 <section class="section"><div class="wrap">
-  <p class="kicker">Personal project · In development</p>
+  <p class="kicker" data-vt-role="tag">Personal project · In development</p>
   <h1 class="page-title">Giggity</h1>
   <p class="intro__text">A London gig finder that started because I kept finding out about things too late.</p>
+  <p class="featured-meta" data-vt-role="meta">Python · SQLite · Pydantic · SvelteKit · TypeScript · MapLibre · Cloudflare</p>
   <div class="hero__actions">
     <a class="btn" href="https://giggity.gcwillis14.workers.dev/" target="_blank" rel="noopener">Open Giggity ↗</a>
     <a class="link-arrow" href="index.html">Back to projects →</a>
@@ -105,9 +123,9 @@
   <div class="diagram-panel">
     <svg viewBox="0 0 920 320" fill="none" xmlns="http://www.w3.org/2000/svg" class="diagram-panel__svg">
       <!-- Pipeline Box 1: Sources -->
-      <rect x="10" y="20" width="160" height="280" rx="4" fill="var(--surface-container)" stroke="var(--border-hairline)"/>
+      <rect x="10" y="20" width="160" height="280" rx="0" fill="var(--surface-container)" stroke="var(--border-hairline)"/>
       <text x="90" y="52" fill="var(--primary)" font-family="var(--font-headline)" font-size="13" font-weight="600" text-anchor="middle">1. COLLECT LISTINGS</text>
-      <rect x="25" y="110" width="130" height="80" rx="3" fill="var(--surface-container-high)" stroke="var(--border-hairline)"/>
+      <rect x="25" y="110" width="130" height="80" rx="0" fill="var(--surface-container-high)" stroke="var(--border-hairline)"/>
       <text x="90" y="145" fill="var(--on-surface)" font-family="var(--font-headline)" font-size="11" font-weight="500" text-anchor="middle">Ticketmaster and</text>
       <text x="90" y="165" fill="var(--on-surface)" font-family="var(--font-headline)" font-size="11" font-weight="500" text-anchor="middle">venue programmes</text>
 
@@ -116,9 +134,9 @@
       <polygon points="205,160 197,156 197,164" fill="var(--primary)"/>
 
       <!-- Pipeline Box 2: Local Staging & Triage -->
-      <rect x="210" y="20" width="190" height="280" rx="4" fill="var(--surface-container)" stroke="var(--border-hairline)"/>
+      <rect x="210" y="20" width="190" height="280" rx="0" fill="var(--surface-container)" stroke="var(--border-hairline)"/>
       <text x="305" y="52" fill="var(--primary)" font-family="var(--font-headline)" font-size="13" font-weight="600" text-anchor="middle">2. CHECK AND REVIEW</text>
-      <rect x="225" y="110" width="160" height="80" rx="3" fill="var(--surface-container-high)" stroke="var(--border-hairline)"/>
+      <rect x="225" y="110" width="160" height="80" rx="0" fill="var(--surface-container-high)" stroke="var(--border-hairline)"/>
       <text x="305" y="145" fill="var(--on-surface)" font-family="var(--font-headline)" font-size="11" font-weight="500" text-anchor="middle">Python, Pydantic</text>
       <text x="305" y="165" fill="var(--on-surface)" font-family="var(--font-headline)" font-size="11" font-weight="500" text-anchor="middle">and SQLite</text>
 
@@ -127,9 +145,9 @@
       <polygon points="435,160 427,156 427,164" fill="var(--primary)"/>
 
       <!-- Pipeline Box 3: Release Snapshot Contract -->
-      <rect x="440" y="20" width="180" height="280" rx="4" fill="var(--surface-container)" stroke="var(--border-hairline)"/>
+      <rect x="440" y="20" width="180" height="280" rx="0" fill="var(--surface-container)" stroke="var(--border-hairline)"/>
       <text x="530" y="52" fill="var(--primary)" font-family="var(--font-headline)" font-size="13" font-weight="600" text-anchor="middle">3. PUBLISH EVENT DATA</text>
-      <rect x="455" y="110" width="150" height="80" rx="3" fill="var(--surface-container-high)" stroke="var(--border-hairline)"/>
+      <rect x="455" y="110" width="150" height="80" rx="0" fill="var(--surface-container-high)" stroke="var(--border-hairline)"/>
       <text x="530" y="145" fill="var(--on-surface)" font-family="var(--font-headline)" font-size="11" font-weight="500" text-anchor="middle">Reviewed JSON</text>
       <text x="530" y="165" fill="var(--on-surface)" font-family="var(--font-headline)" font-size="11" font-weight="500" text-anchor="middle">snapshot</text>
 
@@ -138,9 +156,9 @@
       <polygon points="655,160 647,156 647,164" fill="var(--primary)"/>
 
       <!-- Pipeline Box 4: Cloudflare Edge & Browser App -->
-      <rect x="660" y="20" width="245" height="280" rx="4" fill="var(--surface-container)" stroke="var(--border-hairline)"/>
+      <rect x="660" y="20" width="245" height="280" rx="0" fill="var(--surface-container)" stroke="var(--border-hairline)"/>
       <text x="782" y="52" fill="var(--primary)" font-family="var(--font-headline)" font-size="13" font-weight="600" text-anchor="middle">4. BROWSE THE APP</text>
-      <rect x="675" y="110" width="215" height="80" rx="3" fill="var(--surface-container-high)" stroke="var(--border-hairline)"/>
+      <rect x="675" y="110" width="215" height="80" rx="0" fill="var(--surface-container-high)" stroke="var(--border-hairline)"/>
       <text x="782" y="145" fill="var(--on-surface)" font-family="var(--font-headline)" font-size="11" font-weight="500" text-anchor="middle">SvelteKit, venue map</text>
       <text x="782" y="165" fill="var(--on-surface)" font-family="var(--font-headline)" font-size="11" font-weight="500" text-anchor="middle">and Cloudflare</text>
     </svg>
@@ -197,7 +215,7 @@
       <a href="mailto:gcw519email@proton.me">Email (Proton)</a>
       <a href="https://uk.linkedin.com/in/gwilisli26" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://github.com/gcwillis14-coder" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://github.com/gcwillis14-coder/gcwillis14-coder.github.io" target="_blank" rel="noopener">View Source on GitHub</a>
+      <a href="https://github.com/gcwillis14-coder/gcwillis14-coder.github.io" target="_blank" rel="noopener">Source</a>
     </div>
   </div>
 </footer>

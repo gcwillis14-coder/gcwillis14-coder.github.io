@@ -61,6 +61,28 @@
   /* ------------------------------------------------------------------ */
   var activeTrigger = null;
 
+  function prefersReducedMotion() {
+    return !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  }
+
+  function setBackgroundInert(isInert) {
+    Array.from(document.body.children).forEach(function (el) {
+      if (el.classList && el.classList.contains("telemetry-backdrop")) return;
+      if (el.tagName === "SCRIPT") return;
+      el.inert = !!isInert;
+    });
+  }
+
+  function getFocusableElements(container) {
+    return Array.from(
+      container.querySelectorAll(
+        'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      )
+    ).filter(function (el) {
+      return el.offsetParent !== null;
+    });
+  }
+
   function openTelemetryDrawer(drawerId, triggerEl) {
     var backdrop = document.getElementById(drawerId);
     if (!backdrop) return;
@@ -73,48 +95,83 @@
     var originEl = triggerEl
       ? triggerEl.closest(".index-row, .featured-project, .research-card") || triggerEl
       : null;
-    var firstRect = originEl
-      ? originEl.getBoundingClientRect()
-      : { left: window.innerWidth / 2, top: window.innerHeight / 2, width: 20, height: 20 };
+    var firstRect =
+      !prefersReducedMotion() && originEl
+        ? originEl.getBoundingClientRect()
+        : null;
 
-    // 2. Mount/display modal
+    // 2. Mount/display modal and isolate background landmarks
+    setBackgroundInert(true);
     backdrop.classList.add("is-open");
     document.body.style.overflow = "hidden";
 
-    // 3. Last: bounding box of destination dialog
-    var lastRect = drawer.getBoundingClientRect();
-
-    // 4. Invert: inverse matrix transform
-    var deltaX = firstRect.left - lastRect.left;
-    var deltaY = firstRect.top - lastRect.top;
-    var scaleX = Math.max(0.08, firstRect.width / (lastRect.width || 1));
-    var scaleY = Math.max(0.08, firstRect.height / (lastRect.height || 1));
-
-    drawer.style.transformOrigin = "top left";
-    drawer.style.transition = "none";
-    drawer.style.transform =
-      "translate3d(" + deltaX + "px, " + deltaY + "px, 0) scale(" + scaleX + ", " + scaleY + ")";
-    drawer.style.opacity = "0.4";
-
-    // 5. Play: GPU-accelerated smooth transition
-    requestAnimationFrame(function () {
-      drawer.offsetHeight; // Force reflow
-      drawer.style.transition =
-        "transform 380ms cubic-bezier(0.16, 1, 0.3, 1), opacity 240ms ease";
-      drawer.style.transform = "translate3d(0, 0, 0) scale(1)";
+    if (prefersReducedMotion()) {
+      drawer.style.transition = "";
+      drawer.style.transform = "";
       drawer.style.opacity = "1";
-    });
+    } else {
+      var rectOrigin = firstRect || {
+        left: window.innerWidth / 2,
+        top: window.innerHeight / 2,
+        width: 20,
+        height: 20
+      };
 
-    // Focus close button for accessibility
+      // 3. Last: bounding box of destination dialog
+      var lastRect = drawer.getBoundingClientRect();
+
+      // 4. Invert: inverse matrix transform
+      var deltaX = rectOrigin.left - lastRect.left;
+      var deltaY = rectOrigin.top - lastRect.top;
+      var scaleX = Math.max(0.08, rectOrigin.width / (lastRect.width || 1));
+      var scaleY = Math.max(0.08, rectOrigin.height / (lastRect.height || 1));
+
+      drawer.style.transformOrigin = "top left";
+      drawer.style.transition = "none";
+      drawer.style.transform =
+        "translate3d(" + deltaX + "px, " + deltaY + "px, 0) scale(" + scaleX + ", " + scaleY + ")";
+      drawer.style.opacity = "0.4";
+
+      // 5. Play: GPU-accelerated smooth transition
+      requestAnimationFrame(function () {
+        drawer.offsetHeight; // Force reflow
+        drawer.style.transition =
+          "transform 380ms cubic-bezier(0.16, 1, 0.3, 1), opacity 240ms ease";
+        drawer.style.transform = "translate3d(0, 0, 0) scale(1)";
+        drawer.style.opacity = "1";
+      });
+    }
+
+    // Focus close button (or first focusable element) for accessibility
     var closeBtn = drawer.querySelector(".telemetry-drawer__close");
-    if (closeBtn) closeBtn.focus();
+    if (closeBtn) {
+      closeBtn.focus();
+    } else {
+      var focusables = getFocusableElements(drawer);
+      if (focusables.length) focusables[0].focus();
+    }
   }
 
   function closeTelemetryDrawer(backdrop) {
     if (!backdrop || !backdrop.classList.contains("is-open")) return;
     var drawer = backdrop.querySelector(".telemetry-drawer");
 
-    if (drawer && activeTrigger) {
+    function finishClose() {
+      backdrop.classList.remove("is-open");
+      document.body.style.overflow = "";
+      setBackgroundInert(false);
+      if (drawer) {
+        drawer.style.transform = "";
+        drawer.style.transition = "";
+        drawer.style.opacity = "";
+      }
+      if (activeTrigger && typeof activeTrigger.focus === "function") {
+        activeTrigger.focus();
+      }
+      activeTrigger = null;
+    }
+
+    if (drawer && activeTrigger && !prefersReducedMotion()) {
       var closeOrigin =
         activeTrigger.closest(".index-row, .featured-project, .research-card") || activeTrigger;
       var firstRect = closeOrigin.getBoundingClientRect();
@@ -130,23 +187,9 @@
         "translate3d(" + deltaX + "px, " + deltaY + "px, 0) scale(" + scaleX + ", " + scaleY + ")";
       drawer.style.opacity = "0";
 
-      setTimeout(function () {
-        backdrop.classList.remove("is-open");
-        document.body.style.overflow = "";
-        drawer.style.transform = "";
-        drawer.style.transition = "";
-        if (activeTrigger && typeof activeTrigger.focus === "function") {
-          activeTrigger.focus();
-        }
-        activeTrigger = null;
-      }, 280);
+      setTimeout(finishClose, 280);
     } else {
-      backdrop.classList.remove("is-open");
-      document.body.style.overflow = "";
-      if (activeTrigger && typeof activeTrigger.focus === "function") {
-        activeTrigger.focus();
-      }
-      activeTrigger = null;
+      finishClose();
     }
   }
 
@@ -177,15 +220,43 @@
       });
     });
 
-    // Escape key closes open drawer
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") {
+    // Escape dismissal and Tab / Shift+Tab focus trapping inside open drawer
+    if (!document._hasDrawerKeyInit) {
+      document._hasDrawerKeyInit = true;
+      document.addEventListener("keydown", function (e) {
         var openBackdrop = document.querySelector(".telemetry-backdrop.is-open");
-        if (openBackdrop) {
+        if (!openBackdrop) return;
+
+        if (e.key === "Escape") {
           closeTelemetryDrawer(openBackdrop);
+          return;
         }
-      }
-    });
+
+        if (e.key === "Tab") {
+          var drawer = openBackdrop.querySelector(".telemetry-drawer");
+          if (!drawer) return;
+          var focusables = getFocusableElements(drawer);
+          if (!focusables.length) {
+            e.preventDefault();
+            return;
+          }
+          var firstEl = focusables[0];
+          var lastEl = focusables[focusables.length - 1];
+
+          if (e.shiftKey) {
+            if (document.activeElement === firstEl || !drawer.contains(document.activeElement)) {
+              e.preventDefault();
+              lastEl.focus();
+            }
+          } else {
+            if (document.activeElement === lastEl || !drawer.contains(document.activeElement)) {
+              e.preventDefault();
+              firstEl.focus();
+            }
+          }
+        }
+      });
+    }
   }
 
   /* ------------------------------------------------------------------ */
@@ -205,13 +276,17 @@
     var currentSort = "recommended";
 
     function applyFilterAndSortWithFLIP() {
+      var reduceMotion = prefersReducedMotion();
+
       // 1. Record 'First' bounding boxes of currently visible rows
       var firstPositions = new Map();
-      allRows.forEach(function (row) {
-        if (row.style.display !== "none" && row.offsetParent !== null) {
-          firstPositions.set(row, row.getBoundingClientRect());
-        }
-      });
+      if (!reduceMotion) {
+        allRows.forEach(function (row) {
+          if (row.style.display !== "none" && row.offsetParent !== null) {
+            firstPositions.set(row, row.getBoundingClientRect());
+          }
+        });
+      }
 
       // Filter rows
       var matchingRows = [];
@@ -253,6 +328,8 @@
       matchingRows.forEach(function (row) {
         listContainer.appendChild(row);
       });
+
+      if (reduceMotion) return;
 
       // 2. Record 'Last' bounding boxes of now-visible rows
       var lastPositions = new Map();
@@ -431,8 +508,175 @@
     });
   }
 
+  function isStaticNotebookPath(pathname) {
+    return (
+      pathname.indexOf("/portfolio/R/") !== -1 ||
+      pathname.indexOf("/portfolio/python-notebooks/") !== -1 ||
+      pathname.indexOf("/portfolio/misc/") !== -1
+    );
+  }
+
+  function navigateWithTransition(targetUrl, sourceLink, pushHistory) {
+    if (isStaticNotebookPath(targetUrl.pathname)) {
+      window.location.href = targetUrl.href;
+      return;
+    }
+
+    fetch(targetUrl.href)
+      .then(function (res) {
+        if (!res.ok) throw new Error("Network error");
+        return res.text();
+      })
+      .then(function (htmlText) {
+        var parser = new DOMParser();
+        var doc = parser.parseFromString(htmlText, "text/html");
+        var assignedVtNodes = [];
+
+        function assignVtName(el, name) {
+          if (!el) return;
+          el.style.viewTransitionName = name;
+          assignedVtNodes.push(el);
+        }
+
+        // Pair shared-element tokens only when both source and destination match
+        var hasSlug = sourceLink && sourceLink.matches("[data-slug]");
+        var oldTitle = hasSlug ? sourceLink.querySelector("h3") : null;
+        var hasTargetTitle = !!doc.querySelector("main h1");
+        if (oldTitle && hasTargetTitle) assignVtName(oldTitle, "project-title");
+
+        var oldTag = hasSlug ? sourceLink.querySelector(".index-row__tag") : null;
+        var hasTargetTag = !!doc.querySelector('[data-vt-role="tag"]');
+        if (oldTag && hasTargetTag) assignVtName(oldTag, "project-tag");
+
+        var oldMeta = hasSlug ? sourceLink.querySelector(".index-row__meta") : null;
+        var hasTargetMeta = !!doc.querySelector('[data-vt-role="meta"]');
+        if (oldMeta && hasTargetMeta) assignVtName(oldMeta, "project-meta");
+
+        var transition = document.startViewTransition(function () {
+          // Update document title
+          document.title = doc.title;
+
+          // Clear any open drawer scroll lock or inert state
+          document.body.style.overflow = "";
+          setBackgroundInert(false);
+          activeTrigger = null;
+
+          // Sync page-specific head styles/stylesheets
+          document.head.querySelectorAll("style").forEach(function (s) { s.setAttribute("data-vt", ""); });
+          document.head.querySelectorAll("style[data-vt]").forEach(function (s) { s.remove(); });
+          doc.head.querySelectorAll("style").forEach(function (s) {
+            var c = document.importNode(s, true);
+            c.setAttribute("data-vt", "");
+            document.head.appendChild(c);
+          });
+          doc.head.querySelectorAll('link[rel="stylesheet"]').forEach(function (l) {
+            var abs = new URL(l.getAttribute("href"), targetUrl.href).href;
+            var exists = Array.from(document.head.querySelectorAll('link[rel="stylesheet"]')).some(function (x) {
+              return x.href === abs;
+            });
+            if (!exists) {
+              var n = document.createElement("link");
+              n.rel = "stylesheet";
+              n.href = abs;
+              document.head.appendChild(n);
+            }
+          });
+
+          // Replace main content cleanly (direct body children between header and footer)
+          function getContentNodes(bodyEl) {
+            return Array.from(bodyEl.children).filter(function (el) {
+              if (el.tagName === "HEADER" || el.tagName === "FOOTER" || el.tagName === "SCRIPT") return false;
+              if (el.classList && el.classList.contains("skip-link")) return false;
+              if (el.classList && el.classList.contains("telemetry-backdrop")) return false;
+              return true;
+            });
+          }
+
+          var curSections = getContentNodes(document.body);
+          curSections.forEach(function (s) { s.remove(); });
+
+          var footer = document.querySelector(".footer");
+          var newSections = getContentNodes(doc.body);
+
+          if (footer && footer.parentNode) {
+            newSections.forEach(function (ns) {
+              footer.parentNode.insertBefore(document.importNode(ns, true), footer);
+            });
+          } else {
+            newSections.forEach(function (ns) {
+              document.body.appendChild(document.importNode(ns, true));
+            });
+          }
+
+          // Sync telemetry backdrops if any exist in new doc
+          var curBackdrops = document.querySelectorAll(".telemetry-backdrop");
+          curBackdrops.forEach(function (b) { b.remove(); });
+          var newBackdrops = doc.querySelectorAll(".telemetry-backdrop");
+          newBackdrops.forEach(function (nb) {
+            document.body.appendChild(document.importNode(nb, true));
+          });
+
+          // Update URL & active states
+          if (pushHistory) {
+            history.pushState({ path: targetUrl.href }, "", targetUrl.href);
+          }
+          updateActiveNav(targetUrl.pathname);
+
+          if (targetUrl.hash) {
+            var hashTarget = document.getElementById(targetUrl.hash.slice(1));
+            if (hashTarget) {
+              hashTarget.scrollIntoView();
+            } else {
+              window.scrollTo(0, 0);
+            }
+          } else {
+            window.scrollTo(0, 0);
+          }
+
+          // Pair shared element tokens on the destination page
+          if (oldTitle && hasTargetTitle) {
+            assignVtName(document.querySelector("main h1"), "project-title");
+          }
+          if (oldTag && hasTargetTag) {
+            assignVtName(document.querySelector('[data-vt-role="tag"]'), "project-tag");
+          }
+          if (oldMeta && hasTargetMeta) {
+            assignVtName(document.querySelector('[data-vt-role="meta"]'), "project-meta");
+          }
+
+          // Route programmatic focus to main landmark for keyboard/screen reader continuity
+          var mainEl = document.querySelector("main");
+          if (mainEl) {
+            if (!mainEl.hasAttribute("tabindex")) mainEl.setAttribute("tabindex", "-1");
+            mainEl.focus({ preventScroll: true });
+          }
+
+          // Re-initialize dynamic page components
+          initAll();
+        });
+
+        // Clean up temporary view-transition-name properties after transition completes
+        if (transition && transition.finished) {
+          transition.finished.finally(function () {
+            assignedVtNodes.forEach(function (el) {
+              if (el && el.style) el.style.viewTransitionName = "";
+            });
+          });
+        }
+      })
+      .catch(function () {
+        window.location.href = targetUrl.href;
+      });
+  }
+
   function initViewTransitions() {
     if (!("startViewTransition" in document)) return;
+    if (document._hasVtInit) return;
+    document._hasVtInit = true;
+
+    if (!history.state || !history.state.path) {
+      history.replaceState({ path: window.location.href }, "", window.location.href);
+    }
 
     document.addEventListener("click", function (e) {
       var link = e.target.closest("a");
@@ -468,107 +712,21 @@
       }
 
       // Do not intercept links pointing to static HTML notebooks / R files
-      if (targetUrl.pathname.indexOf("/portfolio/R/") !== -1 || targetUrl.pathname.indexOf("/portfolio/python-notebooks/") !== -1 || targetUrl.pathname.indexOf("/portfolio/misc/") !== -1) {
+      if (isStaticNotebookPath(targetUrl.pathname)) {
         return;
       }
 
       e.preventDefault();
-
-      fetch(targetUrl.href)
-        .then(function (res) {
-          if (!res.ok) throw new Error("Network error");
-          return res.text();
-        })
-        .then(function (htmlText) {
-          var parser = new DOMParser();
-          var doc = parser.parseFromString(htmlText, "text/html");
-
-          // Shared-element token: clicked project row title -> destination page title
-          var oldTitle = link.matches("[data-slug]") ? link.querySelector("h3") : null;
-          if (oldTitle) oldTitle.style.viewTransitionName = "project-title";
-
-          document.startViewTransition(function () {
-            // Update document title
-            document.title = doc.title;
-
-            // Close any open drawer scroll lock
-            document.body.style.overflow = "";
-            activeTrigger = null;
-
-            // Sync page-specific head styles/stylesheets
-            document.head.querySelectorAll("style").forEach(function (s) { s.setAttribute("data-vt", ""); });
-            document.head.querySelectorAll("style[data-vt]").forEach(function (s) { s.remove(); });
-            doc.head.querySelectorAll("style").forEach(function (s) {
-              var c = document.importNode(s, true);
-              c.setAttribute("data-vt", "");
-              document.head.appendChild(c);
-            });
-            doc.head.querySelectorAll('link[rel="stylesheet"]').forEach(function (l) {
-              var abs = new URL(l.getAttribute("href"), targetUrl.href).href;
-              var exists = Array.from(document.head.querySelectorAll('link[rel="stylesheet"]')).some(function (x) {
-                return x.href === abs;
-              });
-              if (!exists) {
-                var n = document.createElement("link");
-                n.rel = "stylesheet";
-                n.href = abs;
-                document.head.appendChild(n);
-              }
-            });
-
-            // Replace main content cleanly (direct body children between header and footer)
-            function getContentNodes(bodyEl) {
-              return Array.from(bodyEl.children).filter(function (el) {
-                if (el.tagName === "HEADER" || el.tagName === "FOOTER" || el.tagName === "SCRIPT") return false;
-                if (el.classList && el.classList.contains("skip-link")) return false;
-                return true;
-              });
-            }
-
-            var curSections = getContentNodes(document.body);
-            curSections.forEach(function (s) { s.remove(); });
-
-            var footer = document.querySelector(".footer");
-            var newSections = getContentNodes(doc.body);
-
-            if (footer && footer.parentNode) {
-              newSections.forEach(function (ns) {
-                footer.parentNode.insertBefore(document.importNode(ns, true), footer);
-              });
-            } else {
-              newSections.forEach(function (ns) {
-                document.body.appendChild(document.importNode(ns, true));
-              });
-            }
-
-            // Sync telemetry backdrops if any exist in new doc
-            var curBackdrops = document.querySelectorAll(".telemetry-backdrop");
-            curBackdrops.forEach(function (b) { b.remove(); });
-            var newBackdrops = doc.querySelectorAll(".telemetry-backdrop");
-            newBackdrops.forEach(function (nb) {
-              document.body.appendChild(document.importNode(nb, true));
-            });
-
-            // Update URL & active states
-            history.pushState({ path: targetUrl.href }, "", targetUrl.href);
-            updateActiveNav(targetUrl.pathname);
-            window.scrollTo(0, 0);
-
-            // Pair the shared title token on the destination page
-            var newTitle = document.querySelector("main h1");
-            if (newTitle && oldTitle) newTitle.style.viewTransitionName = "project-title";
-
-            // Re-initialize dynamic page components
-            initAll();
-          });
-        })
-        .catch(function () {
-          window.location.href = targetUrl.href;
-        });
+      navigateWithTransition(targetUrl, link, true);
     });
 
     window.addEventListener("popstate", function () {
-      window.location.reload();
+      var targetUrl = new URL(window.location.href);
+      if (isStaticNotebookPath(targetUrl.pathname)) {
+        window.location.reload();
+        return;
+      }
+      navigateWithTransition(targetUrl, null, false);
     });
   }
 
