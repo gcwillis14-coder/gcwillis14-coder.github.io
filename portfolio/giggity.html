@@ -65,6 +65,7 @@
 
 <main id="main">
 <section class="section"><div class="wrap">
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Work</a><span aria-hidden="true">/</span><span aria-current="page">Giggity</span></nav>
   <p class="kicker" data-vt-role="tag">Personal project · In development</p>
   <h1 class="page-title">Giggity</h1>
   <p class="intro__text">A London gig finder that started because I kept finding out about things too late.</p>
@@ -77,22 +78,18 @@
 
 <section class="section section--tight"><div class="wrap">
   <div class="cs-preview-grid cs-preview-grid--featured">
-    <div class="cs-preview-card">
-      <div class="cs-preview-chrome">
-        <div class="cs-chrome-dots">
-          <span class="cs-chrome-dot"></span>
-          <span class="cs-chrome-dot"></span>
-          <span class="cs-chrome-dot"></span>
-        </div>
+    <figure class="cs-preview-card">
+      <div class="cs-preview-bar">
+        <span class="font-mono">FIG. 01 · ARCHIVE PLATE</span>
         <span class="font-mono">giggity.gcwillis14.workers.dev</span>
       </div>
       <div class="cs-preview-body">
         <img src="../img/thumbs/Giggity.jpg" alt="Giggity London gig finder interface and venue map preview" loading="lazy">
-        <p class="cs-preview-caption">
+        <figcaption class="cs-preview-caption">
           <strong>Giggity web interface:</strong> Aggregated London gig listings with searchable dates, venue filtering, source ticket links, and interactive map coverage.
-        </p>
+        </figcaption>
       </div>
-    </div>
+    </figure>
   </div>
 </div></section>
 
@@ -143,7 +140,8 @@
   <p class="intro__text intro__text--sm">From local data collection and review to global edge deployment.</p>
 
   <div class="diagram-panel">
-    <svg viewBox="0 0 920 320" fill="none" xmlns="http://www.w3.org/2000/svg" class="diagram-panel__svg">
+    <svg role="img" viewBox="0 0 920 320" fill="none" xmlns="http://www.w3.org/2000/svg" class="diagram-panel__svg">
+      <title>Giggity data pipeline: collect listings, check and review, publish event data, browse the app</title>
       <!-- Pipeline Box 1: Sources -->
       <rect x="10" y="20" width="160" height="280" rx="0" fill="var(--surface-container)" stroke="var(--border-hairline)"/>
       <text x="90" y="52" fill="var(--primary)" font-family="var(--font-headline)" font-size="13" font-weight="600" text-anchor="middle">1. COLLECT LISTINGS</text>
@@ -184,6 +182,7 @@
       <text x="782" y="145" fill="var(--on-surface)" font-family="var(--font-headline)" font-size="11" font-weight="500" text-anchor="middle">SvelteKit, venue map</text>
       <text x="782" y="165" fill="var(--on-surface)" font-family="var(--font-headline)" font-size="11" font-weight="500" text-anchor="middle">and Cloudflare</text>
     </svg>
+    <p class="diagram-panel__hint font-mono-tabular">Scroll horizontally to inspect full pipeline ↔</p>
   </div>
 </div></section>
 
