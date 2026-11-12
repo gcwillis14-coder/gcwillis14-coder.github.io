@@ -643,7 +643,10 @@
         if (oldMeta && hasTargetMeta) assignVtName(oldMeta, "project-meta");
 
         var transition = document.startViewTransition(function () {
-          // Update current tracking path
+          // Update URL & active states immediately so browser base URI matches targetUrl
+          if (pushHistory) {
+            history.pushState({ path: targetUrl.href }, "", targetUrl.href);
+          }
           currentPath = targetUrl.pathname;
 
           // Update document title
@@ -675,6 +678,19 @@
             }
           });
 
+          // Sync masthead & footer navigation links so relative paths match targetUrl
+          var curMasthead = document.querySelector(".masthead");
+          var newMasthead = doc.querySelector(".masthead");
+          if (curMasthead && newMasthead) {
+            curMasthead.innerHTML = newMasthead.innerHTML;
+          }
+
+          var curFooter = document.querySelector(".footer");
+          var newFooter = doc.querySelector(".footer");
+          if (curFooter && newFooter) {
+            curFooter.innerHTML = newFooter.innerHTML;
+          }
+
           // Replace main content cleanly (direct body children between header and footer)
           function getContentNodes(bodyEl) {
             return Array.from(bodyEl.children).filter(function (el) {
@@ -690,6 +706,24 @@
 
           var footer = document.querySelector(".footer");
           var newSections = getContentNodes(doc.body);
+
+          // Resolve relative image src paths against targetUrl so they never 404 across directory levels
+          newSections.forEach(function (ns) {
+            if (ns.nodeType === Node.ELEMENT_NODE) {
+              if (ns.tagName === "IMG" && ns.getAttribute("src")) {
+                var s = ns.getAttribute("src");
+                if (!s.startsWith("data:") && !s.startsWith("http:") && !s.startsWith("https:")) {
+                  ns.setAttribute("src", new URL(s, targetUrl.href).href);
+                }
+              }
+              ns.querySelectorAll("img[src]").forEach(function (img) {
+                var s = img.getAttribute("src");
+                if (s && !s.startsWith("data:") && !s.startsWith("http:") && !s.startsWith("https:")) {
+                  img.setAttribute("src", new URL(s, targetUrl.href).href);
+                }
+              });
+            }
+          });
 
           if (footer && footer.parentNode) {
             newSections.forEach(function (ns) {
@@ -709,10 +743,6 @@
             document.body.appendChild(document.importNode(nb, true));
           });
 
-          // Update URL & active states
-          if (pushHistory) {
-            history.pushState({ path: targetUrl.href }, "", targetUrl.href);
-          }
           updateActiveNav(targetUrl.pathname);
 
           if (targetUrl.hash) {
