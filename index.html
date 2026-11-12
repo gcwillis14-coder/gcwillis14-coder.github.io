@@ -98,11 +98,11 @@
           </div>
           <!-- Instrument Telemetry Strip -->
           <div class="hero-cartographic__instrument-strip">
-            <button type="button" class="font-mono-tabular link-button" data-drawer-trigger="drawer-viirs">About the image ↗</button>
+            <button type="button" class="font-mono-tabular link-button" data-drawer-trigger="drawer-viirs">About the image ⤢</button>
             <span>·</span>
             <a href="portfolio/R/Animated_NTL.html" class="font-mono-tabular">China’s night lights, 2000–2019 →</a>
             <span>·</span>
-            <span class="font-mono-tabular">Suomi-NPP VIIRS DNB · EPSG:4326</span>
+            <span class="font-mono-tabular">DMSP-OLS &amp; VIIRS · Chen et al. (2021)</span>
           </div>
         </div>
 
@@ -114,7 +114,7 @@
               <span class="carto-pin__mark"></span>
               <span class="carto-pin__title">Jing-Jin-Ji Megalopolis</span>
             </div>
-            <span class="carto-pin__coords">39.90° N, 116.40° E · 112M hab</span>
+            <span class="carto-pin__coords">39.90° N, 116.40° E · Beijing–Tianjin–Hebei</span>
           </div>
           <!-- Annotation 2: Sichuan Basin (Inland Megalopolis) -->
           <div class="carto-pin carto-pin--sichuan">
@@ -122,7 +122,7 @@
               <span class="carto-pin__mark"></span>
               <span class="carto-pin__title">Sichuan Basin</span>
             </div>
-            <span class="carto-pin__coords">30.57° N, 104.06° E · Chengdu-Chongqing</span>
+            <span class="carto-pin__coords">30.57° N, 104.06° E · Chengdu–Chongqing</span>
           </div>
           <!-- Annotation 3: Yangtze River Delta (Eastern Core) -->
           <div class="carto-pin carto-pin--yangtze">
@@ -130,7 +130,7 @@
               <span class="carto-pin__mark"></span>
               <span class="carto-pin__title">Yangtze River Delta</span>
             </div>
-            <span class="carto-pin__coords">31.23° N, 121.47° E · 403.42 nW</span>
+            <span class="carto-pin__coords">31.23° N, 121.47° E · Shanghai–Nanjing</span>
           </div>
           <!-- Annotation 4: Pearl River Delta (Southern Complex) -->
           <div class="carto-pin carto-pin--pearl">
@@ -138,7 +138,7 @@
               <span class="carto-pin__mark"></span>
               <span class="carto-pin__title">Pearl River Delta</span>
             </div>
-            <span class="carto-pin__coords">23.13° N, 113.26° E · GBA Conurbation</span>
+            <span class="carto-pin__coords">23.13° N, 113.26° E · Guangzhou–Shenzhen</span>
           </div>
         </div>
       </div>
@@ -148,19 +148,19 @@
     <div class="hero-cartographic__metrology">
       <div class="wrap hero-cartographic__metrology-inner">
         <div class="metrology-scale">
-          <span>RADIANCE CALIBRATION (nW·cm⁻²·sr⁻¹)</span>
+          <span>NIGHTTIME LIGHTS INTENSITY (LOG SCALE)</span>
           <div class="metrology-scale__bar-wrap">
-            <span class="metrology-scale__val font-mono-tabular">7.38</span>
+            <span class="metrology-scale__val font-mono-tabular">Low</span>
             <div class="metrology-scale__bar"></div>
-            <span class="metrology-scale__val font-mono-tabular">403.42</span>
+            <span class="metrology-scale__val font-mono-tabular">High</span>
           </div>
         </div>
         <div class="metrology-params font-mono-tabular">
-          <span>PROJECTION: EPSG:4326</span>
+          <span>SOURCE: CHEN ET AL. (2021)</span>
           <span class="metrology-param--desktop">·</span>
-          <span class="metrology-param--desktop">SENSOR: VIIRS/VCM</span>
+          <span class="metrology-param--desktop">DMSP-OLS &amp; VIIRS (2000–2019)</span>
           <span>·</span>
-          <span>ZENITH: 14.2°</span>
+          <span>R / RASTER</span>
         </div>
       </div>
     </div>
@@ -176,37 +176,24 @@
     </div>
 
     <!-- Featured Project Card: Giggity -->
-    <div class="featured-project" id="featured-giggity">
+    <div class="featured-project" id="featured-giggity" data-slug="giggity">
       <span class="featured-badge">Web App · Live Music &amp; Maps</span>
       <h3>'Giggity': finding London gigs</h3>
-      <div class="featured-preview" style="margin: 8px 0 16px; border: 1px solid var(--border-hairline); overflow: hidden;">
-        <img src="img/thumbs/Giggity.jpg" alt="Giggity London gig listings and venue map preview thumbnail" width="1024" height="469" loading="lazy" style="width: 100%; max-height: 380px; object-fit: cover; object-position: right center;">
+      <div class="featured-preview">
+        <img src="img/thumbs/Giggity.jpg" alt="Giggity London gig listings and venue map preview thumbnail" width="1024" height="469" loading="lazy">
       </div>
       <p>I kept hearing about gigs after they had happened or sold out. Checking individual venue websites wasn’t working, especially for the smaller venues, so I started building somewhere to bring the listings together.</p>
       <p>This project was to focus on my favorite venues initially. It collects events from APIs and selected London venues or newsletters, tracks changes and puts them into a searchable list and venue map. What began as a personal annoyance has become a way to learn the engineering around the data: building a web interface, testing the collection process and getting the whole thing online.</p>
       <p class="featured-meta">Python · SQLite · Pydantic · SvelteKit · TypeScript · MapLibre · Cloudflare</p>
       <div class="featured-actions">
         <a href="portfolio/giggity.html" class="btn btn--primary">How it slowly evolved →</a>
-        <button type="button" class="btn btn--ghost" data-drawer-trigger="drawer-giggity">Under the bonnet ↗</button>
+        <button type="button" class="btn btn--ghost" data-drawer-trigger="drawer-giggity">Under the bonnet ⤢</button>
         <a href="https://giggity.gcwillis14.workers.dev/" target="_blank" rel="noopener" class="btn btn--ghost">Explore Giggity ↗</a>
       </div>
     </div>
 
     <!-- Full Project Index Rows -->
     <div class="index-list">
-
-      <!-- Giggity -->
-      <a class="index-row" href="portfolio/giggity.html" data-slug="giggity">
-        <span class="index-row__tag">Web App · Live Music &amp; Maps</span>
-        <span class="index-row__body">
-          <h3>Giggity: London gigs</h3>
-          <p>An attempt to stop missing gigs. Bringing together large ticketing API listings and small, often missed, London venue programmes, email newsletters, and notifications, all while learning how to turn a data pipeline into a working web app.</p>
-        </span>
-        <span class="index-row__meta">Python · SQLite · SvelteKit · MapLibre · Cloudflare</span>
-        <span class="index-row__preview">
-          <img src="img/thumbs/Giggity.jpg" alt="Giggity London gig listings and venue map preview thumbnail" width="1024" height="469" loading="lazy">
-        </span>
-      </a>
 
       <!-- TransitFlow -->
       <a class="index-row" href="articles/beijing-subway-network-analytics.html" data-slug="transitflow">
@@ -310,7 +297,7 @@
         </div>
         <div class="research-card__footer">
           <a href="articles/beijing-subway-network-analytics.html">Read the build notes →</a>
-          <button type="button" class="bibtex-toggle-btn" data-drawer-trigger="drawer-transitflow">Under the bonnet ↗</button>
+          <button type="button" class="drawer-trigger-btn" data-drawer-trigger="drawer-transitflow">Under the bonnet ⤢</button>
           <a href="https://transitflow-2s4.pages.dev/analytics" target="_blank" rel="noopener">Explore the model ↗</a>
         </div>
       </div>
@@ -396,6 +383,7 @@
       </div>
 
     </div>
+    <p id="copy-status" role="status" class="sr-only"></p>
   </div>
 </section>
 </main>
@@ -472,20 +460,20 @@
       <p class="telemetry-drawer__abstract">Beijing is the starting point. The project brings together station connections, geographic data and timetable generation for services to explore the network and its interchanges. It draws on the spatial-network thinking from my time in PhD research, with the added challenge of building something interactive.</p>
       <dl class="telemetry-drawer__specs">
         <div class="telemetry-spec-item">
-          <dt>Graph Topology</dt>
-          <dd>NetworkX Directed Multigraph · 470+ nodes</dd>
+          <dt>Graph model</dt>
+          <dd>NetworkX station &amp; line network</dd>
         </div>
         <div class="telemetry-spec-item">
-          <dt>Coordinate System</dt>
-          <dd>EPSG:4547 reprojected to WGS84</dd>
+          <dt>Data sources</dt>
+          <dd>OpenStreetMap &amp; simulated 24h timetable</dd>
         </div>
         <div class="telemetry-spec-item">
-          <dt>Centrality Metric</dt>
-          <dd>Brandes Shortest-Path Betweenness Centrality</dd>
+          <dt>Network metrics</dt>
+          <dd>Degree &amp; betweenness centrality</dd>
         </div>
         <div class="telemetry-spec-item">
           <dt>Deployment</dt>
-          <dd>Cloudflare Pages Edge Bundle</dd>
+          <dd>Cloudflare Pages</dd>
         </div>
       </dl>
       <div class="telemetry-drawer__actions">
@@ -509,20 +497,20 @@
       <p class="telemetry-drawer__abstract">The animation makes it easier to see changes that are less obvious when looking at individual years.</p>
       <dl class="telemetry-drawer__specs">
         <div class="telemetry-spec-item">
-          <dt>Radiance Range</dt>
-          <dd>7.38 to 403.42 nW·cm⁻²·sr⁻¹</dd>
+          <dt>Dataset</dt>
+          <dd>Harmonised DMSP-OLS &amp; VIIRS (2000–2019)</dd>
         </div>
         <div class="telemetry-spec-item">
-          <dt>Spatial Resolution</dt>
-          <dd>15 arc-seconds (~500m at equator)</dd>
+          <dt>Source</dt>
+          <dd>Chen et al. (2021), Earth System Science Data</dd>
         </div>
         <div class="telemetry-spec-item">
-          <dt>Projection</dt>
-          <dd>EPSG:4326 (WGS 84 geographic)</dd>
+          <dt>Method</dt>
+          <dd>Raster stack &amp; log-scale NTL mapping</dd>
         </div>
         <div class="telemetry-spec-item">
-          <dt>Zenith Angle</dt>
-          <dd>14.2° at satellite nadir passage</dd>
+          <dt>Tools</dt>
+          <dd>R · raster · ggplot2</dd>
         </div>
       </dl>
       <div class="telemetry-drawer__actions">
