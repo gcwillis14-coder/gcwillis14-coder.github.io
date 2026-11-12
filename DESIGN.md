@@ -21,7 +21,7 @@ colors:
   spectral-yellow: "#ffe3a8"
   hairline-rule: "rgba(255, 255, 255, 0.08)"
   hairline-strong: "rgba(255, 255, 255, 0.16)"
-  backdrop-veil: "rgba(5, 5, 6, 0.82)"
+  backdrop-veil: "rgba(11, 13, 14, 0.82)"
 typography:
   display:
     fontFamily: "Hanken Grotesk, -apple-system, BlinkMacSystemFont, sans-serif"
@@ -41,12 +41,7 @@ typography:
     fontWeight: 500
     lineHeight: 1.4
   body:
-    fontFamily: "Noto Serif, Georgia, serif"
-    fontSize: "0.9375rem"
-    fontWeight: 400
-    lineHeight: 1.6
-  body-target:
-    fontFamily: "Carlito, sans-serif"
+    fontFamily: "Carlito, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
     fontSize: "0.9375rem"
     fontWeight: 400
     lineHeight: 1.6
@@ -174,7 +169,7 @@ The palette derives directly from nocturnal satellite radiometry—dark cosmic g
 ## Typography
 
 **Display & Headline Font:** `Hanken Grotesk` (with `-apple-system, BlinkMacSystemFont, sans-serif` fallback)  
-**Body Font (Live Baseline → Target):** `Noto Serif` (current live prose and subpage titles) → **`Carlito`** (target body and long-form written text migration)  
+**Body Font:** `Carlito` (with `-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif` fallback; migrated from legacy Noto Serif baseline)  
 **Label & Telemetry Font:** `JetBrains Mono` (with `IBM Plex Mono, Menlo, monospace` fallback and `'tnum' 1` tabular numerals)
 
 **Character:** Geometric humanist sans-serif headings establish clean architectural authority while warm body prose carries long-form build notes and abstracts; tabular monospace anchors coordinates, dates, stack metadata, and BibTeX blocks with archival precision.
@@ -184,7 +179,7 @@ The palette derives directly from nocturnal satellite radiometry—dark cosmic g
 - **Display** (`400`, `36px` mobile → `52px` desktop, `1.15` line-height, `-0.02em` tracking): Hero thesis headline over the nocturnal satellite canvas.
 - **Headline** (`500`, `24px–26px`, `1.3` line-height, `-0.01em` tracking): Section titles, spotlight headings, and modal drawer titles.
 - **Title** (`500`, `20px`, `1.4` line-height): Index row titles and research card headings.
-- **Body** (`400`, `15px–17px`, `1.6` line-height, max `58ch–780px` measure): Narrative prose, project abstracts, and navigation items; migrating from `Noto Serif` to **`Carlito`** for written text while aligning subpage/case-study display titles onto `Hanken Grotesk` and resolving the undefined `--font-serif` fallback.
+- **Body** (`400`, `15px–17px`, `1.6` line-height, max `58ch–780px` measure): Narrative prose, project abstracts, and navigation items styled with `Carlito`, aligning subpage/case-study display titles onto `Hanken Grotesk` and resolving legacy font fallbacks.
 - **Label & Telemetry** (`400–500`, `10px–12px`, `0.04em–0.12em` tracking): Geodetic coordinates, radiance scales, kickers, metadata runs, filter/sort controls, and citations.
 
 **The Mid-Dot Notation Rule.** Inline categories, dates, and technology metadata use natural sentence or mixed case separated by centered middle dots (`·`), never enclosed pill tags or faux code-comment prefixes (`// 01`).
@@ -207,7 +202,7 @@ The layout organizes a five-section multi-page architecture (`Home`, `Work`, `Ar
 Visual hierarchy relies on flat tonal shifts (`colors.obsidian-canvas` → `colors.obsidian-dim` → `colors.surface-low`) and `1px` hairline thresholds (`colors.hairline-rule`), never extruded card shadows or glossy gradients.
 
 - **Flat Surface Tiers:** Page sections, index rows, and publication entries sit flush on the primary canvas; hovering an index row steps subtly to `colors.obsidian-dim`.
-- **Translucent Chrome & Modal Depth:** Only the sticky top masthead (subtle `8px` backdrop blur over `rgba(5, 5, 6, 0.95)`) and the open telemetry drawer (`0 24px 64px rgba(0, 0, 0, 0.85)` over a blurred `colors.backdrop-veil` backdrop) lift above the document plane.
+- **Translucent Chrome & Modal Depth:** Only the sticky top masthead (subtle `8px` backdrop blur over `var(--color-masthead-bg)` / `rgba(11, 13, 14, 0.95)`) and the open telemetry drawer (`0 24px 64px rgba(0, 0, 0, 0.85)` over a blurred `colors.backdrop-veil` backdrop) lift above the document plane.
 
 **The Flat-By-Default Rule.** Static cards, rows, and buttons carry zero drop shadow; elevation is reserved exclusively for floating navigation chrome and active modal drawers.
 
@@ -217,7 +212,7 @@ The geometric system strictly enforces **Level 0 Sharp (`0px` border-radius)** a
 
 - **Containers & Thumbnails:** Index thumbnails (`120×80px`), buttons, filter underlines, BibTeX containers, and telemetry drawers have crisp `90°` corners (`rounded.none`).
 - **Hairline Framing:** Where structural containment is needed, components use `1px solid` hairline borders rather than rounded outlines or thick accent left-borders.
-- **Target Shape Cleanups:** Retire the remaining `border-radius: 50%` showcase indicator exception in the case-study stylesheet, flatten `rx` corner radii on SVG architecture diagram boxes to `0`, and convert bordered stack chips in spotlight/case-study headers into flat mid-dot typographic runs.
+- **Completed Shape Cleanups:** All interactive controls, containers, thumbnails, diagrams, and modals enforce Level 0 Sharp (`0px` border-radius). The showcase indicator `border-radius: 50%` exception has been retired, SVG architecture diagram boxes enforce `rx="0"`, and bordered stack chips have been converted into flat mid-dot typographic runs.
 
 ## Components
 
@@ -240,7 +235,7 @@ The geometric system strictly enforces **Level 0 Sharp (`0px` border-radius)** a
 ### Spotlight & Research Panels
 
 - **Featured Project & Dual Research Cards:** Permitted `1px` hairline rectangular containers on `colors.obsidian-dim` for high-priority spotlights (_Giggity_, _TransitFlow_ build notes, _Uber & NYC Taxis_ paper), pairing kicker labels in `colors.solar-gold`, serif/target-sans abstracts, and inline action links.
-- **Cleanup Target:** Convert the rectangular bordered technology spans inside spotlight/case-study headers into inline mid-dot (`·`) text runs.
+- **Completed Tech Run Standardization:** The rectangular bordered technology spans inside spotlight/case-study headers have been converted into inline mid-dot (`·`) text runs.
 
 ### Nocturnal Radiance Hero & Metrology
 
@@ -250,7 +245,7 @@ The geometric system strictly enforces **Level 0 Sharp (`0px` border-radius)** a
 ### Telemetry Drawer & FLIP Motion
 
 - **Shared-Element Expansion:** Clicking `About the image ↗` or `Under the bonnet ↗` captures the originating trigger/row via `getBoundingClientRect()`, mounts the `820px` max-width `.telemetry-drawer`, applies an inverse `translate3d(Δx, Δy, 0) scale(scaleX, scaleY)` from `top left`, and plays a `380ms cubic-bezier(0.16, 1, 0.3, 1)` transform to identity (reversing over `280ms` on close button click, backdrop click, or `Escape`).
-- **Accessibility Target:** Add full `Tab` / `Shift+Tab` focus trapping inside open drawers, mark background page landmarks `inert`, and check `prefers-reduced-motion: reduce` inside JavaScript FLIP calculations so inline transforms are skipped alongside CSS media rules.
+- **Completed Accessibility Architecture:** Full `Tab` / `Shift+Tab` focus trapping inside open drawers, background page landmarks marked `inert`, and `prefers-reduced-motion: reduce` checked inside JavaScript FLIP calculations so inline transforms are skipped alongside CSS media rules.
 
 ### Filter & Sort Controls
 
@@ -275,7 +270,7 @@ The geometric system strictly enforces **Level 0 Sharp (`0px` border-radius)** a
 - **Do** keep the portfolio 100% zero-build vanilla HTML, CSS, and vanilla JS for direct GitHub Pages delivery.
 - **Do** separate inline metadata, years, and technology stacks with middle dots (`·`) and render numeric telemetry in tabular `JetBrains Mono` (`'tnum' 1`).
 - **Do** honor `prefers-reduced-motion: reduce` in both CSS and JavaScript FLIP transitions, and maintain full keyboard/screen-reader accessibility (`skip-link`, `aria-current`, focus restoration).
-- **Do** complete the target typography and token unification (`Carlito` body font, `#0b0d0e` theme-color, unified `--color-*` tokens across case-study styles, and `Hanken Grotesk` for all display/section headings).
+- **Do** maintain the target typography and token unification (`Carlito` body font, `#0b0d0e` theme-color, unified `--color-*` tokens across case-study styles, and `Hanken Grotesk` for all display/section headings).
 
 ### Don't:
 

@@ -275,8 +275,8 @@
     var currentFilter = "all";
     var currentSort = "recommended";
 
-    function applyFilterAndSortWithFLIP() {
-      var reduceMotion = prefersReducedMotion();
+    function applyFilterAndSortWithFLIP(skipAnimation) {
+      var reduceMotion = prefersReducedMotion() || !!skipAnimation;
 
       // 1. Record 'First' bounding boxes of currently visible rows
       var firstPositions = new Map();
@@ -381,35 +381,114 @@
       });
     }
 
+    function syncFromUrl(skipAnimation) {
+      var params = new URLSearchParams(window.location.search);
+      var f = params.get("filter");
+      var s = params.get("sort");
+
+      var validFilters = Array.from(filterButtons).map(function (b) {
+        return b.getAttribute("data-filter");
+      });
+      var validSorts = Array.from(sortButtons).map(function (b) {
+        return b.getAttribute("data-sort");
+      });
+
+      currentFilter = (f && validFilters.indexOf(f) !== -1) ? f : "all";
+      currentSort = (s && validSorts.indexOf(s) !== -1) ? s : "recommended";
+
+      filterButtons.forEach(function (btn) {
+        var active = (btn.getAttribute("data-filter") || "all") === currentFilter;
+        btn.classList.toggle("is-active", active);
+        btn.setAttribute("aria-pressed", active ? "true" : "false");
+      });
+
+      sortButtons.forEach(function (btn) {
+        var active = (btn.getAttribute("data-sort") || "recommended") === currentSort;
+        btn.classList.toggle("is-active", active);
+        btn.setAttribute("aria-pressed", active ? "true" : "false");
+      });
+
+      applyFilterAndSortWithFLIP(skipAnimation);
+    }
+
+    function updateUrl() {
+      var url = new URL(window.location.href);
+      if (currentFilter && currentFilter !== "all") {
+        url.searchParams.set("filter", currentFilter);
+      } else {
+        url.searchParams.delete("filter");
+      }
+      if (currentSort && currentSort !== "recommended") {
+        url.searchParams.set("sort", currentSort);
+      } else {
+        url.searchParams.delete("sort");
+      }
+
+      var newSearch = url.search;
+      if (newSearch !== window.location.search) {
+        var newUrl = url.pathname + (newSearch || "") + (url.hash || "");
+        try {
+          history.pushState({ path: url.href, filter: currentFilter, sort: currentSort }, "", newUrl);
+        } catch (e) {
+          // ignore file:// or sandbox limitations
+        }
+      }
+    }
+
     if (filterBar) {
       filterButtons.forEach(function (btn) {
-        btn.setAttribute("aria-pressed", btn.classList.contains("is-active") ? "true" : "false");
         btn.addEventListener("click", function () {
+          var targetFilter = btn.getAttribute("data-filter") || "all";
+          if (targetFilter === currentFilter) return;
+
+          currentFilter = targetFilter;
           filterButtons.forEach(function (b) {
-            b.classList.remove("is-active");
-            b.setAttribute("aria-pressed", "false");
+            var active = (b.getAttribute("data-filter") || "all") === currentFilter;
+            b.classList.toggle("is-active", active);
+            b.setAttribute("aria-pressed", active ? "true" : "false");
           });
-          btn.classList.add("is-active");
-          btn.setAttribute("aria-pressed", "true");
-          currentFilter = btn.getAttribute("data-filter") || "all";
-          applyFilterAndSortWithFLIP();
+
+          updateUrl();
+          applyFilterAndSortWithFLIP(false);
         });
       });
     }
 
     if (sortBar) {
       sortButtons.forEach(function (btn) {
-        btn.setAttribute("aria-pressed", btn.classList.contains("is-active") ? "true" : "false");
         btn.addEventListener("click", function () {
+          var targetSort = btn.getAttribute("data-sort") || "recommended";
+          if (targetSort === currentSort) return;
+
+          currentSort = targetSort;
           sortButtons.forEach(function (b) {
-            b.classList.remove("is-active");
-            b.setAttribute("aria-pressed", "false");
+            var active = (b.getAttribute("data-sort") || "recommended") === currentSort;
+            b.classList.toggle("is-active", active);
+            b.setAttribute("aria-pressed", active ? "true" : "false");
           });
-          btn.classList.add("is-active");
-          btn.setAttribute("aria-pressed", "true");
-          currentSort = btn.getAttribute("data-sort") || "recommended";
-          applyFilterAndSortWithFLIP();
+
+          updateUrl();
+          applyFilterAndSortWithFLIP(false);
         });
+      });
+    }
+
+    // Set initial filter & sort states based on URL query parameters
+    syncFromUrl(true);
+
+    // Register active sync handler for popstate Back/Forward navigation
+    window._activeFilterSortSync = function () {
+      if (listContainer && (!document.body.contains || document.body.contains(listContainer))) {
+        syncFromUrl(false);
+      }
+    };
+
+    if (!window._hasFilterPopstate) {
+      window._hasFilterPopstate = true;
+      window.addEventListener("popstate", function () {
+        if (typeof window._activeFilterSortSync === "function") {
+          window._activeFilterSortSync();
+        }
       });
     }
   }
@@ -488,17 +567,21 @@
   /* ------------------------------------------------------------------ */
   /* 5. Native Multi-Page View Transitions Architecture (Feature 4)     */
   /* ------------------------------------------------------------------ */
+  function normalizePath(p) {
+    return (p || "").replace(/\/index\.html$/, "/").replace(/\/$/, "");
+  }
+
+  var currentPath = window.location.pathname;
+
   function updateActiveNav(targetPath) {
     var masthead = document.querySelector(".masthead__nav");
     if (!masthead) return;
     var links = masthead.querySelectorAll("a");
-    var normalizedTarget = targetPath.replace(/\/index\.html$/, "/").replace(/\/$/, "");
+    var normalizedTarget = normalizePath(targetPath);
 
     links.forEach(function (link) {
       var href = link.getAttribute("href") || "";
-      var linkPath = new URL(href, window.location.href).pathname
-        .replace(/\/index\.html$/, "/")
-        .replace(/\/$/, "");
+      var linkPath = normalizePath(new URL(href, window.location.href).pathname);
 
       if (linkPath === normalizedTarget || (normalizedTarget === "" && linkPath.endsWith("/index.html"))) {
         link.setAttribute("aria-current", "page");
@@ -539,20 +622,30 @@
         }
 
         // Pair shared-element tokens only when both source and destination match
-        var hasSlug = sourceLink && sourceLink.matches("[data-slug]");
-        var oldTitle = hasSlug ? sourceLink.querySelector("h3") : null;
+        var card = sourceLink
+          ? sourceLink.closest("[data-slug], #featured-giggity, #writing .research-card, #writing [class*='card'], .featured-project, .research-card")
+          : null;
+
+        var oldTitle = card ? card.querySelector("h3") : null;
         var hasTargetTitle = !!doc.querySelector("main h1");
         if (oldTitle && hasTargetTitle) assignVtName(oldTitle, "project-title");
 
-        var oldTag = hasSlug ? sourceLink.querySelector(".index-row__tag") : null;
+        var oldTag = card
+          ? card.querySelector(".index-row__tag, .featured-badge, .research-card__header, [data-vt-role='tag']")
+          : null;
         var hasTargetTag = !!doc.querySelector('[data-vt-role="tag"]');
         if (oldTag && hasTargetTag) assignVtName(oldTag, "project-tag");
 
-        var oldMeta = hasSlug ? sourceLink.querySelector(".index-row__meta") : null;
+        var oldMeta = card
+          ? card.querySelector(".index-row__meta, .featured-meta, .research-card__meta, [data-vt-role='meta']")
+          : null;
         var hasTargetMeta = !!doc.querySelector('[data-vt-role="meta"]');
         if (oldMeta && hasTargetMeta) assignVtName(oldMeta, "project-meta");
 
         var transition = document.startViewTransition(function () {
+          // Update current tracking path
+          currentPath = targetUrl.pathname;
+
           // Update document title
           document.title = doc.title;
 
@@ -724,6 +817,11 @@
       var targetUrl = new URL(window.location.href);
       if (isStaticNotebookPath(targetUrl.pathname)) {
         window.location.reload();
+        return;
+      }
+      // If path hasn't changed (e.g. query param filter/sort or hash changed on current page),
+      // do not re-fetch the entire page or reset scroll position.
+      if (normalizePath(targetUrl.pathname) === normalizePath(currentPath)) {
         return;
       }
       navigateWithTransition(targetUrl, null, false);

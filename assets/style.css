@@ -14,6 +14,9 @@
   --color-accent-amber:       #e85d04;
   --color-accent-gold:        #ffba08;
   --color-border-hairline:    rgba(255, 255, 255, 0.08);
+  --color-border-hairline-strong: rgba(255, 255, 255, 0.16);
+  --color-masthead-bg:        rgba(11, 13, 14, 0.95);
+  --color-backdrop-veil:      rgba(11, 13, 14, 0.82);
 
   /* -- Radiometric Foundation Tokens ------------------------------------- */
   --space-black:              var(--color-surface);
@@ -33,6 +36,8 @@
   --text-secondary:           var(--color-text-secondary);
   --text-tertiary:            var(--color-text-tertiary);
   --border-hairline:          var(--color-border-hairline);
+  --border-hairline-strong:   var(--color-border-hairline-strong);
+  --backdrop-veil:            var(--color-backdrop-veil);
 
   --primary:                  #ffb596;
   --primary-container:        var(--color-accent-amber);
@@ -49,7 +54,7 @@
   --dust:                     var(--color-text-secondary);
   --dust-dim:                 var(--color-text-tertiary);
   --hair:                     var(--color-border-hairline);
-  --hair-strong:              rgba(255, 255, 255, 0.16);
+  --hair-strong:              var(--color-border-hairline-strong);
   --ember:                    var(--color-accent-amber);
   --ember-dim:                #581e00;
   --amber:                    var(--color-accent-gold);
@@ -221,7 +226,7 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(5, 5, 6, 0.95);
+  background: var(--color-masthead-bg);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border-bottom: var(--hairline-w) solid var(--border-hairline);
@@ -974,6 +979,11 @@ a.index-row {
   border-radius: 0;
 }
 
+.index-row[data-slug="giggity"] .index-row__preview img {
+  object-position: right center;
+  filter: contrast(115%) brightness(92%);
+}
+
 .index-row__preview--mark svg {
   width: 44px;
   height: 44px;
@@ -981,24 +991,61 @@ a.index-row {
 
 @media (max-width: 1024px) {
   .index-row {
-    grid-template-columns: 120px 1fr 100px;
+    grid-template-columns: 110px 1fr 96px;
+    gap: var(--space-md);
+    align-items: start;
+  }
+  .index-row__tag {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .index-row__body {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .index-row__preview {
+    grid-column: 3;
+    grid-row: 1;
+    width: 96px;
+    height: 64px;
+    justify-self: end;
+    align-self: start;
+  }
+  .index-row__preview--mark svg {
+    width: 36px;
+    height: 36px;
   }
   .index-row__meta {
     grid-column: 2 / -1;
-  }
-  .index-row__preview {
-    display: none;
+    grid-row: 2;
+    margin-top: 4px;
   }
 }
 
 @media (max-width: 640px) {
   .index-row {
     grid-template-columns: 1fr;
-    gap: 10px;
+    gap: 12px;
     padding: 20px 4px;
+  }
+  .index-row__tag,
+  .index-row__body,
+  .index-row__meta,
+  .index-row__preview {
+    grid-column: 1;
+    grid-row: auto;
   }
   .index-row__tag {
     padding-top: 0;
+  }
+  .index-row__preview {
+    width: 120px;
+    height: 72px;
+    justify-self: start;
+    margin-top: 2px;
+  }
+  .index-row__meta {
+    margin-top: 0;
   }
 }
 
@@ -1445,7 +1492,7 @@ a.index-row {
 .telemetry-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(5, 5, 6, 0.82);
+  background: var(--color-backdrop-veil);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   z-index: 1000;

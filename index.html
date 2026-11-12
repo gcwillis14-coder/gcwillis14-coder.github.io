@@ -13,7 +13,7 @@
 <link rel="icon" type="image/png" href="img/favico/favicon-16x16.png" sizes="16x16">
 <link rel="manifest" href="img/favico/manifest.json">
 <link rel="mask-icon" href="img/favico/safari-pinned-tab.svg" color="#E2661F">
-<meta name="theme-color" content="#050506">
+<meta name="theme-color" content="#0b0d0e">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -179,11 +179,14 @@
     <div class="featured-project" id="featured-giggity">
       <span class="featured-badge">Web App · Live Music &amp; Maps</span>
       <h3>'Giggity': finding London gigs</h3>
+      <div class="featured-preview" style="margin: 8px 0 16px; border: 1px solid var(--border-hairline); overflow: hidden;">
+        <img src="img/thumbs/Giggity.jpg" alt="Giggity London gig listings and venue map preview thumbnail" width="1024" height="469" loading="lazy" style="width: 100%; max-height: 380px; object-fit: cover; object-position: right center;">
+      </div>
       <p>I kept hearing about gigs after they had happened or sold out. Checking individual venue websites wasn’t working, especially for the smaller venues, so I started building somewhere to bring the listings together.</p>
-      <p>This project was to focus on my favorite venues initially. It collects events from APIs and selected London venuees or newsletters, tracks changes and puts them into a searchable list and venue map. What began as a personal annoyance has become a way to learn the engineering around the data: building a web interface, testing the collection process and getting the whole thing online.</p>
+      <p>This project was to focus on my favorite venues initially. It collects events from APIs and selected London venues or newsletters, tracks changes and puts them into a searchable list and venue map. What began as a personal annoyance has become a way to learn the engineering around the data: building a web interface, testing the collection process and getting the whole thing online.</p>
       <p class="featured-meta">Python · SQLite · Pydantic · SvelteKit · TypeScript · MapLibre · Cloudflare</p>
       <div class="featured-actions">
-        <a href="portfolio/giggity.html" class="btn btn--primary">How it slowly evolved→</a>
+        <a href="portfolio/giggity.html" class="btn btn--primary">How it slowly evolved →</a>
         <button type="button" class="btn btn--ghost" data-drawer-trigger="drawer-giggity">Under the bonnet ↗</button>
         <a href="https://giggity.gcwillis14.workers.dev/" target="_blank" rel="noopener" class="btn btn--ghost">Explore Giggity ↗</a>
       </div>
@@ -223,15 +226,11 @@
         <span class="index-row__tag">GIS · Spatial Regression</span>
         <span class="index-row__body">
           <h3>House prices and London rail access</h3>
-          <p>Initally built to help my sister locate affordable commuter towns. How much does access to the railway matter for London house prices, and does the relationship look the same everywhere?</p>
+          <p>Initially built to help my sister locate affordable commuter towns. How much does access to the railway matter for London house prices, and does the relationship look the same everywhere?</p>
         </span>
         <span class="index-row__meta">R · Spatial Modeling · Leaflet</span>
-        <span class="index-row__preview index-row__preview--mark" aria-hidden="true">
-          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" class="accent-gold">
-            <circle cx="32" cy="32" r="4" fill="currentColor"></circle>
-            <circle cx="32" cy="32" r="12" opacity="0.55"></circle>
-            <circle cx="32" cy="32" r="20" opacity="0.3"></circle>
-          </svg>
+        <span class="index-row__preview">
+          <img src="img/thumbs/Step1.jpg" alt="House prices and London rail access preview thumbnail" loading="lazy">
         </span>
       </a>
 
@@ -453,7 +452,7 @@
         </div>
       </dl>
       <div class="telemetry-drawer__actions">
-        <a href="portfolio/giggity.html" class="btn btn--primary">How it slowly evolved→</a>
+        <a href="portfolio/giggity.html" class="btn btn--primary">How it slowly evolved →</a>
         <a href="https://giggity.gcwillis14.workers.dev/" target="_blank" rel="noopener" class="btn btn--ghost">Explore Giggity ↗</a>
       </div>
     </div>
