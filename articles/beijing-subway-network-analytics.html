@@ -17,10 +17,27 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;family=Noto+Serif:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&amp;family=Hanken+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/style.css">
 <link rel="stylesheet" href="../assets/case-study.css">
 <script src="../assets/main.js" defer></script>
+<script type="speculationrules">
+{
+  "prefetch": [
+    {
+      "where": {
+        "and": [
+          { "href_matches": "/*" },
+          { "not": { "href_matches": "/portfolio/R/*" } },
+          { "not": { "href_matches": "/portfolio/python-notebooks/*" } },
+          { "not": { "href_matches": "/portfolio/misc/*" } }
+        ]
+      },
+      "eagerness": "moderate"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -47,9 +64,10 @@
 
 <main id="main" class="article-container">
   <header class="article-header">
-    <span class="article-kicker">TransitFlow · Build notes</span>
+    <span class="article-kicker" data-vt-role="tag">TransitFlow · Build notes</span>
     <h1 class="article-title">TransitFlow: modelling the Beijing metro</h1>
     <p>A fun experiment in building a metro-network model, starting with Beijing and seeing whether the same approach could work elsewhere.</p>
+    <p class="featured-meta" data-vt-role="meta">Python · NetworkX · Leaflet · pyproj</p>
     <div class="article-actions">
       <a href="https://transitflow-2s4.pages.dev/analytics" target="_blank" rel="noopener" class="btn">Explore TransitFlow ↗</a>
       <a href="https://transitflow-2s4.pages.dev/" target="_blank" rel="noopener" class="btn btn--ghost">Open simulation ↗</a>

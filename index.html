@@ -19,12 +19,29 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" href="img/header.jpg" as="image" fetchpriority="high">
 <link rel="preload" href="assets/style.css" as="style">
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;family=Noto+Serif:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&amp;family=Hanken+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 <script src="assets/main.js" defer></script>
+<script type="speculationrules">
+{
+  "prefetch": [
+    {
+      "where": {
+        "and": [
+          { "href_matches": "/*" },
+          { "not": { "href_matches": "/portfolio/R/*" } },
+          { "not": { "href_matches": "/portfolio/python-notebooks/*" } },
+          { "not": { "href_matches": "/portfolio/misc/*" } }
+        ]
+      },
+      "eagerness": "moderate"
+    }
+  ]
+}
+</script>
 </head>
 <body>
-<a class="skip-link" href="#projects">Skip to content</a>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <!-- Top Navigation Bar -->
 <header class="masthead">
@@ -50,6 +67,7 @@
   </div>
 </header>
 
+<main id="main">
 <!-- Hero: Nocturnal Radiance Satellite Canvas & Cartographic Annotations -->
 <section class="hero-cartographic">
   <div class="hero-cartographic__canvas">
@@ -163,15 +181,7 @@
       <h3>'Giggity': finding London gigs</h3>
       <p>I kept hearing about gigs after they had happened or sold out. Checking individual venue websites wasn’t working, especially for the smaller venues, so I started building somewhere to bring the listings together.</p>
       <p>This project was to focus on my favorite venues initially. It collects events from APIs and selected London venuees or newsletters, tracks changes and puts them into a searchable list and venue map. What began as a personal annoyance has become a way to learn the engineering around the data: building a web interface, testing the collection process and getting the whole thing online.</p>
-      <div class="featured-meta">
-        <span>Python</span>
-        <span>SQLite</span>
-        <span>Pydantic</span>
-        <span>SvelteKit</span>
-        <span>TypeScript</span>
-        <span>MapLibre</span>
-        <span>Cloudflare</span>
-      </div>
+      <p class="featured-meta">Python · SQLite · Pydantic · SvelteKit · TypeScript · MapLibre · Cloudflare</p>
       <div class="featured-actions">
         <a href="portfolio/giggity.html" class="btn btn--primary">How it slowly evolved→</a>
         <button type="button" class="btn btn--ghost" data-drawer-trigger="drawer-giggity">Under the bonnet ↗</button>
@@ -404,6 +414,7 @@
     </div>
   </div>
 </section>
+</main>
 
 <!-- Footer -->
 <footer class="footer">
