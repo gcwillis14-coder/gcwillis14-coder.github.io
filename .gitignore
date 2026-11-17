@@ -14,3 +14,7 @@ Thumbs.db
 # Local agent / MCP config (may contain API keys)
 .agents/
 .mcp.json
+docs/
+DESIGN.md
+AGENTS.md
+.prettierignore
