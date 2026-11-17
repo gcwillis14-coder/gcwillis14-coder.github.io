@@ -296,3 +296,7 @@ The geometric system strictly enforces **Level 0 Sharp (`0px` border-radius)** a
 - **Don't** use bouncy spring physics, scroll-linked parallax, rounded pill badges, glowing neon shadows, artificial gradients, faux code-comment section numbers (`// 01`), fake macOS traffic-light window dots, fabricated telemetry numbers, third-party tracker scripts, or generic marketing copy.
 - **Don't** intercept static R Markdown or Jupyter HTML exports (`/portfolio/R/`, `/portfolio/python-notebooks/`, `/portfolio/misc/`) with the View Transitions DOM-swap router.
 - **Don't** hardcode `#050506`, legacy `#63615b` low-contrast tertiary text, or legacy color aliases when authoring new components; reference the canonical `--color-*` tokens defined in frontmatter.
+
+## Future interaction options
+
+[Interaction option catalogue](docs/future-interaction-options.md): unselected enhancements to evaluate against this design; exclusions remain in force.
